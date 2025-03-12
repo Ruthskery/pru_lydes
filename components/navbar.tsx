@@ -1,15 +1,15 @@
 import React from 'react';
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Disclosure, DisclosureButton, DisclosurePanel} from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image';
 import bcdq from '../public/src/bcdq.png';
 
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Home', href: '#', current: true },
+  { name: 'About', href: '#', current: false },
+  { name: 'Contact', href: '#', current: false },
+  { name: 'Products', href: '#', current: false },
 ]
 
 function classNames(...classes: string[]) {
@@ -38,15 +38,15 @@ const Navbar = () => {
             height={50}  // Set height
           />
         </div>
-        <div className="hidden sm:ml-6 sm:block">
-          <div className="flex space-x-4">
+        <div className="hidden sm:flex sm:items-center sm:ml-auto">
+        <div className="flex space-x-4">
             {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 aria-current={item.current ? 'page' : undefined}
                 className={classNames(
-                  item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                  item.current ? 'bg-[#FFD700] text-black font-bold' : 'text-black-900 hover:bg-[#FFD700] hover:text-black font-bold',
                   'rounded-md px-3 py-2 text-sm font-medium',
                 )}
               >
@@ -56,18 +56,18 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <button
+      {/* <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"> */}
+        {/* <button
           type="button"
           className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
         >
           <span className="absolute -inset-1.5" />
           <span className="sr-only">View notifications</span>
           <BellIcon aria-hidden="true" className="size-6" />
-        </button>
+        </button> */}
 
         {/* Profile dropdown */}
-        <Menu as="div" className="relative ml-3">
+        {/* <Menu as="div" className="relative ml-3">
           <div>
             <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
               <span className="absolute -inset-1.5" />
@@ -108,8 +108,8 @@ const Navbar = () => {
               </a>
             </MenuItem>
           </MenuItems>
-        </Menu>
-      </div>
+        </Menu> */}
+      {/* </div> */}
     </div>
   </div>
 
@@ -122,7 +122,7 @@ const Navbar = () => {
           href={item.href}
           aria-current={item.current ? 'page' : undefined}
           className={classNames(
-            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+            item.current ? 'bg-[#FFD700] text-black' : 'text-black-900 hover:bg-[#FFD700] hover:text-black',
             'block rounded-md px-3 py-2 text-base font-medium',
           )}
         >
