@@ -17,7 +17,7 @@ function classNames(...classes: string[]) {
 }
 
 const Navbar = () => {
-  return <Disclosure as="nav" className="bg-gray-100">
+  return <Disclosure as="nav" className="bg-transparent fixed">
   <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div className="relative flex h-16 items-center justify-between">
       <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -122,7 +122,7 @@ const Navbar = () => {
           href={item.href}
           aria-current={item.current ? 'page' : undefined}
           className={classNames(
-            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-yellow-700 hover:text-white',
             'block rounded-md px-3 py-2 text-base font-medium',
           )}
         >
