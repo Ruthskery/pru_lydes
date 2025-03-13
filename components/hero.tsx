@@ -33,7 +33,7 @@ export function Bilog() {
 const Hero = () => {
   return (
     <section className="w-full min-h-screen bg-[#f0f0f0] flex flex-col md:flex-row items-center justify-center relative p-8">
-      <div className={`${poppins.className} md:absolute md:left-[150px] md:top-50 text-center md:text-left max-w-2xl z-10 md:max-w-300`}> 
+      <div className={`${poppins.className} md:absolute md:left-[150px] text-center md:text-left max-w-2xl z-10 md:max-w-300`}> 
         <h1 className="md:text-7xl font-semibold">CHALCEDONY DIAMOND</h1>
         <p className="text-lg md:text-2xl mt-4 font-light max-w-lg">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

@@ -4,8 +4,8 @@ import lydes from '../public/src/lydes.png';
 
 const About = () => {
   return (
-    <div className="bg-gray-100 pb-12 pt-16 md:pt-20">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[90%] md:w-[80%] mx-auto gap-10 items-center text-center md:text-left">
+      <div className="bg-gray-100 min-h-screen pb-12 pt-16 md:pt-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[90%] md:w-[80%] mx-auto gap-10 items-center text-center md:text-left">
         
         {/* Image - Left Side */}
         <div className="flex justify-center md:justify-start">
