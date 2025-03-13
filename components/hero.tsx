@@ -4,7 +4,7 @@ import { poppins } from '@/public/fonts/fonts';
 const Hero = () => {
   return (
     <section className="w-full h-250 md:h-236 relative grid md:grid-cols-2 w-full h-220 bg-[#f0f0f0] flex flex-col justify-center items-start md:items-center">
-      <div className={`${poppins.className} relative top-25 md:top-0 text-center md:text-left md:ml-20 2xl:ml-40 z-2`}> 
+      <div className={`${poppins.className} relative top-30 md:top-0 text-center md:text-left md:ml-20 2xl:ml-40 z-2`}> 
         <h1 className="md:text-7xl 2xl:m-w-350 md:w-300 font-semibold text-4xl mt-7 md:max-w-md 2xl:max-w-300">CHALCEDONY DIAMOND</h1>
         <p className="font-light text-lg md:text-2xl md:max-w-auto xl:m-w-350 mt-8">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
