@@ -4,6 +4,8 @@ import Footer from '@/components/footer';
 import Hero from '@/components/hero';
 import Navbar from '@/components/navbar';
 import Carousel from '@/components/carousel';
+import Credentials from '@/components/credentials';
+import Careerpath from '@/components/careerpath';
 import React from 'react';
 
 const Home = () => {
@@ -12,6 +14,8 @@ const Home = () => {
     <Hero />
     <Carousel />
     <About />
+    <Credentials />
+    <Careerpath />
     <Contact />
     <Footer />
   </div>;
