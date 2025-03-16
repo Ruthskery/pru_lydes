@@ -1,6 +1,6 @@
-import React from 'react';
-import { Disclosure, DisclosureButton, DisclosurePanel} from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import React, { useState, useEffect } from 'react';
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import bcdq from '../public/src/bcdq.png';
 import { poppins } from '@/public/fonts/fonts';
@@ -10,19 +10,33 @@ const navigation = [
   { name: 'About', href: '#', current: false },
   { name: 'Contact', href: '#', current: false },
   { name: 'Products', href: '#', current: false },
-]
+];
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(' ');
 }
 
 const Navbar = () => {
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolling(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <Disclosure
       as="nav"
-      className="bg-white/50 fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-7xl z-50 shadow-md backdrop-blur-sm p-5 sm:rounded-full"
+      className={classNames(
+        scrolling ? 'bg-[#FFD700] shadow-lg' : 'bg-transparent',
+        'fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out py-3'
+      )}
     >
-      <div className="mx-auto px-2 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           {/* Mobile menu button */}
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -36,7 +50,7 @@ const Navbar = () => {
 
           {/* Logo + Navigation */}
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex shrink-0 items-center">
+            <div className="flex shrink-0 items-center lg:ml-50">
               <Image src={bcdq} alt="Blue Chalcedony" width={100} height={100} />
             </div>
             <div className="hidden sm:flex sm:items-center sm:ml-auto">
@@ -47,11 +61,13 @@ const Navbar = () => {
                     href={item.href}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
-                      poppins.className, // ✅ Apply Poppins font
-                      item.current 
-                        ? 'bg-[#FFD700] text-black font-bold'  // ✅ Active link
-                        : 'text-black-900 hover:bg-[#FFD700] hover:text-black font-bold', // ✅ Hover state
-                      'rounded-md px-3 py-2 text-xl font-medium'
+                      poppins.className,
+                      'rounded-md px-3 py-2 text-xl font-medium transition-all duration-200',
+                      item.current
+                        ? 'bg-[#FFD700] text-black font-bold'
+                        : scrolling
+                          ? 'text-black hover:bg-white hover:text-black font-bold' // White BG on hover when navbar is yellow
+                          : 'text-black hover:bg-[#FFD700] hover:text-black font-bold' // Default hover
                     )}
                   >
                     {item.name}
@@ -73,8 +89,10 @@ const Navbar = () => {
               href={item.href}
               aria-current={item.current ? 'page' : undefined}
               className={classNames(
-                item.current ? 'bg-[#FFD700] text-black' : 'text-black-900 hover:bg-[#FFD700] hover:text-black',
-                'block rounded-md px-3 py-2 text-base font-medium'
+                'block rounded-md px-3 py-2 text-base font-medium transition-all duration-200',
+                scrolling
+                  ? 'text-black hover:bg-white hover:text-black' // White BG on hover in mobile when navbar is yellow
+                  : 'text-black hover:bg-[#FFD700] hover:text-black' // Default hover
               )}
             >
               {item.name}
@@ -87,4 +105,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
