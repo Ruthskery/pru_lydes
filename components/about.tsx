@@ -23,24 +23,27 @@ const About = () => {
 
   return (
     <motion.div
-    ref={sectionRef}
-    initial={{ opacity: 0, x: -50 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
-    className={`${poppins.className} min-h-screen flex items-center justify-center py-16 md:py-20 relative`}
-  >
-    {/* Background Image */}
-    <div
-      className="absolute inset-0 bg-cover bg-center"
-      style={{
-        backgroundImage: `url(${building.src})`,
-        opacity: 0.4, // ✅ Makes the background 40% transparent
-      }}
-    ></div>
-  
-      <div className="grid grid-cols-1 md:grid-cols-2 w-[90%] mx-auto gap-12 md:gap-16 items-center justify-center text-center md:text-left">
-        
+      ref={sectionRef}
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className={`${poppins.className} min-h-screen flex items-center justify-center py-16 md:py-20 relative`}
+    >
+      {/* Background Image & Overlay */}
+      <div className="absolute inset-0 w-full h-full">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${building.src})`,
+          }}
+        ></div>
+
+        {/* ✅ Separate Overlay for Transparency (Doesn't Affect Text) */}
+        <div className="absolute inset-0 bg-white opacity-40"></div>
+      </div>
+
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 w-[90%] mx-auto gap-12 md:gap-16 items-center justify-center text-center md:text-left">
         {/* Image Section with Bubbles */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -94,7 +97,7 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
-          className="flex flex-col items-left text-left"
+          className="flex flex-col items-left text-left relative z-20"
         >
           <h1 className="text-lg font-bold uppercase text-black mb-3">ABOUT ME</h1>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-black leading-snug mb-4">
