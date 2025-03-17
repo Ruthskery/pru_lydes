@@ -1,6 +1,5 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
 import React from 'react';
 import { poppins } from '@/public/fonts/fonts';
 
