@@ -8,11 +8,14 @@ import Credentials from '@/components/credentials';
 import Careerpath from '@/components/careerpath';
 import React from 'react';
 // import InflationCalculator from '@/components/inflationcalcu';
+import Video from '@/components/video';
+
 
 const Home = () => {
   return <div>
     <Navbar />
     <Hero />
+    <Video />
     {/* <Carousel /> */}
     <About />
     <Credentials />

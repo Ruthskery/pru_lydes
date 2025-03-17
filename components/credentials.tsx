@@ -55,7 +55,7 @@ const ExpertiseSection = () => {
 
                 {/* Back Side */}
                 <div
-                  className="absolute w-full h-full bg-[#FFD700] text-white rounded-xl flex flex-col items-center justify-center p-6 text-center rotate-y-180"
+                  className="absolute w-full h-full bg-black text-white rounded-xl flex flex-col items-center justify-center p-6 text-center rotate-y-180"
                   style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
                 >
                   <p className="text-lg font-semibold">{item.description}</p>
