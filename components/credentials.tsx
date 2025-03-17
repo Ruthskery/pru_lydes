@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck, PiggyBank, GraduationCap, DollarSign, FileText, Briefcase } from "lucide-react";
@@ -13,10 +14,10 @@ const expertiseData = [
 ];
 
 const ExpertiseSection = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
 
-  const handleToggle = (currentIndex: number) => {
-    setActiveIndex((prevIndex) => (prevIndex === currentIndex ? null : currentIndex));
+  const handleToggle = (index: number) => {
+    setFlippedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   return (
@@ -30,32 +31,37 @@ const ExpertiseSection = () => {
       <div className="max-w-7xl mx-auto px-8 text-center">
         <h2 className="text-4xl font-bold text-black mb-12">My Expertise</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
-          {expertiseData.map((item, index: number) => (
-            <motion.div
+          {expertiseData.map((item, index) => (
+            <div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              viewport={{ once: true }}
-              className="relative flex flex-col items-center p-8 bg-white shadow-lg rounded-xl transition-all duration-300 
-                         hover:bg-[#FFD700] hover:text-white cursor-pointer group"
+              className="relative w-full h-48 sm:h-52 md:h-56 cursor-pointer"
               onClick={() => handleToggle(index)}
-              onMouseEnter={() => setActiveIndex(index)}
-              onMouseLeave={() => setActiveIndex(null)}
+              style={{ perspective: "1000px" }}
             >
-              {/* Normal Content */}
-              <div className={`text-[#FFD700] mb-3 transition-all duration-300 ${activeIndex === index ? 'hidden' : 'block'}`}> 
-                {item.icon} 
+              <div
+                className={`relative w-full h-full transition-transform duration-500 transform-style-preserve-3d ${
+                  flippedIndex === index ? "rotate-y-180" : ""
+                }`}
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {/* Front Side */}
+                <div
+                  className="absolute w-full h-full bg-white shadow-lg rounded-xl flex flex-col items-center justify-center p-6 text-center"
+                  style={{ backfaceVisibility: "hidden" }}
+                >
+                  <div className="text-[#FFD700] mb-3">{item.icon}</div>
+                  <h3 className="text-lg font-semibold text-black">{item.name}</h3>
+                </div>
+
+                {/* Back Side */}
+                <div
+                  className="absolute w-full h-full bg-black text-white rounded-xl flex flex-col items-center justify-center p-6 text-center rotate-y-180"
+                  style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                >
+                  <p className="text-lg font-semibold">{item.description}</p>
+                </div>
               </div>
-              <h3 className={`text-lg font-semibold text-black transition-all duration-300 ${activeIndex === index ? 'hidden' : 'block'}`}>
-                {item.name}
-              </h3>
-              
-              {/* Reveal Content on Click or Hover */}
-              <div className={`absolute inset-0 flex flex-col justify-center items-center bg-[#FFD700] text-white transition-opacity duration-300 rounded-xl p-6 text-center ${activeIndex === index ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                <p className="text-lg font-semibold">{item.description}</p>
-              </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

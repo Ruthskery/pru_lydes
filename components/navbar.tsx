@@ -32,7 +32,7 @@ const Navbar = () => {
     <Disclosure
       as="nav"
       className={classNames(
-        scrolling ? 'bg-[#FFD700] shadow-lg' : 'bg-transparent',
+        scrolling ? 'bg-[#D4AF37] shadow-lg' : 'bg-transparent',
         'fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out py-3'
       )}
     >
