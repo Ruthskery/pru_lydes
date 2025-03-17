@@ -12,7 +12,7 @@ const About = () => {
       whileInView={{ opacity: 1, x: 0 }} // Animate when visible
       viewport={{ once: true }} // Ensures it runs once
       transition={{ duration: 0.8, ease: "easeOut" }} // Smooth transition
-      className={`${poppins.className} bg-gray-100 min-h-screen flex items-center justify-center pb-12 pt-16 md:pt-20`}
+      className={`${poppins.className} bg-gray-500 min-h-screen flex items-center justify-center pb-12 pt-16 md:pt-20`}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 w-[90%] md:w-[80%] mx-auto gap-16 items-center justify-center text-center md:text-center">
         
