@@ -1,14 +1,10 @@
-import dynamic from "next/dynamic";
 import React from 'react';
 import { poppins } from '@/public/fonts/fonts';
-
-const MapComponent = dynamic(() => import("@/public/MapComponents"), { ssr: false });
 
 const Footer = () => {
   return <section className={`${poppins.className} h-110 bg-gray-800 text-white`}>
     <div className='grid grid-cols-2 gap-6 justify-center items-center'>
       <div className='flex h-100 justify-center items-center w-224'>
-        <MapComponent />
       </div>
       <div className='h-100 mx-auto flex justify-center w-full items-center grid grid-cols-2 grid-rows-2 gap-4 text-center leading-loose tracking-wider'>
         <div className='text-left'>
