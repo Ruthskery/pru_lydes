@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
+import Link from 'next/link'; // Import Link component
+import { useRouter } from 'next/router'; // Import useRouter
 import bcdq from '../public/src/bcdq.png';
 import { poppins } from '@/public/fonts/fonts';
 
+// Define navigation with actual routes
 const navigation = [
-  { name: 'Home', href: '#', current: true },
-  { name: 'About', href: '#', current: false },
-  { name: 'Contact', href: '#', current: false },
-  { name: 'Products', href: '#', current: false },
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '#about' },
+  { name: 'Contact', href: '#contact' },
+  { name: 'Products', href: '#products' },
 ];
 
 function classNames(...classes: string[]) {
@@ -18,6 +21,7 @@ function classNames(...classes: string[]) {
 
 const Navbar = () => {
   const [scrolling, setScrolling] = useState(false);
+  const router = useRouter(); // Get the current route using useRouter
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +36,7 @@ const Navbar = () => {
     <Disclosure
       as="nav"
       className={classNames(
-        scrolling ? 'bg-[#D4AF37] shadow-lg' : 'bg-transparent',
+        scrolling ? 'bg-transparent shadow-lg backdrop-blur-lg' : 'bg-transparent',
         'fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out py-3'
       )}
     >
@@ -56,22 +60,24 @@ const Navbar = () => {
             <div className="hidden sm:flex sm:items-center sm:ml-auto">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    aria-current={item.current ? 'page' : undefined}
-                    className={classNames(
-                      poppins.className,
-                      'rounded-md px-3 py-2 text-xl font-medium transition-all duration-200',
-                      item.current
-                        ? 'bg-[#FFD700] text-black font-bold'
-                        : scrolling
-                          ? 'text-black hover:bg-white hover:text-black font-bold' // White BG on hover when navbar is yellow
+                  <Link key={item.name} href={item.href} passHref>
+                    <span
+                      aria-current={
+                        router.asPath === item.href || (router.asPath.includes(item.href) && item.href !== '/') ? 'page' : undefined
+                      }
+                      className={classNames(
+                        poppins.className,
+                        'rounded-md px-3 py-2 text-xl font-medium transition-all duration-[500ms]', // 1 second transition
+                        router.asPath === item.href || (router.asPath.includes(item.href) && item.href !== '/')
+                          ? 'bg-[#FFD700] text-black font-bold' // Active state (background color changes)
+                          : scrolling
+                          ? 'text-black hover:bg-[#FFD700] hover:text-black font-bold' // White BG on hover when navbar is yellow
                           : 'text-black hover:bg-[#FFD700] hover:text-black font-bold' // Default hover
-                    )}
-                  >
-                    {item.name}
-                  </a>
+                      )}
+                    >
+                      {item.name}
+                    </span>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -87,12 +93,16 @@ const Navbar = () => {
               key={item.name}
               as="a"
               href={item.href}
-              aria-current={item.current ? 'page' : undefined}
+              aria-current={
+                router.asPath === item.href || (router.asPath.includes(item.href) && item.href !== '/') ? 'page' : undefined
+              }
               className={classNames(
-                'block rounded-md px-3 py-2 text-base font-medium transition-all duration-200',
-                scrolling
+                'block rounded-md px-3 py-2 text-base font-medium transition-all duration-[1000ms]', // 1 second transition
+                router.asPath === item.href || (router.asPath.includes(item.href) && item.href !== '/')
+                  ? 'bg-[#FFD700] text-black font-bold' // Active state (background color changes)
+                  : scrolling
                   ? 'text-black hover:bg-white hover:text-black' // White BG on hover in mobile when navbar is yellow
-                  : 'text-black hover:bg-[#FFD700] hover:text-black' // Default hover
+                  : 'text-black hover:bg-[#FFFFFF] hover:text-black' // Default hover
               )}
             >
               {item.name}

@@ -3,25 +3,39 @@ import Contact from '@/components/contact';
 import Footer from '@/components/footer';
 import Hero from '@/components/hero';
 import Navbar from '@/components/navbar';
-// import Carousel from '@/components/carousel';
+import Carousel from '@/components/carousel';
 import Credentials from '@/components/credentials';
 import Careerpath from '@/components/careerpath';
 import React from 'react';
 // import InflationCalculator from '@/components/inflationcalcu';
 import Video from '@/components/video';
-
+import Appointment from '@/components/appointment';
 
 const Home = () => {
   return <div>
-    <Navbar />
+    <section id='/'> 
     <Hero />
+    </section>
+    <section>
     <Video />
-    {/* <Carousel /> */}
+    <Carousel />
+    </section>
+    <section id='about'> 
     <About />
     <Credentials />
     <Careerpath />
-    {/* <InflationCalculator /> */}
+    </section>
+    <section id='contact'> 
     <Contact />
+    </section>
+    <section id='products'> 
+    
+    </section>
+    <Navbar />
+
+
+    {/* <InflationCalculator /> */}
+    <Appointment />
     <Footer />
   </div>;
 };

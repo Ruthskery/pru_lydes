@@ -1,111 +1,62 @@
-"use client";
-import { useState, useEffect, JSX } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
 
-// Interface for image data
-interface ImageData {
-  color: string; // Store color in the array
-}
+const Home = () => {
+  const carouselItems = [
+    { image: "https://source.unsplash.com/600x400/?nature", title: "Beautiful Nature", description: "Experience the serenity of nature with stunning landscapes." },
+    { image: "https://source.unsplash.com/600x400/?technology", title: "Innovative Tech", description: "Explore the latest advancements in technology and innovation." },
+    { image: "https://source.unsplash.com/600x400/?travel", title: "Travel the World", description: "Discover breathtaking destinations around the globe." },
+    { image: "https://source.unsplash.com/600x400/?food", title: "Delicious Cuisine", description: "Taste mouth-watering dishes from different cultures." },
+    { image: "https://source.unsplash.com/600x400/?city", title: "Urban Exploration", description: "Get lost in the vibrant life of bustling cities." },
+    { image: "https://source.unsplash.com/600x400/?wildlife", title: "Wildlife Wonders", description: "Witness the beauty of wildlife in its natural habitat." },
+    { image: "https://source.unsplash.com/600x400/?sports", title: "Sports and Action", description: "Feel the thrill of sports and extreme adventures." },
+    { image: "https://source.unsplash.com/600x400/?architecture", title: "Architectural Marvels", description: "Admire the creativity and craftsmanship of structures." },
+    { image: "https://source.unsplash.com/600x400/?ocean", title: "Mystical Oceans", description: "Dive deep into the mysterious and vast oceans." }
+  ];
 
-// Image data array with colors
-const images: ImageData[] = [
-  {
-    color: "bg-red-500", // Red color
-  },
-  {
-    color: "bg-blue-500", // Blue color
-  },
-  {
-    color: "bg-green-500", // Green color
-  },
-];
+  const loopItems = [...carouselItems, ...carouselItems];
+  const [isPaused, setIsPaused] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
-export default function ImageSlider(): JSX.Element {
-  // State to keep track of the current image index
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-
-  // State to determine if the image is being hovered over
-  const [isHovered, setIsHovered] = useState<boolean>(false);
-
-  // Function to show the previous slide
-  const prevSlide = (): void => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    );
-  };
-
-  // Function to show the next slide
-  const nextSlide = (): void => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  // useEffect hook to handle automatic slide transition
   useEffect(() => {
-    // Start interval for automatic slide change if not hovered
-    if (!isHovered) {
+    if (!isPaused) {
       const interval = setInterval(() => {
-        nextSlide();
-      }, 3000);
-
-      // Cleanup the interval on component unmount
-      return () => {
-        clearInterval(interval);
-      };
+        if (scrollRef.current) {
+          scrollRef.current.scrollLeft += 3;
+        }
+      }, 20);
+      return () => clearInterval(interval);
     }
-  }, [isHovered]);
-
-  // Handle mouse over event
-  const handleMouseOver = (): void => {
-    setIsHovered(true);
-  };
-
-  // Handle mouse leave event
-  const handleMouseLeave = (): void => {
-    setIsHovered(false);
-  };
+  }, [isPaused]);
 
   return (
-    <div className="relative w-full mx-auto mt-4">
-      <div
-        className="relative h-[250px] mx-12 group hover:-translate-y-2"
-        onMouseOver={handleMouseOver}
-        onMouseLeave={handleMouseLeave}
-      >
-        {/* Carousel Item with different colors */}
-        <div
-          className={`${images[currentIndex].color} w-full h-[250px] rounded-xl transition-all duration-500 ease-in-out cursor-pointer`}
-        />
-      </div>
-
-      {/* Left Arrow */}
-      <button
-        className="absolute left-0 top-1/2 transform h-[50px] rounded-xl hover:bg-[#1a222f] mx-1 -mt-[10px] -translate-y-1/2 bg-[#111927] text-white p-2 group"
-        onClick={prevSlide}
-      >
-        <ChevronLeft className="text-gray-400 group-hover:text-white" />
-      </button>
-
-      {/* Right Arrow */}
-      <button
-        className="absolute right-0 top-1/2 transform h-[50px] rounded-xl hover:bg-[#1a222f] mx-1 -mt-[10px] -translate-y-1/2 bg-[#111927] text-white p-2 group"
-        onClick={nextSlide}
-      >
-        <ChevronRight className="text-gray-400 group-hover:text-white" />
-      </button>
-
-      {/* Navigation Dots */}
-      <div className="flex justify-center mt-4">
-        {images.map((_, index) => (
-          <div
-            key={index}
-            className={`h-1 w-10 mx-1 ${
-              index === currentIndex
-                ? "bg-[#beff46] rounded-xl"
-                : "bg-gray-300 rounded-xl"
-            } transition-all duration-500 ease-in-out`}
-          ></div>
-        ))}
+    <div className="max-h-screen flex items-center justify-center overflow-hidden">
+      <div className="relative w-full max-w-screen py-10 overflow-hidden bg-red-500" ref={scrollRef}>
+        <div className="flex w-max space-x-6">
+          {loopItems.map((item, index) => (
+            <div
+              key={index}
+              className={`w-[90vw] max-w-[200px] md:max-w-md flex-shrink-0 bg-white shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 ${hoveredIndex === index ? 'scale-110 mx-6' : 'mx-4'}`}
+              onMouseEnter={() => {
+                setIsPaused(true);
+                setHoveredIndex(index);
+              }}
+              onMouseLeave={() => {
+                setIsPaused(false);
+                setHoveredIndex(null);
+              }}
+            >
+              <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+              <div className="p-4">
+                <h2 className="text-xl font-bold text-gray-800">{item.title}</h2>
+                <p className="text-gray-600">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default Home;
