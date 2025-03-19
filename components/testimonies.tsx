@@ -1,4 +1,4 @@
-"use client";
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { UserCircle } from "lucide-react"; // Default Profile Icon
