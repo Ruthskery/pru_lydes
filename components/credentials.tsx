@@ -16,8 +16,8 @@ const expertiseData = [
 const ExpertiseSection = () => {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
 
-  const handleToggle = (index: number) => {
-    setFlippedIndex((prevIndex) => (prevIndex === index ? null : index));
+  const handleClick = (index: number) => {
+    setFlippedIndex(flippedIndex === index ? null : index);
   };
 
   return (
@@ -28,41 +28,72 @@ const ExpertiseSection = () => {
       transition={{ staggerChildren: 0.2 }}
       className={`${poppins.className} bg-gray-100 py-16`}
     >
-      <div className="max-w-7xl mx-auto px-8 text-center">
-        <h2 className="text-4xl font-bold text-black mb-12">My Expertise</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
-          {expertiseData.map((item, index) => (
-            <div
-              key={index}
-              className="relative w-full h-48 sm:h-52 md:h-56 cursor-pointer"
-              onClick={() => handleToggle(index)}
-              style={{ perspective: "1000px" }}
-            >
-              <div
-                className={`relative w-full h-full transition-transform duration-500 transform-style-preserve-3d ${
-                  flippedIndex === index ? "rotate-y-180" : ""
-                }`}
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                {/* Front Side */}
+      <div className="mx-auto px-8 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          {/* Expertise Column */}
+          <div className="bg-white shadow-lg rounded-xl p-8 text-center flex flex-col h-full">
+            <h2 className="text-2xl font-bold text-black mb-6">Our Expertise</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {expertiseData.map((item, index) => (
                 <div
-                  className="absolute w-full h-full bg-white shadow-lg rounded-xl flex flex-col items-center justify-center p-6 text-center"
-                  style={{ backfaceVisibility: "hidden" }}
+                  key={index}
+                  className="group relative w-full h-48 sm:h-52 cursor-pointer"
+                  onClick={() => handleClick(index)}
+                  style={{ perspective: "1000px" }}
                 >
-                  <div className="text-[#FFD700] mb-3">{item.icon}</div>
-                  <h3 className="text-lg font-semibold text-black">{item.name}</h3>
-                </div>
+                  <div
+                    className={`relative w-full h-full transition-transform duration-500 transform ${
+                      flippedIndex === index ? "rotate-y-180" : "group-hover:rotate-y-180"
+                    }`}
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
+                    {/* Front Side */}
+                    <div
+                      className="absolute w-full h-full bg-white shadow-lg rounded-xl flex flex-col items-center justify-center p-6 text-center"
+                      style={{ backfaceVisibility: "hidden" }}
+                    >
+                      <div className="text-[#FFD700] mb-3">{item.icon}</div>
+                      <h3 className="text-lg font-semibold text-black">{item.name}</h3>
+                    </div>
 
-                {/* Back Side */}
-                <div
-                  className="absolute w-full h-full bg-black text-white rounded-xl flex flex-col items-center justify-center p-6 text-center rotate-y-180"
-                  style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-                >
-                  <p className="text-lg font-semibold">{item.description}</p>
+                    {/* Back Side */}
+                    <div
+                      className="absolute w-full h-full bg-black text-white rounded-xl flex flex-col items-center justify-center p-6 text-center"
+                      style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                    >
+                      <p className="text-lg font-semibold">{item.description}</p>
+                    </div>
+                  </div>
                 </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mission and Vision Column */}
+          <div className="flex flex-col w-full md:w-2/3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white shadow-lg rounded-xl p-8 text-center flex flex-col justify-center h-full">
+                <h2 className="text-2xl font-bold text-black mb-4">Our Mission</h2>
+                <p className="text-gray-700 text-lg">
+                  Empower individuals and businesses with comprehensive financial solutions to ensure a secure and prosperous future.
+                </p>
+              </div>
+              <div className="bg-white shadow-lg rounded-xl p-8 text-center flex flex-col justify-center h-full">
+                <h2 className="text-2xl font-bold text-black mb-4">Our Vision</h2>
+                <p className="text-gray-700 text-lg">
+                  To be the leading provider of innovative financial planning, setting new benchmarks for trust, security, and excellence in the industry.
+                </p>
               </div>
             </div>
-          ))}
+            {/* Calculator Section */}
+            <div className="bg-white shadow-lg rounded-xl p-8 text-center flex flex-col justify-center h-full mt-6">
+              <h2 className="text-2xl font-bold text-black mb-4">Financial Calculator</h2>
+              <p className="text-gray-700 text-lg mb-4">
+                Use our calculator to estimate your financial future with ease.
+              </p>
+              <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">Calculate Now</button>
+            </div>
+          </div>
         </div>
       </div>
     </motion.div>
