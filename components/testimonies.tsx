@@ -79,9 +79,9 @@ const TestimonialsCarousel = () => {
                   {/* Default Profile Icon */}
                   <UserCircle className="w-20 h-20 text-gray-400 mb-4" />
 
-                  {/* Quote */}
+                  {/* Quote (Fixed Unescaped Entities) */}
                   <p className="text-gray-700 italic mb-4">
-                    "{testimonial.quote}"
+                    &ldquo;{testimonial.quote}&rdquo;
                   </p>
 
                   {/* Client Name & Role */}
