@@ -1,12 +1,6 @@
 import ReactPlayer from 'react-player';
-import React, { Suspense, useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { poppins } from '@/public/fonts/fonts';
-
-const Loading = () => {
-  return <div className='flex justify-center items-center w-full h-auto'>
-    <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-white border-opacity-75"></div>
-  </div>
-}
 
 const Video = () => {
   

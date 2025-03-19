@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { poppins } from '@/public/fonts/fonts';
-import { Facebook, Instagram, Twitter, Send, Mail } from "lucide-react";
 
 const Footer = () => {
   return <section className={`${poppins.className} h-auto bg-gray-800 text-white`}>
