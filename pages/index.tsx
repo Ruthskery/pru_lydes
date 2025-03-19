@@ -10,6 +10,9 @@ import React from 'react';
 // import InflationCalculator from '@/components/inflationcalcu';
 import Video from '@/components/video';
 import Appointment from '@/components/appointment';
+import Faqs from '@/components/faqs';
+import TestimonialsCarousel from '@/components/testimonies';
+
 
 const Home = () => {
   return <div>
@@ -36,6 +39,8 @@ const Home = () => {
 
     {/* <InflationCalculator /> */}
     <Appointment />
+    <TestimonialsCarousel />
+    <Faqs />
     <Footer />
   </div>;
 };
