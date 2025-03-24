@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <div className="max-h-screen flex items-center justify-center overflow-hidden">
-      <div className="relative w-full max-w-screen py-10 overflow-hidden bg-red-500" ref={scrollRef}>
+      <div className="relative w-full max-w-screen py-10 overflow-hidden bg-transparent" ref={scrollRef}>
         <div className="flex w-max space-x-6">
           {loopItems.map((item, index) => (
             <div

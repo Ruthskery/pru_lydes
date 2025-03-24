@@ -3,7 +3,7 @@ import Contact from '@/components/contact';
 import Footer from '@/components/footer';
 import Hero from '@/components/hero';
 import Navbar from '@/components/navbar';
-// import Carousel from '@/components/carousel';
+import Carousel from '@/components/carousel';
 import Credentials from '@/components/credentials';
 // import Careerpath from '@/components/careerpath';
 import React from 'react';
@@ -21,7 +21,7 @@ const Home = () => {
     </section>
     <section>
     <Video />
-    {/* <Carousel /> */}
+    <Carousel />
     </section>
     <section id='about'> 
     <About />
@@ -41,8 +41,8 @@ const Home = () => {
     <Appointment />
     <TestimonialsCarousel />
     <Faqs />
-    <Footer />   
     <InflationCalculator />
+    <Footer />   
   </div>;
 };
 
