@@ -8,7 +8,6 @@ import { poppins } from "@/public/fonts/fonts";
 
 const About = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { amount: 0.5 });
 
   return (
     <motion.div
@@ -48,15 +47,16 @@ const About = () => {
           viewport={{ once: true }}
           className="flex flex-col text-left"
         >
-         <UserCircle className="mx-auto mb-3 w-14 h-14 text-purple-600" /> {/* About Me Icon */}
+          <UserCircle className="mx-auto mb-3 w-14 h-14 text-purple-600" /> {/* About Me Icon */}
           <h1 className="text-xl md:text-2xl lg:text-3xl font-bold uppercase mb-3">About Me</h1>
           <p className="text-base md:text-lg w-full md:max-w-[85%] leading-relaxed text-gray-700">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae suscipit iste odit sunt a fugiat, 
             ullam quos, odio minus nesciunt, nulla doloremque. Nobis ipsa rerum aspernatur quaerat molestias 
             vero consequuntur?
           </p>
-        {/* Social Media Icons */}
-        <div className="flex space-x-5 mt-10">
+
+          {/* Social Media Icons */}
+          <div className="flex space-x-5 mt-10">
             <a
               href="https://www.facebook.com/PRULydes"
               target="_blank"
