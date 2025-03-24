@@ -29,11 +29,8 @@ const Video = () => {
       </div>
       )}
     <div className='space-y-6 text-gray-300 text-center md:text-left px-10 pb-10 md:pt-10'>
-      <h1 className='text-4xl font-bold xl:text-7xl'>Video Kuno Sabi Nira</h1>
-      <p className='text:base xl:text-2xl max-w-200'>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-         Architecto omnis modi nostrum reprehenderit saepe neque eos, 
-         qui veritatis molestias pariatur hic autem velit placeat 
-         adipisci accusamus mollitia. Veritatis, ea voluptatem?</p>
+      <h1 className='text-4xl font-bold xl:text-7xl'>Our Reason is You</h1>
+      <p className='text:base xl:text-2xl max-w-200'>Pru Life UK is an insurance provider that prioritizes customer trust and support. The company offers financial assistance and peace of mind, especially during challenging times, such as a cancer diagnosis. Customers share positive experiences with their advisers, who provide personalized guidance without pressure, helping them choose the right insurance plans for their needs. PR Life UK emphasizes that their customers are at the heart of their mission, aiming to make a meaningful difference in their lives.</p>
     </div>
   </section>;
 };

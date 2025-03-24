@@ -1,25 +1,14 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { motion, useAnimation, useInView } from "framer-motion";
-import lydes from "../public/src/lydes.png";
-import { Facebook, Instagram } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import lydes from "../public/src/aboutme.jpg";
+import { Briefcase, Facebook, Instagram, Target, UserCircle } from "lucide-react";
 import { poppins } from "@/public/fonts/fonts";
-import building from "../public/src/buildingbg.png";
 
 const About = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { amount: 0.5 });
-
-  const bubbleControls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      bubbleControls.start({ opacity: 1, y: 0 });
-    } else {
-      bubbleControls.start({ opacity: 0, y: -50 });
-    }
-  }, [isInView, bubbleControls]);
 
   return (
     <motion.div
@@ -28,66 +17,26 @@ const About = () => {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`${poppins.className} min-h-screen flex items-center justify-center py-16 md:py-20 relative`}
+      className={`${poppins.className} min-h-screen flex flex-col items-center justify-center py-16 md:py-20`}
     >
-      {/* Background Image & Overlay */}
-      <div className="absolute inset-0 w-full h-full">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${building.src})`,
-          }}
-        ></div>
-
-        {/* ✅ Separate Overlay for Transparency (Doesn't Affect Text) */}
-        <div className="absolute inset-0 bg-white opacity-40"></div>
-      </div>
-
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 w-[90%] mx-auto gap-12 md:gap-16 items-center justify-center text-center md:text-left">
-        {/* Image Section with Bubbles */}
+      <div className="grid grid-cols-1 md:grid-cols-2 w-[90%] mx-auto gap-12 md:gap-16 items-center justify-center text-center md:text-left">
+        {/* Image and Name Section */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          className="relative flex flex-col md:flex-row justify-center items-center w-full"
+          className="flex justify-center items-center w-full relative"
         >
-          {/* Image */}
-          <div className="relative w-[60vw] max-w-[250px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[450px]">
+          <div className="w-[60vw] max-w-[250px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[450px] relative">
             <Image
               src={lydes}
-              alt="Lydes Romero Quitong"
-              className="relative z-10 w-full h-full object-contain"
+              alt="Lydelyn Romero Quitong"
+              className="w-full h-full object-contain"
             />
-          </div>
-
-          {/* Bubble Container */}
-          <div className="absolute w-full h-full flex flex-wrap justify-center items-center gap-4 md:gap-6">
-            {[
-              { text: "#LifeInsuranceMatters", top: "-top-7 left-0 md:left-[-60px]", delay: 0 },
-              { text: "#LifeInsurance", top: "top-10 right-0 md:right-[30px]", delay: 0.2 },
-              { text: "#PRULifeUK", top: "top-20 left-20", delay: 0.4 },
-              { text: "#AlagangLydes", top: "bottom-16 left-[-10px]", delay: 0.6 },
-              { text: "#LegacyPlanning", top: "bottom-12 right-[-20px]", delay: 0.8 },
-              { text: "#FinancialFreedom", top: "bottom-[-8px] left-[10px]", delay: 1 },
-            ].map(({ text, top, delay }, index) => (
-              <motion.div
-                key={index}
-                animate={{
-                  opacity: 1,
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay,
-                }}
-                className={`absolute ${top} bg-white px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-2xl shadow-lg text-xs sm:text-sm md:text-base font-semibold text-center`}
-              >
-                <span className="text-black font-bold">{text}</span>
-              </motion.div>
-            ))}
+            <p className="absolute top-[35%] left-[230px] transform -translate-y-1/2 rotate-90 text-2xl md:text-3xl lg:text-4xl font-bold whitespace-nowrap">
+              LYDELYN ROMERO QUITONG
+            </p>
           </div>
         </motion.div>
 
@@ -97,32 +46,22 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
-          className="flex flex-col items-left text-left relative z-20"
+          className="flex flex-col text-left"
         >
-          <h1 className="text-lg font-bold uppercase text-black mb-3">ABOUT ME</h1>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-black leading-snug mb-4">
-            Who is Lydes Quitong?
-          </h2>
-          <div className="flex flex-col items-center w-full">
-            {/* Line Separator */}
-            <span className="w-[80px] h-[4px] bg-black rounded-sm mb-3"></span>
-
-            {/* Text Content */}
-            <p className="text-base md:text-lg text-black w-full md:max-w-[85%] leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-              suscipit iste odit sunt a fugiat, ullam quos, odio minus nesciunt,
-              nulla doloremque. Nobis ipsa rerum aspernatur quaerat molestias
-              vero consequuntur?
-            </p>
-          </div>
-
-          {/* Social Media Icons */}
-          <div className="flex space-x-5 mt-10">
+         <UserCircle className="mx-auto mb-3 w-14 h-14 text-purple-600" /> {/* About Me Icon */}
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold uppercase mb-3">About Me</h1>
+          <p className="text-base md:text-lg w-full md:max-w-[85%] leading-relaxed text-gray-700">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae suscipit iste odit sunt a fugiat, 
+            ullam quos, odio minus nesciunt, nulla doloremque. Nobis ipsa rerum aspernatur quaerat molestias 
+            vero consequuntur?
+          </p>
+        {/* Social Media Icons */}
+        <div className="flex space-x-5 mt-10">
             <a
               href="https://www.facebook.com/PRULydes"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black hover:text-[#1877F2]"
+              className="hover:text-[#1877F2]"
             >
               <Facebook className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12" />
             </a>
@@ -131,10 +70,33 @@ const About = () => {
               href="https://www.instagram.com/lydesquitong"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black hover:text-[#E1306C]"
+              className="hover:text-[#E1306C]"
             >
               <Instagram className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12" />
             </a>
+          </div>
+
+          <div className="max-w-3xl mx-auto px-4">
+            {/* Vision Section */}
+            <div className="text-center">
+              <Target className="mx-auto mb-4 w-12 h-12 text-blue-600" /> {/* Vision Icon */}
+              <h2 className="text-2xl md:text-3xl font-bold uppercase mt-4 mb-4">Our Vision</h2>
+              <p className="text-base md:text-lg leading-relaxed text-gray-700">
+                Our mission is to be your most trusted financial partner, empowering you and your family with expert guidance
+                and innovative solutions. We are committed to securing your financial future and helping you achieve lasting
+                prosperity with confidence.
+              </p>
+            </div>
+
+            {/* Mission Section */}
+            <div className="text-center mt-10">
+              <Briefcase className="mx-auto mb-4 w-12 h-12 text-green-600" /> {/* Mission Icon */}
+              <h2 className="text-2xl md:text-3xl font-bold uppercase mt-4 mb-4">Our Mission</h2>
+              <p className="text-base md:text-lg leading-relaxed text-gray-700">
+                My mission is to enhance and sustain the quality of life for every Filipino household through Pru Life UK,
+                delivering a lifetime commitment to providing the best financial advice and guidance to my clients.
+              </p>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -3,11 +3,11 @@ import Contact from '@/components/contact';
 import Footer from '@/components/footer';
 import Hero from '@/components/hero';
 import Navbar from '@/components/navbar';
-import Carousel from '@/components/carousel';
+// import Carousel from '@/components/carousel';
 import Credentials from '@/components/credentials';
-import Careerpath from '@/components/careerpath';
+// import Careerpath from '@/components/careerpath';
 import React from 'react';
-// import InflationCalculator from '@/components/inflationcalcu';
+import InflationCalculator from '@/components/inflationcalcu';
 import Video from '@/components/video';
 import Appointment from '@/components/appointment';
 import Faqs from '@/components/faqs';
@@ -21,12 +21,12 @@ const Home = () => {
     </section>
     <section>
     <Video />
-    <Carousel />
+    {/* <Carousel /> */}
     </section>
     <section id='about'> 
     <About />
     <Credentials />
-    <Careerpath />
+    {/* <Careerpath /> */}
     </section>
     <section id='contact'> 
     <Contact />
@@ -37,11 +37,12 @@ const Home = () => {
     <Navbar />
 
 
-    {/* <InflationCalculator /> */}
+
     <Appointment />
     <TestimonialsCarousel />
     <Faqs />
-    <Footer />
+    <Footer />   
+    <InflationCalculator />
   </div>;
 };
 
