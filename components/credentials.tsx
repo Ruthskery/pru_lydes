@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React from "react";
 import { ShieldCheck, PiggyBank, GraduationCap, DollarSign, FileText, Briefcase } from "lucide-react";
+import Image from "next/image";
+import backgroundImage from "../public/src/teambg.jpg";
 import { poppins } from "@/public/fonts/fonts";
 
 const expertiseData = [
@@ -14,63 +15,28 @@ const expertiseData = [
 ];
 
 const ExpertiseSection = () => {
-  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
-
-  const handleClick = (index: number) => {
-    setFlippedIndex(flippedIndex === index ? null : index);
-  };
-
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      transition={{ staggerChildren: 0.2 }}
-      className={`${poppins.className} bg-gray-100 py-16`}
-    >
-      <div className="mx-auto px-8 text-center">
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-12 items-start">
-          {/* Expertise Column */}
-          <div className="bg-white shadow-lg rounded-xl p-8 text-center flex flex-col h-full">
-            <h2 className="text-2xl font-bold text-black mb-6">Our Expertise</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {expertiseData.map((item, index) => (
-                <div
-                  key={index}
-                  className="group relative w-full h-48 sm:h-52 cursor-pointer"
-                  onClick={() => handleClick(index)}
-                  style={{ perspective: "1000px" }}
-                >
-                  <div
-                    className={`relative w-full h-full transition-transform duration-500 transform ${
-                      flippedIndex === index ? "rotate-y-180" : "group-hover:rotate-y-180"
-                    }`}
-                    style={{ transformStyle: "preserve-3d" }}
-                  >
-                    {/* Front Side */}
-                    <div
-                      className="absolute w-full h-full bg-white shadow-lg rounded-xl flex flex-col items-center justify-center p-6 text-center"
-                      style={{ backfaceVisibility: "hidden" }}
-                    >
-                      <div className="text-[#FFD700] mb-3">{item.icon}</div>
-                      <h3 className="text-lg font-semibold text-black">{item.name}</h3>
-                    </div>
-
-                    {/* Back Side */}
-                    <div
-                      className="absolute w-full h-full bg-black text-white rounded-xl flex flex-col items-center justify-center p-6 text-center"
-                      style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-                    >
-                      <p className="text-lg font-semibold">{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+    <div className={`${poppins.className} bg-gray-100 py-32 min-h-screen relative`}> 
+      {/* Background Image */}
+      <div className="absolute inset-0 w-full h-60 md:h-80">
+        <Image src={backgroundImage} alt="Background" layout="fill" objectFit="cover" className="opacity-50" />
+      </div>
+      
+      <div className="relative z-10 mx-auto px-6 text-center max-w-7xl">
+        <h2 className="text-4xl font-bold text-black mb-10">Our Services</h2>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {expertiseData.map((item, index) => (
+            <div key={index} className="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center text-center">
+              <div className="bg-black text-white p-3 rounded-full mb-4">{item.icon}</div>
+              <h3 className="text-xl font-semibold text-black mb-2">{item.name}</h3>
+              <p className="text-gray-600 text-sm mb-4">{item.description}</p>
+              <button className="text-black font-bold uppercase hover:underline">More</button>
             </div>
-          </div>
+          ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
