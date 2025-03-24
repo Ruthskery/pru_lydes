@@ -30,7 +30,7 @@ const FAQSection = () => {
   };
 
   return (
-    <div className={`${poppins.className} mx-auto py-16 px-30`}> {/* ✅ Applied Font */}
+    <div className={`${poppins.className} mx-auto py-16 md:px-30`}> {/* ✅ Applied Font */}
       {/* Section Title */}
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold text-gray-900">
