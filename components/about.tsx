@@ -33,9 +33,9 @@ const About = () => {
               alt="Lydelyn Romero Quitong"
               className="w-full h-full object-contain"
             />
-            <p className="absolute top-[35%] left-[230px] transform -translate-y-1/2 rotate-90 text-2xl md:text-3xl lg:text-4xl font-bold whitespace-nowrap">
+            {/* <p className="absolute top-[35%] left-[230px] transform -translate-y-1/2 rotate-90 text-2xl md:text-3xl lg:text-4xl font-bold whitespace-nowrap">
               LYDELYN ROMERO QUITONG
-            </p>
+            </p> */}
           </div>
         </motion.div>
 
@@ -47,7 +47,6 @@ const About = () => {
           viewport={{ once: true }}
           className="flex flex-col text-left"
         >
-          <UserCircle className="mx-auto mb-3 w-14 h-14 text-purple-600" /> {/* About Me Icon */}
           <h1 className="text-xl md:text-2xl lg:text-3xl font-bold uppercase mb-3">About Me</h1>
           <p className="text-base md:text-lg w-full md:max-w-[85%] leading-relaxed text-gray-700">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae suscipit iste odit sunt a fugiat, 
@@ -79,7 +78,6 @@ const About = () => {
           <div className="max-w-3xl mx-auto px-4">
             {/* Vision Section */}
             <div className="text-center">
-              <Target className="mx-auto mb-4 w-12 h-12 text-blue-600" /> {/* Vision Icon */}
               <h2 className="text-2xl md:text-3xl font-bold uppercase mt-4 mb-4">Our Vision</h2>
               <p className="text-base md:text-lg leading-relaxed text-gray-700">
                 Our mission is to be your most trusted financial partner, empowering you and your family with expert guidance
@@ -90,7 +88,6 @@ const About = () => {
 
             {/* Mission Section */}
             <div className="text-center mt-10">
-              <Briefcase className="mx-auto mb-4 w-12 h-12 text-green-600" /> {/* Mission Icon */}
               <h2 className="text-2xl md:text-3xl font-bold uppercase mt-4 mb-4">Our Mission</h2>
               <p className="text-base md:text-lg leading-relaxed text-gray-700">
                 My mission is to enhance and sustain the quality of life for every Filipino household through Pru Life UK,
