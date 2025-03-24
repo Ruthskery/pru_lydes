@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import lydes from "../public/src/aboutme.jpg";
 import { Briefcase, Facebook, Instagram, Target, UserCircle } from "lucide-react";
 import { poppins } from "@/public/fonts/fonts";
