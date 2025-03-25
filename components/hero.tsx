@@ -25,10 +25,6 @@ const Hero = () => {
           <Button />
         </div>
       </div>
-      {/* <div className="w-full flex justify-center items-center">
-        <img className="absolute h-120 md:h-170 2xl:h-200 z-2 flex bottom-0" src="/fulllydes.png" alt="" />
-        <img className="opacity-25 absolute h-80 md:h-120 2xl:h-150 bottom-0 right-0" src="/bilog.png" alt="" />
-      </div> */}
     </div>
   );
 };
