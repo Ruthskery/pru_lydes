@@ -11,8 +11,8 @@ import { poppins } from '@/public/fonts/fonts';
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '#about' },
-  { name: 'Contact', href: '#contact' },
-  { name: 'Products', href: '#products' },
+  { name: 'Our Services', href: '#products' },
+  { name: 'Contact US', href: '#contact' },
 ];
 
 function classNames(...classes: string[]) {
