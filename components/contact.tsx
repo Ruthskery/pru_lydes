@@ -1,7 +1,7 @@
 import React from 'react';
 import dynamic from "next/dynamic";
 import { Facebook, Linkedin, Mail, Phone } from "lucide-react";
-import InflationCalculator from './inflationcalcu'; // Import the InflationCalculator component
+// import InflationCalculator from './inflationcalcu'; // Import the InflationCalculator component
 
 const MapComponent = dynamic(() => import("../public/MapComponents"), {
   ssr: false,
