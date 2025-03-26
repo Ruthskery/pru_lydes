@@ -88,11 +88,11 @@ const Contact = () => {
       </div>
 
       {/* Inflation Calculator */}
-      <div className="w-full rounded-lg flex justify-center items-center overflow-hidden">
+{/*       <div className="w-full rounded-lg flex justify-center items-center overflow-hidden">
         <div className="w-full h-full flex justify-center items-center">
           <InflationCalculator />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
