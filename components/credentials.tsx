@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 import { ShieldCheck, PiggyBank, GraduationCap, DollarSign, FileText, Briefcase } from "lucide-react";
-import Image from "next/image";
-import backgroundImage from "../public/src/teambg.jpg";
 import { poppins } from "@/public/fonts/fonts";
 
 const expertiseData = [
@@ -16,14 +14,15 @@ const expertiseData = [
 
 const ExpertiseSection = () => {
   return (
-    <div className={`${poppins.className} bg-gray-100 py-32 min-h-screen relative`}> 
+    <div className={`${poppins.className} bg-[url(../public/src/teambg.jpg)] py-32 min-h-screen relative bg-initial xl:bg-fixed`}> 
       {/* Background Image */}
-      <div className="absolute inset-0 w-full h-60 md:h-80">
-        <Image src={backgroundImage} alt="Background" layout="fill" objectFit="cover" className="opacity-50" />
+      <div className="absolute inset-0 w-full bg-fixed">
+        <div className="w-full h-full p-6 bg-black/20"></div>
+        <div className="w-full absolute bottom-0 bg-[#f1f1f1] h-1/2"></div>
       </div>
       
-      <div className="relative z-10 mx-auto px-6 text-center max-w-7xl">
-        <h2 className="text-4xl font-bold text-black mb-10">Our Services</h2>
+      <div className="relative z-10 mx-auto px-6 text-center max-w-7xl top-10">
+        <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-10 p-8 inline-block rounded-md border-2 border-solid">Our Services</h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {expertiseData.map((item, index) => (
