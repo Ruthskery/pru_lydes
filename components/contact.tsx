@@ -36,7 +36,7 @@ const Contact = () => {
   return (
     <div
       ref={sectionRef} // Attach the Intersection Observer to the section
-      className="flex flex-col gap-8 p-6 font-[Poppins] bg-gradient-to-b from-white to-gray-900 xl:h-auto"
+      className="flex flex-col gap-8 p-6 font-[Poppins] bg-gradient-to-b from-white to-black xl:h-auto"
     >
       {/* Contact Links */}
       <motion.div
@@ -77,7 +77,7 @@ const Contact = () => {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gray-800 bg-opacity-75 p-6 rounded-lg shadow-md text-center flex flex-col items-center transition duration-500 hover:bg-opacity-100 group"
+            className="bg-black bg-opacity-75 p-6 rounded-lg shadow-md text-center flex flex-col items-center transition duration-500 hover:bg-opacity-100 group"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -112,6 +112,7 @@ const Contact = () => {
           <InflationCalculator />
         </div>
       </motion.div>
+      <hr style={{color:"white", opacity:0.5, marginTop: 14}}/>
     </div>
   );
 };

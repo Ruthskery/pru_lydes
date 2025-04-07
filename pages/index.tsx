@@ -44,6 +44,17 @@ const Home = () => {
     <section id='contact'> 
     <Contact />
     </section>
+
+        <h1>Check My Availability</h1>
+        {/* Embed Calendly iframe */}
+        <div>
+          <iframe 
+            src="https://calendly.com/mikotothemax/30min" 
+            width="100%" 
+            height="800" 
+            frameBorder="0"
+          ></iframe>
+        </div>
     <Footer />   
   </div>;
 };
