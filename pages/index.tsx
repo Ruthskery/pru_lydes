@@ -7,7 +7,6 @@ import Carousel from '@/components/carousel';
 import Credentials from '@/components/credentials';
 // import Careerpath from '@/components/careerpath';
 import React from 'react';
-import InflationCalculator from '@/components/inflationcalcu';
 import Video from '@/components/video';
 import Appointment from '@/components/appointment';
 import Faqs from '@/components/faqs';
@@ -24,15 +23,16 @@ const Home = () => {
     <Carousel />
     </section>
     <section id='about'> 
-    <About />
-    <Credentials />
+      <About />
     {/* <Careerpath /> */}
     </section>
-    <section id='contact'> 
-    <Contact />
+
+    <section id='credentials'>
+      <Credentials />
     </section>
-    <section id='products'> 
-    
+
+    <section id=''> 
+
     </section>
     <Navbar />
 
@@ -41,7 +41,9 @@ const Home = () => {
     <Appointment />
     <TestimonialsCarousel />
     <Faqs />
-    <InflationCalculator />
+    <section id='contact'> 
+    <Contact />
+    </section>
     <Footer />   
   </div>;
 };
