@@ -1,106 +1,118 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { Facebook, Linkedin, Mail, Phone } from "lucide-react";
-import Image from 'next/image';
-import contactImage from '@/public/cntct_bg.jpg'; // Replace with your actual image path
+import InflationCalculator from "./inflationcalcu"; // Import the InflationCalculator component
+import { motion } from "framer-motion";
 
 const MapComponent = dynamic(() => import("../public/MapComponents"), {
   ssr: false,
 });
 
 const Contact = () => {
-  return (
-    <div className="flex flex-col md:flex-row justify-center items-stretch w-full p-6 font-[Poppins] bg-gradient-to-b from-gray-100 to-gray-500 gap-8">
-      
-      {/* First Column */}
-      <div className="flex flex-col w-full md:w-1/1 space-y-6 py-6 px-4">
-        {/* Contact Links */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-          {/* Facebook Link */}
-          <a
-            href="https://www.facebook.com/prulifeukofficial"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-gray-800 bg-opacity-75 p-6 rounded-lg shadow-md text-center flex flex-col items-center transition duration-500 hover:bg-opacity-100 group"
-          >
-            <div className="flex items-center gap-2 transition-transform duration-500 group-hover:scale-110">
-              <Facebook className="w-6 h-6 text-white group-hover:text-yellow-500 transition-colors duration-500" />
-              <h3 className="text-lg font-semibold text-white group-hover:text-yellow-500 transition-colors duration-500">
-                Facebook
-              </h3>
-            </div>
-            <p className="text-white text-sm transition-colors duration-500 group-hover:text-yellow-500">
-              Pru Life UK Official
-            </p>
-          </a>
-          
-          {/* LinkedIn Link */}
-          <a
-            href="https://www.linkedin.com/company/prulifeuk"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-gray-800 bg-opacity-75 p-6 rounded-lg shadow-md text-center flex flex-col items-center transition duration-500 hover:bg-opacity-100 group"
-          >
-            <div className="flex items-center gap-2 transition-transform duration-500 group-hover:scale-110">
-              <Linkedin className="w-6 h-6 text-white group-hover:text-yellow-500 transition-colors duration-500" />
-              <h3 className="text-lg font-semibold text-white group-hover:text-yellow-500 transition-colors duration-500">
-                LinkedIn
-              </h3>
-            </div>
-            <p className="text-white text-sm transition-colors duration-500 group-hover:text-yellow-500">
-              Pru Life UK LinkedIn
-            </p>
-          </a>
-          
-          {/* Email Link */}
-          <a
-            href="mailto:info@prulife.com"
-            className="bg-gray-800 bg-opacity-75 p-6 rounded-lg shadow-md text-center flex flex-col items-center transition duration-500 hover:bg-opacity-100 group"
-          >
-            <div className="flex items-center gap-2 transition-transform duration-500 group-hover:scale-110">
-              <Mail className="w-6 h-6 text-white group-hover:text-yellow-500 transition-colors duration-500" />
-              <h3 className="text-lg font-semibold text-white group-hover:text-yellow-500 transition-colors duration-500">
-                Email
-              </h3>
-            </div>
-            <p className="text-white text-sm transition-colors duration-500 group-hover:text-yellow-500">
-              info@prulife.com
-            </p>
-          </a>
-          
-          {/* Phone Link */}
-          <a
-            href="tel:+639123456789"
-            className="bg-gray-800 bg-opacity-75 p-6 rounded-lg shadow-md text-center flex flex-col items-center transition duration-500 hover:bg-opacity-100 group"
-          >
-            <div className="flex items-center gap-2 transition-transform duration-500 group-hover:scale-110">
-              <Phone className="w-6 h-6 text-white group-hover:text-yellow-500 transition-colors duration-500" />
-              <h3 className="text-lg font-semibold text-white group-hover:text-yellow-500 transition-colors duration-500">
-                Contact
-              </h3>
-            </div>
-            <p className="text-white text-sm transition-colors duration-500 group-hover:text-yellow-500">
-              (+63) 912-345-6789
-            </p>
-          </a>
-        </div>
+  const [isInView, setIsInView] = useState(false); // State to track visibility
+  const sectionRef = useRef(null); // Ref for the section to observe
 
+  // Intersection Observer to track visibility
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.5 } // Trigger when 50% of the element is in view
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <div
+      ref={sectionRef} // Attach the Intersection Observer to the section
+      className="flex flex-col gap-8 p-6 font-[Poppins] bg-gradient-to-b from-white to-black xl:h-auto"
+    >
+      {/* Contact Links */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
+        transition={{ duration: 0.8 }}
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"
+      >
+        {/* Contact Methods */}
+        {[ 
+          {
+            href: "https://www.facebook.com/prulifeukofficial",
+            Icon: Facebook,
+            title: "Facebook",
+            text: "Pru Life UK Official",
+          },
+          {
+            href: "https://www.linkedin.com/company/prulifeuk",
+            Icon: Linkedin,
+            title: "LinkedIn",
+            text: "Pru Life UK LinkedIn",
+          },
+          {
+            href: "mailto:info@prulife.com",
+            Icon: Mail,
+            title: "Email",
+            text: "info@prulife.com",
+          },
+          {
+            href: "tel:+639123456789",
+            Icon: Phone,
+            title: "Contact",
+            text: "(+63) 912-345-6789",
+          },
+        ].map(({ href, Icon, title, text }, index) => (
+          <motion.a
+            key={index}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-black bg-opacity-75 p-6 rounded-lg shadow-md text-center flex flex-col items-center transition duration-500 hover:bg-opacity-100 group"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+          >
+            <div className="flex items-center gap-2 transition-transform duration-500 group-hover:scale-110">
+              <Icon className="w-6 h-6 text-white group-hover:text-yellow-500 transition-colors duration-500" />
+              <h3 className="text-lg font-semibold text-white group-hover:text-yellow-500 transition-colors duration-500">
+                {title}
+              </h3>
+            </div>
+            <p className="text-white text-sm transition-colors duration-500 group-hover:text-yellow-500">
+              {text}
+            </p>
+          </motion.a>
+        ))}
+      </motion.div>
+
+      {/* Map and Calculator Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
+        transition={{ duration: 0.8 }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+      >
         {/* Map Component */}
-        <div className="w-full flex-grow z-1">
+        <div className="w-full flex-grow z-1 h-[320px] md:h-auto">
           <MapComponent />
         </div>
-      </div>
 
-      {/* Second Column - Image */}
-      <div className="w-full md:w-1/2 flex justify-center items-center px-4">
-        <div className="w-full max-w-md md:max-w-lg">
-          <Image 
-            src={contactImage} 
-            alt="Contact Us" 
-            className="rounded-lg shadow-lg w-full h-auto object-cover" 
-          />
+        {/* Inflation Calculator */}
+        <div className="w-full flex justify-center items-center h-auto">
+          <InflationCalculator />
         </div>
-      </div>
+      </motion.div>
+      <hr style={{color:"white", opacity:0.5, marginTop: 14}}/>
     </div>
   );
 };
