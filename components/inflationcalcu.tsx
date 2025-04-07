@@ -34,7 +34,7 @@ const InflationCalculator: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center w-500 h-[600px]">
+    <div className="flex justify-center items-center w-500 h-full">
       <div className="w-full h-full p-4 bg-white rounded-lg shadow-lg text-center">
         <h2 className="text-2xl font-bold mb-6">Inflation Calculator (Philippines)</h2>
         <div className="flex space-x-8">
@@ -83,7 +83,7 @@ const InflationCalculator: React.FC = () => {
               </button>
 
               {forwardValue !== null && (
-                <div className="mt-4 text-lg font-semibold">
+                <div className="md:text-md xl:text-lg font-semibold">
                   ₱{forwardAmount} now equals <span className="text-blue-600">₱{forwardValue.toFixed(2)}</span> after {forwardYears} years with an average inflation rate of {forwardInflationRate}%.
                 </div>
               )}
@@ -135,7 +135,7 @@ const InflationCalculator: React.FC = () => {
               </button>
 
               {backwardValue !== null && (
-                <div className="mt-4 text-lg font-semibold">
+                <div className="xl:text-lg font-semibold">
                   ₱{backwardAmount} now equals <span className="text-red-600">₱{backwardValue.toFixed(2)}</span> in purchasing power {backwardYears} years ago with an average inflation rate of {backwardInflationRate}%.
                 </div>
               )}
