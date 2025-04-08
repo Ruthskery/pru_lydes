@@ -44,9 +44,15 @@ const ExpertiseSection = () => {
     <div className={`${poppins.className} bg-gray-100 py-32 min-h-screen relative`}> 
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-60 md:h-80">
-        <Image src={backgroundImage} alt="Background" layout="fill" objectFit="cover" className="opacity-50" />
+        <Image
+          src={backgroundImage}
+          alt="Background"
+          fill
+          style={{ objectFit: 'cover' }}
+          className="opacity-50"
+        />
       </div>
-      
+
       <div className="relative z-10 mx-auto px-6 text-center max-w-7xl">
         <h2 className="text-4xl font-bold text-black mb-10">Our Services</h2>
         

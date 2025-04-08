@@ -11,6 +11,7 @@ import Video from '@/components/video';
 import Appointment from '@/components/appointment';
 import Faqs from '@/components/faqs';
 import TestimonialsCarousel from '@/components/testimonies';
+import InflationCalculator from '@/components/inflationcalcu';
 
 
 const Home = () => {
@@ -40,6 +41,7 @@ const Home = () => {
 
     <Appointment />
     <TestimonialsCarousel />
+    <InflationCalculator />
     <Faqs />
     <section id='contact'> 
     <Contact />

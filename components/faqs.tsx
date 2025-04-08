@@ -55,7 +55,7 @@ const FAQSection = () => {
   return (
     <div
       ref={sectionRef} // Attach the Intersection Observer to the section
-      className={`${poppins.className} mx-auto py-16 md:px-30`} // ✅ Applied Font
+      className={`${poppins.className} mx-auto py-16 md:px-30 bg-gray-100`} // ✅ Applied Font
     >
       {/* Section Title */}
       <motion.div

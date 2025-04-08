@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { Facebook, Linkedin, Mail, Phone } from "lucide-react";
-import InflationCalculator from "./inflationcalcu"; // Import the InflationCalculator component
 import { motion } from "framer-motion";
 
 const MapComponent = dynamic(() => import("../public/MapComponents"), {
@@ -107,10 +106,10 @@ const Contact = () => {
           <MapComponent />
         </div>
 
-        {/* Inflation Calculator */}
+        {/* Inflation Calculator
         <div className="w-full flex justify-center items-center h-auto">
           <InflationCalculator />
-        </div>
+        </div> */}
       </motion.div>
       <hr style={{color:"white", opacity:0.5, marginTop: 14}}/>
     </div>

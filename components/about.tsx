@@ -152,7 +152,7 @@ const About = () => {
               <Mail className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12" />
             </a>
             <a
-              href="https://www.linkedin.com/in/lydesquitong"
+              href="linkedin.com/in/lydelyn-quitong-089120230"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#0077B5]"
@@ -160,7 +160,7 @@ const About = () => {
               <Linkedin className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12" />
             </a>
             <a
-              href="https://twitter.com/lydesquitong"
+              href="https://www.threads.net/@lydesquitong"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#1DA1F2]"
