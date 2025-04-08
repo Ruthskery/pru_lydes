@@ -61,7 +61,7 @@ const ExpertiseSection = () => {
           ))}
         </div>
       </div>
-    </div>
+    </div> 
   );
 };
 
