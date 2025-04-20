@@ -1,49 +1,61 @@
 import React from 'react';
 import Image from 'next/image';
-
 import lydes from '../public/src/aboutme.jpg';
 
 const Hero = () => {
   return (
-    <section className='flex flex-col items-center justify-center bg-[#14110F] p-6 md:p-12'>
+    <section className="flex flex-col items-center justify-center bg-[#14110F] px-4 py-10 sm:px-6 md:px-12">
       
-      {/* Title and Line Break */}
-      <div className='flex flex-col items-center justify-center mt-20 mb-10'>
-        <h1 className="text-8xl font-black bg-gradient-to-r from-[#E1B951] to-[#96700f] bg-clip-text text-transparent">
+      {/* Title */}
+      <div className="text-center mt-30 mb-6 md:mt-30 md:mb-10">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black bg-gradient-to-r from-[#E1B951] to-[#96700f] bg-clip-text text-transparent">
           About Me
         </h1>
       </div>
 
-      {/* Line break after title */}
-        <hr className="my-2 border-t-2 border-white w-3/4" /> 
+      {/* Top Line Break */}
+      <hr className="my-4 border-t-2 border-white w-3/4" />
 
-      {/* Image and Content in 2 columns */}
-      <div className='grid grid-cols-1 md:grid-cols-2 mt-15 mb-15'>
-        {/* Image Column */}
-        <div className='flex justify-center items-center'>
+      {/* Image and Content */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mt-10 md:mt-[60px] md:mb-[60px] md:mr-[200px] md:ml-[40px] items-center">
+        
+        {/* Image */}
+        <div className="flex justify-center">
           <Image 
             src={lydes}
             alt="Lydes" 
-            className='object-contain rounded-lg' 
-            width={500} 
-            height={500} 
+            className="rounded-lg object-cover" 
+            width={400} 
+            height={400} 
+            priority
           />
         </div>
 
-        {/* Content Column */}
-        <div className='flex flex-col justify-center items-start space-y-4'>
-          <p className="font-extrabold text-white text-5xl sm:text-6xl text-center md:text-7xl">
-            My Story
+        {/* Content */}
+        <div className="flex flex-col space-y-4 text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center md:text-left">
+            Lydelyn Romero Quitong
+          </h2>
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#E1B951] text-center md:text-left">
+            Trusted Financial Consultant | Pru Life UK
+          </h3>
+          <p className="text-base sm:text-lg md:text-xl font-light text-justify">
+            Lydes, a top financial consultant at Pru Life UK, is recognized nationwide for her expertise in strategic financial planning. With years of experience and a deep passion for empowering others, she has helped countless individuals and families take control of their finances and build secure, meaningful futures.
           </p>
-          <p className="font-extralight text-white text-justify text-lg sm:text-xl md:text-3xl">
-            I am a 22-year-old graduate of Bachelor of Science in Information Technology from the University of the Cordilleras. I am a passionate and dedicated individual with a strong desire to learn and grow in the field of technology. I have a keen interest in web development, programming, and software engineering. I am always eager to take on new challenges and expand my skill set. I believe that continuous learning is essential in this ever-evolving industry, and I am committed to staying up-to-date with the latest trends and technologies.
+          <p className="text-base sm:text-lg md:text-xl font-light text-justify">
+            Beyond her professional accolades, Lydes believes in the power of education and connection. She takes pride in making financial planning simple, accessible, and meaningful. With every client, her mission remains the same: to guide, to inspire, and to deliver a future that feels secure and well-prepared.
+          </p>
+          <p className="italic text-white text-justify text-sm sm:text-base md:text-lg mt-4">
+            “Your dreams matter. Let’s turn them into a plan—and that plan into peace of mind.”
+          </p>
+          <p className="text-sm sm:text-base md:text-lg text-white text-justify">
+            - Lydelyn Romero Quitong
           </p>
         </div>
       </div>
 
-         {/*Bottom Line Break */}
-          <hr className="my-2 border-t-2 border-white w-3/4" /> 
-
+      {/* Bottom Line Break */}
+      <hr className="my-10 border-t-2 border-white w-3/4" />
     </section>
   );
 };
