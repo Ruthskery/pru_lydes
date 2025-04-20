@@ -6,6 +6,8 @@ import { Menu, X } from 'lucide-react';
 import { montserrat } from '../styles/font';
 import { motion, AnimatePresence } from 'framer-motion';
 import bcdq from '../public/src/bcdq.png';
+import Link from 'next/link';
+
 
 const Navbar = () => {
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
@@ -69,7 +71,7 @@ const Navbar = () => {
                   Service: '#service',
                   Products: '#products',
                   Contact: '#contact',
-                  About: '#about',
+                  About: '/me',
                 }[item] || '#';
 
                 return (
@@ -77,7 +79,10 @@ const Navbar = () => {
                     key={index}
                     className="relative cursor-pointer after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-full after:h-[2px] after:bg-black after:transform after:-translate-x-1/2 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
                   >
-                    <a href={linkHref}>{item}</a>
+                  {/* ✅ Use Link instead of <a> */}
+                  <Link href={linkHref}>
+                    {item}
+                  </Link>
                   </li>
                 );
               })}
