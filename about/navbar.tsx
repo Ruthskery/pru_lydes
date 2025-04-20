@@ -108,15 +108,15 @@ const Navbar = () => {
               <ul
                 className={`${montserrat.className} flex flex-col items-center space-y-4 text-lg font-bold`}
               >
-                <a href="#service">
+                <Link href="/">
                   <li className="hover:underline underline-offset-4 cursor-pointer">Service</li>
-                </a>
-                <a href="#products">
+                </Link>
+                <Link href="/">
                   <li className="hover:underline underline-offset-4 cursor-pointer">Products</li>
-                </a>
-                <a href="#contact">
+                </Link>
+                <Link href="/">
                   <li className="hover:underline underline-offset-4 cursor-pointer">Contact</li>
-                </a>
+                </Link>
                 <a href="#about">
                   <li className="hover:underline underline-offset-4 cursor-pointer">About</li>
                 </a>

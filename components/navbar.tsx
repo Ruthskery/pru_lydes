@@ -117,9 +117,9 @@ const Navbar = () => {
                 <a href="#contact">
                   <li className="hover:underline underline-offset-4 cursor-pointer">Contact</li>
                 </a>
-                <a href="#about">
+                <Link href="/me">
                   <li className="hover:underline underline-offset-4 cursor-pointer">About</li>
-                </a>
+                </Link>
               </ul>
 
               <button

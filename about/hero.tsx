@@ -18,7 +18,7 @@ const Hero = () => {
         <hr className="my-2 border-t-2 border-white w-3/4" /> 
 
       {/* Image and Content in 2 columns */}
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-15 mb-15'>
+      <div className='grid grid-cols-1 md:grid-cols-2 mt-15 mb-15'>
         {/* Image Column */}
         <div className='flex justify-center items-center'>
           <Image 
