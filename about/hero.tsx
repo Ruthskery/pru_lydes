@@ -1,61 +1,81 @@
 import React from 'react';
 import Image from 'next/image';
 import lydes from '../public/src/aboutme.jpg';
+import { montserrat, roboto } from '../styles/font';
+import { FaFacebookF, FaInstagram, FaTelegramPlane, FaLinkedinIn, FaFacebookMessenger } from 'react-icons/fa';
 
 const Hero = () => {
   return (
-    <section className="flex flex-col items-center justify-center bg-[#14110F] px-4 py-10 sm:px-6 md:px-12">
-      
+      <section className="bg-[#14110F] px-6 py-14 pt-35 md:px-20 md:pt-35 text-white">
+     
       {/* Title */}
-      <div className="text-center mt-30 mb-6 md:mt-30 md:mb-10">
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black bg-gradient-to-r from-[#E1B951] to-[#96700f] bg-clip-text text-transparent">
+      <div className="text-center mb-12">
+        <h1 className={`${montserrat.className} text-4xl sm:text-5xl md:text-6xl font-black bg-gradient-to-r from-[#E1B951] to-[#96700f] bg-clip-text text-transparent`}>
           About Me
         </h1>
       </div>
 
-      {/* Top Line Break */}
-      <hr className="my-4 border-t-2 border-white w-3/4" />
+      <hr className="border-t-2 border-white mb-10 w-full" />
 
-      {/* Image and Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mt-10 md:mt-[60px] md:mb-[60px] md:mr-[200px] md:ml-[40px] items-center">
-        
-        {/* Image */}
-        <div className="flex justify-center">
-          <Image 
+      {/* Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-1 items-center md:pr-20">
+        {/* Left - Image Container */}
+        <div className="rounded-xl p-4 flex justify-center">
+          <Image
             src={lydes}
-            alt="Lydes" 
-            className="rounded-lg object-cover" 
-            width={400} 
-            height={400} 
+            alt="Lydelyn Romero Quitong"
+            className="rounded-lg object-cover"
+            width={400}
+            height={400}
             priority
           />
         </div>
 
-        {/* Content */}
-        <div className="flex flex-col space-y-4 text-white">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center md:text-left">
+        {/* Right - Content */}
+        <div className="space-y-5 md:pl-6">
+          <h2 className={`${montserrat.className} text-3xl sm:text-4xl md:text-[60px] font-extrabold mb-0 text-center sm:text-left`}>
             Lydelyn Romero Quitong
           </h2>
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#E1B951] text-center md:text-left">
+          <h3 className={`${roboto.className} text-m sm:text-xl md:text-[30px] font-medium text-[#E1B951] italic text-center sm:text-left`}>
             Trusted Financial Consultant | Pru Life UK
           </h3>
-          <p className="text-base sm:text-lg md:text-xl font-light text-justify">
-            Lydes, a top financial consultant at Pru Life UK, is recognized nationwide for her expertise in strategic financial planning. With years of experience and a deep passion for empowering others, she has helped countless individuals and families take control of their finances and build secure, meaningful futures.
-          </p>
-          <p className="text-base sm:text-lg md:text-xl font-light text-justify">
-            Beyond her professional accolades, Lydes believes in the power of education and connection. She takes pride in making financial planning simple, accessible, and meaningful. With every client, her mission remains the same: to guide, to inspire, and to deliver a future that feels secure and well-prepared.
-          </p>
-          <p className="italic text-white text-justify text-sm sm:text-base md:text-lg mt-4">
-            “Your dreams matter. Let’s turn them into a plan—and that plan into peace of mind.”
-          </p>
-          <p className="text-sm sm:text-base md:text-lg text-white text-justify">
-            - Lydelyn Romero Quitong
-          </p>
+          <div className='md:pl-6 md:pr-15'>
+            <p className={`${roboto.className} text-base md:text-[20px] leading-relaxed text-justify md:mb-3`}>
+              Lydes, a top financial consultant at Pru Life UK, is recognized nationwide for her expertise in strategic financial planning. With years of experience and a deep passion for empowering others, she has helped countless individuals and families take control of their finances and build secure, meaningful futures.
+            </p>
+            <p className={`${roboto.className} text-base md:text-[20px] leading-relaxed text-justify`}>
+              Beyond her professional accolades, Lydes believes in the power of education and connection. She takes pride in making financial planning simple, accessible, and meaningful. With every client, her mission remains the same: to guide, to inspire, and to deliver a future that feels secure and well-prepared.
+            </p>
+          </div>
+
+          <div className="mt-6 flex items-start gap-4">
+            {/* Vertical Line */}
+            <div className="w-[2px] bg-white rounded-sm h-[70px]" />
+
+            {/* Quote Text */}
+            <div>
+              <p className={`${roboto.className} italic text-base md:text-lg text-[#D9D9D9]`}>
+                “Your dreams matter. Let’s turn them into a plan—and that plan into peace of mind.”
+              </p>
+              <p className={`${roboto.className} text-sm md:text-base mt-1`}>
+                — Lydelyn Romero Quitong
+              </p>
+            </div>
+          </div>
+
+
+          {/* Social Icons */}
+          <div className="flex space-x-10 mt-15 cursor-pointer justify-center md:justify-start">
+            <FaFacebookF className="text-white text-5xl hover:text-[#E1B951] transition duration-200" />
+            <FaInstagram className="text-white text-5xl hover:text-[#E1B951] transition duration-200" />
+            <FaTelegramPlane className="text-white text-5xl hover:text-[#E1B951] transition duration-200" />
+            <FaLinkedinIn className="text-white text-5xl hover:text-[#E1B951] transition duration-200" />
+            <FaFacebookMessenger className="text-white text-5xl hover:text-[#E1B951] transition duration-200" />
+          </div>
         </div>
       </div>
 
-      {/* Bottom Line Break */}
-      <hr className="my-10 border-t-2 border-white w-3/4" />
+      <hr className="border-t-2 border-white mt-14" />
     </section>
   );
 };
