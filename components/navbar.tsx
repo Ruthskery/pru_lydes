@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { montserrat } from '../styles/font';
@@ -8,11 +8,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import bcdq from '../public/src/bcdq.png';
 import Link from 'next/link';
 
-
 const Navbar = () => {
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -24,17 +24,55 @@ const Navbar = () => {
         setScrollDirection(direction);
       }
       lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
-      setScrolled(currentScrollY > 10); // Update scroll state
+      setScrolled(currentScrollY > 10);
     };
 
     window.addEventListener('scroll', updateScrollDirection);
     return () => window.removeEventListener('scroll', updateScrollDirection);
   }, [scrollDirection]);
 
+  // Disable body scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [menuOpen]);
+
+  // Swipe to close (mobile)
+  useEffect(() => {
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (touchStartX.current !== null) {
+        const touchCurrentX = e.touches[0].clientX;
+        const deltaX = touchStartX.current - touchCurrentX;
+        if (deltaX > 100) {
+          setMenuOpen(false);
+          touchStartX.current = null;
+        }
+      }
+    };
+
+    if (menuOpen) {
+      window.addEventListener('touchstart', handleTouchStart);
+      window.addEventListener('touchmove', handleTouchMove);
+    }
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, [menuOpen]);
+
   return (
-    <AnimatePresence>
-      {scrollDirection === 'up' && (
-        <motion.nav
+    <>
+      <AnimatePresence>
+        {scrollDirection === 'up' && (
+          <motion.nav
           key="navbar"
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -48,218 +86,109 @@ const Navbar = () => {
             transition: 'background-color 0.3s ease-in-out, width 0.3s ease-in-out',
           }}
         >
-          {/* Logo */}
-          <div className="flex items-center">
-            <a href="#main">
-              <Image
-                src={bcdq}
-                alt="Blue Chalcedony"
-                width={90}
-                height={90}
-                className="object-contain"
-              />
-            </a>
-          </div>
+            {/* Burger Menu */}
+            <div className="lg:hidden mr-4">
+              <button onClick={() => setMenuOpen(true)} aria-label="Toggle Menu">
+                <Menu size={32} />
+              </button>
+            </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center space-x-15">
-            <ul
-              className={`${montserrat.className} flex space-x-15 text-base md:text-lg lg:text-2xl font-bold`}
-            >
-              {['Service', 'Products', 'Contact', 'About'].map((item, index) => {
-                const linkHref = {
-                  Service: '#service',
-                  Products: '#products',
-                  Contact: '#contact',
-                  About: '/me',
-                }[item] || '#';
+            {/* Logo (Left for Desktop, Centered for Mobile) */}
+            <div className="flex justify-between items-center w-full">
+              <Link href="/" className="flex items-center">
+                <Image src={bcdq} alt="Blue Chalcedony" width={70} height={70} />
+              </Link>
+            </div>
 
-                return (
-                  <li
-                    key={index}
-                    className="relative cursor-pointer after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-full after:h-[2px] after:bg-black after:transform after:-translate-x-1/2 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
-                  >
-                  {/* ✅ Use Link instead of <a> */}
-                  <Link href={linkHref}>
-                    {item}
-                  </Link>
-                  </li>
-                );
-              })}
-            </ul>
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-15">
+              <ul className={`${montserrat.className} flex space-x-15 text-base font-extrabold`}>
+                {['Service', 'Products', 'Contact', 'About'].map((item, index) => {
+                  const linkHref = item === 'About' ? '/me' : '/';
+                  return (
+                    <li
+                      key={index}
+                      className="relative cursor-pointer after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-full after:h-[2px] after:bg-black after:transform after:-translate-x-1/2 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+                    >
+                      <Link href={linkHref}>{item}</Link>
+                    </li>
+                  );
+                })}
+              </ul>
 
-            <button
-              className={`${montserrat.className} bg-[#14110F] text-white text-sm md:text-base lg:text-xl font-semibold rounded-full px-5 md:px-6 py-2 shadow hover:scale-110 transition-transform`}
-            >
-              Schedule an Appointment
-            </button>
-          </div>
-
-          {/* Mobile Menu Icon */}
-          <div className="lg:hidden">
-            <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Menu">
-              {menuOpen ? <X size={32} /> : <Menu size={32} />}
-            </button>
-          </div>
-
-          {/* Mobile Menu Dropdown */}
-          {menuOpen && (
-            <div className="absolute top-full left-0 w-full bg-[#E1B951] flex flex-col items-center space-y-4 py-6 lg:hidden rounded-b-[2.5rem] shadow-md z-50">
-              <ul
-                className={`${montserrat.className} flex flex-col items-center space-y-4 text-lg font-bold`}
+              <button
+                className={`${montserrat.className} bg-[#14110F] text-white font-semibold rounded-full px-6 py-2 shadow hover:scale-110 transition-transform text-center whitespace-nowrap`}
               >
-                <a href="#service">
-                  <li className="hover:underline underline-offset-4 cursor-pointer">Service</li>
-                </a>
-                <a href="#products">
-                  <li className="hover:underline underline-offset-4 cursor-pointer">Products</li>
-                </a>
-                <a href="#contact">
-                  <li className="hover:underline underline-offset-4 cursor-pointer">Contact</li>
-                </a>
-                <Link href="/me">
-                  <li className="hover:underline underline-offset-4 cursor-pointer">About</li>
+                Schedule an Appointment
+              </button>
+
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+
+      {/* Blurred Overlay + Mobile Menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            {/* Blur Background */}
+            <motion.div
+              className="fixed top-0 left-0 w-full h-full backdrop-blur-sm bg-black/30 z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMenuOpen(false)}
+            />
+
+            {/* Slide-in Menu */}
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
+              className="fixed top-0 left-0 w-4/5 max-w-xs h-full bg-[#E1B951] z-50 flex flex-col pt-12 px-6"
+            >
+              {/* Logo in Mobile Menu */}
+              <div className="flex justify-center mb-8">
+                <Link href="/" className="flex justify-center items-center">
+                  <Image src={bcdq} alt="Blue Chalcedony" width={70} height={70} />
+                </Link>
+              </div>
+
+              <button
+                className="absolute top-4 right-4"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close Menu"
+              >
+                <X size={32} />
+              </button>
+
+              <ul className={`${montserrat.className} flex flex-col space-y-6 text-xl font-bold`}>
+                <Link href="/" onClick={() => setMenuOpen(false)}>
+                  <li className="hover:underline underline-offset-4">Service</li>
+                </Link>
+                <Link href="/" onClick={() => setMenuOpen(false)}>
+                  <li className="hover:underline underline-offset-4">Products</li>
+                </Link>
+                <Link href="/" onClick={() => setMenuOpen(false)}>
+                  <li className="hover:underline underline-offset-4">Contact</li>
+                </Link>
+                <Link href="/me" onClick={() => setMenuOpen(false)}>
+                  <li className="hover:underline underline-offset-4">About</li>
                 </Link>
               </ul>
 
               <button
-                className={`${montserrat.className} bg-[#14110F] text-white text-base font-semibold rounded-full px-6 py-2 shadow hover:scale-110 transition-transform`}
+                className={`${montserrat.className} mt-8 bg-[#14110F] text-white text-base font-semibold rounded-full px-6 py-2 shadow hover:scale-110 transition-transform`}
               >
                 Schedule an Appointment
               </button>
-            </div>
-          )}
-        </motion.nav>
-      )}
-    </AnimatePresence>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
 export default Navbar;
-
-
-// import React, { useState, useEffect } from 'react';
-// import {
-//   Disclosure,
-//   DisclosureButton,
-//   DisclosurePanel
-// } from '@headlessui/react';
-// import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-// import Image from 'next/image';
-// import Link from 'next/link';
-// import { useRouter } from 'next/router';
-// import bcdq from '../public/src/bcdq.png';
-// import { poppins } from '@/public/fonts/fonts';
-
-// const navigation = [
-//   { name: 'Home', href: '/' },
-//   { name: 'About', href: '#about' },
-//   { name: 'Services', href: '#credentials' },
-//   { name: 'Contact', href: '#contact' },
-// ];
-
-// function classNames(...classes: string[]) {
-//   return classes.filter(Boolean).join(' ');
-// }
-
-// const Navbar = () => {
-//   const [scrolling, setScrolling] = useState(false);
-//   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
-//   const [lastScrollTop, setLastScrollTop] = useState(0);
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       const scrollTop = window.scrollY;
-
-//       setScrolling(scrollTop > 50);
-//       if (scrollTop > lastScrollTop) {
-//         setScrollDirection('down');
-//       } else {
-//         setScrollDirection('up');
-//       }
-
-//       setLastScrollTop(scrollTop);
-//     };
-
-//     window.addEventListener('scroll', handleScroll);
-//     return () => window.removeEventListener('scroll', handleScroll);
-//   }, [lastScrollTop]);
-
-//   const isActive = (href: string) =>
-//     router.asPath === href || (router.asPath.includes(href) && href !== '/');
-
-//   return (
-//     <Disclosure
-//       as="nav"
-//       className={classNames(
-//         scrolling ? 'bg-transparent shadow-lg backdrop-blur-lg' : 'bg-transparent',
-//         scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0',
-//         'fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out py-3'
-//       )}
-//     >
-//       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-//         <div className="relative flex h-16 items-center justify-between">
-//           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-//             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-inset">
-//               <span className="absolute -inset-0.5" />
-//               <span className="sr-only">Open main menu</span>
-//               <Bars3Icon className="block size-6 group-data-open:hidden" aria-hidden="true" />
-//               <XMarkIcon className="hidden size-6 group-data-open:block" aria-hidden="true" />
-//             </DisclosureButton>
-//           </div>
-
-//           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-//             <div className="flex shrink-0 items-center lg:ml-50">
-//               <Image src={bcdq} alt="Blue Chalcedony" width={100} height={100} />
-//             </div>
-
-//             <div className="hidden sm:flex sm:items-center sm:ml-auto">
-//               <div className="flex space-x-4">
-//                 {navigation.map((item) => (
-//                   <Link key={item.name} href={item.href} passHref>
-//                     <span
-//                       aria-current={isActive(item.href) ? 'page' : undefined}
-//                       className={classNames(
-//                         poppins.className,
-//                         'rounded-md px-3 py-2 text-xl font-medium transition-all duration-500',
-//                         isActive(item.href)
-//                           ? 'bg-[#FFD700] text-black font-bold'
-//                           : 'text-black hover:bg-[#FFD700] hover:text-black font-bold'
-//                       )}
-//                     >
-//                       {item.name}
-//                     </span>
-//                   </Link>
-//                 ))}
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-
-//       <DisclosurePanel className="sm:hidden">
-//         <div className="space-y-1 px-2 pt-2 pb-3">
-//           {navigation.map((item) => (
-//             <DisclosureButton
-//               key={item.name}
-//               as="a"
-//               href={item.href}
-//               aria-current={isActive(item.href) ? 'page' : undefined}
-//               className={classNames(
-//                 'block rounded-md px-3 py-2 text-base font-medium transition-all duration-1000',
-//                 isActive(item.href)
-//                   ? 'bg-[#FFD700] text-black font-bold'
-//                   : 'text-black hover:bg-white hover:text-black'
-//               )}
-//             >
-//               {item.name}
-//             </DisclosureButton>
-//           ))}
-//         </div>
-//       </DisclosurePanel>
-//     </Disclosure>
-//   );
-// };
-
-// export default Navbar;
