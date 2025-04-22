@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { MdArrowForward, MdArrowBack } from "react-icons/md";
 
 const cards = [
   {
@@ -79,72 +79,133 @@ const cards = [
 const CardCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const isScrollingRef = useRef(false);
 
+  // Function to scroll and center the card
   const scrollToCard = (index: number) => {
+    const container = scrollContainerRef.current;
     const el = cardRefs.current[index];
-    if (el) {
-      el.scrollIntoView({
-        behavior: "smooth",
-        inline: "center",
-        block: "nearest",
+    if (el && container) {
+      isScrollingRef.current = true;
+
+      // Calculate the center offset for the card
+      const containerWidth = container.offsetWidth;
+      const cardWidth = el.offsetWidth;
+      const centerOffset = (containerWidth - cardWidth) / 2;
+
+      // For the first and last card, handle the scroll position carefully
+      const scrollPosition =
+        index === 0
+          ? 0 // Center the first card
+          : index === cards.length - 1
+          ? container.scrollWidth - containerWidth // Center the last card
+          : el.offsetLeft - centerOffset;
+
+      // Scroll the container smoothly
+      container.scrollTo({
+        left: scrollPosition,
+        behavior: "smooth", // Ensure smooth scroll behavior
       });
-      setTimeout(() => setActiveIndex(index), 300);
+
+      setTimeout(() => {
+        setActiveIndex(index);
+        isScrollingRef.current = false;
+      }, 500);
     }
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextCard();
-    }, 3000); // auto-scroll every 3 seconds
-  
-    return () => clearInterval(interval); // cleanup on unmount
-  }, [activeIndex]);
-
   const nextCard = () => {
+    if (isScrollingRef.current) return;
     const newIndex = (activeIndex + 1) % cards.length;
     scrollToCard(newIndex);
   };
 
   const prevCard = () => {
+    if (isScrollingRef.current) return;
     const newIndex = (activeIndex - 1 + cards.length) % cards.length;
     scrollToCard(newIndex);
   };
 
-  const handleCardClick = (index: number) => {
-    scrollToCard(index);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextCard();
+    }, 4000); // Auto-scroll every 4 seconds
+    return () => clearInterval(interval);
+  }, [activeIndex]);
+
+  // Function to find the closest card to the center of the viewport
+  const handleScroll = () => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const center = container.scrollLeft + container.offsetWidth / 2;
+    let closestIndex = 0;
+    let minDistance = Infinity;
+
+    // Find the card that is closest to the center
+    cardRefs.current.forEach((el, index) => {
+      if (el) {
+        const distance = Math.abs(el.offsetLeft + el.offsetWidth / 2 - center);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      }
+    });
+
+    // Set the active card to the closest one
+    if (closestIndex !== activeIndex) {
+      setActiveIndex(closestIndex);
+    }
   };
 
-  return (
-    <div className="w-[95vw] mx-auto px-[10px] py-12 overflow-visible">
-      <div className="flex items-center justify-between">
-        <button
-          onClick={prevCard}
-          className="p-2 rounded-full hover:bg-gray-200 transition"
-        >
-          <ArrowLeft />
-        </button>
+  useEffect(() => {
+    // Attach scroll listener to keep the center card active
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+    }
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [activeIndex]);
 
+  return (
+    <div className="bg-[#14110F] py-16 px-4">
+      <h2 className="text-white text-4xl font-bold mb-10 text-center">
+        Our Products
+      </h2>
+
+      <div className="relative flex flex-col items-center justify-center">
         <div
-          className="relative flex items-center overflow-x-auto scroll-smooth snap-x snap-mandatory gap-6 scrollbar-hide w-full"
+          ref={scrollContainerRef}
+          className="relative flex items-center overflow-x-auto scroll-smooth snap-x snap-mandatory gap-6 scrollbar-hide w-full px-8 py-20"
           style={{
-            overflowY: "visible",
-            paddingTop: "20px",
-            paddingBottom: "20px",
-            scrollBehavior: "smooth",
+            scrollBehavior: "smooth", // Ensure smooth scrolling is applied
           }}
         >
-          <div className="flex-shrink-0 w-[50%]" />
+          <div className="flex-shrink-0 w-[20%]" />
 
           {cards.map((card, index) => (
             <div
               key={index}
-              ref={(el) => { cardRefs.current[index] = el; }}
-              className={`snap-center flex-shrink-0 w-80 h-auto transition-all duration-500 rounded-2xl flex flex-col items-center justify-start text-center p-5 bg-white overflow-hidden ${
+              ref={(el) => {
+                cardRefs.current[index] = el;
+              }}
+              onClick={() => scrollToCard(index)}
+              className={`nap-center flex-shrink-0 w-80 h-[350px] transition-all duration-700 ease-in-out rounded-2xl flex flex-col items-center justify-start text-center p-5 overflow-hidden border border-white ${
                 index === activeIndex
-                  ? "scale-110 opacity-100 z-10 shadow-2xl bg-red-50"
+                  ? "scale-110 z-10"
                   : "scale-95 opacity-60"
               }`}
-              onClick={() => handleCardClick(index)}  // Added click handler
+              style={{
+                backgroundColor: "white",
+                boxShadow: "6px 6px 10px gold",
+                // scrollSnapAlign: "center", // Ensures snapping to the center
+              }}
             >
               <img
                 src={card.image}
@@ -159,15 +220,24 @@ const CardCarousel = () => {
             </div>
           ))}
 
-          <div className="flex-shrink-0 w-[50%]" />
+          <div className="flex-shrink-0 w-[20%]" />
         </div>
 
-        <button
-          onClick={nextCard}
-          className="p-2 rounded-full hover:bg-gray-200 transition"
-        >
-          <ArrowRight />
-        </button>
+        {/* Bottom centered arrows */}
+        <div className="mt-5 flex gap-4 items-center justify-center">
+          <button
+            onClick={prevCard}
+            className="bg-white p-2 rounded-full shadow-lg hover:bg-gray-200"
+          >
+            <MdArrowBack size={30} />
+          </button>
+          <button
+            onClick={nextCard}
+            className="bg-white p-2 rounded-full shadow-lg hover:bg-gray-200"
+          >
+            <MdArrowForward size={30} />
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,92 +1,103 @@
-import React from 'react';
+import React from "react";
+import Image from "next/image";
+import { Montserrat, Roboto } from "next/font/google";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaXTwitter,
+  FaTelegram,
+  FaLinkedinIn,
+  FaFacebookMessenger,
+  FaThreads,
+} from "react-icons/fa6";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 const Hero = () => {
   return (
     <div
-      className="h-[150vh] w-full"
+      className={`relative w-full h-350 min-h-screen ${montserrat.variable} ${roboto.variable}`}
       style={{
-        background: 'linear-gradient(to bottom, #E1B951, #7E682E)', // Gradient from #E1B951 to #14110F
-        backgroundSize: '100% 100%',
+        background: "linear-gradient(to bottom, #E1B951,rgb(58, 46, 39))",
       }}
     >
-      <div className="flex items-center justify-center h-full">
-        <h1 className="text-white font-bold text-4xl">Hero Here</h1>
+      {/* Top-Centered Text */}
+      <div className="flex flex-col font-[Montserrat] items-center text-center pt-40 px-4 z-20 relative">
+        <h1 className="text-white font-bold text-5xl md:text-8xl mb-4">
+          Grow your wealth, <br /> secure your tomorrow.
+        </h1>
+        <p className="text-white font-[Roboto] text-lg md:text-xl mb-6 max-w-6xl">
+          With a proven track record, certified expertise, and a heart for
+          helping others, Pru Lydes empowers clients to take control of their
+          finances and secure a brighter future—one plan at a time.
+        </p>
+
+        {/* Fancy Email Input */}
+        <div className="flex bg-white rounded-full overflow-hidden inset-shadow-sm w-auto">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="flex-grow p-3 pl-10 rounded-l-full font-semibold text-black outline-none font-[Roboto] text-2xl"
+          />
+          <button className="bg-[#d6a741] m-1 text-xl text-white px-9 py-2 rounded-full hover:bg-[#e1b951] transition">
+            Send
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom-Centered Image and Info Side-by-Side */}
+      <div className="absolute bottom-0 left-20 right-20 flex flex-col md:flex-row justify-center px-6 z-10">
+        {/* Lydes Image */}
+        <Image
+          src="/src/lydes-hero.png"
+          alt="Lydes"
+          width={1000}
+          height={1030}
+          className="object-contain"
+          priority
+        />
+
+        {/* Info Section */}
+        <div className="flex flex-col items-center text-center justify-end ">
+          <div className="text-white font-light text-4xl font-[Montserrat] mb-2">
+            <div className="text-[#171513] font-[Roboto]">
+              Get to know more about Lydes!
+            </div>
+            <p className="inline-block bg-[#14110F]/80 font-semibold mb-30 text-white px-15 py-10 rounded-full mt-2 shadow-md">
+              Hi, I’m Lydes!
+            </p>
+          </div>
+
+          <div className="flex items-end gap-4 pb-10 text-7xl">
+            <FaFacebookF className="text-[#1877F2]" />
+            <FaInstagram className="text-[#E1306C]" />
+            <FaXTwitter className="text-black" />
+            <FaTelegram className="text-[#0088cc]" />
+            <FaLinkedinIn className="text-[#0077B5]" />
+            <FaFacebookMessenger className="text-[#00B2FF]" />
+            <FaThreads className="text-black" />
+          </div>
+
+          <div className="flex items-center gap-2 text-[140px] mt-6 font-extrabold font-[Montserrat]">
+            <span className="text-white">PRU</span>
+            <span className="text-[#14110F]">LYDES</span>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Hero;
-
-
-// import React, { useRef, useEffect } from "react";
-// import { poppins } from "@/public/fonts/fonts";
-// import maambg from "../public/maambg.jpg";
-// import Button from "./button"; // Import your Button component here
-// import { motion, useAnimation } from "framer-motion";
-
-// const Hero = () => {
-//   const controls = useAnimation();
-//   const contentRef = useRef(null);
-
-//   useEffect(() => {
-//     const observer = new IntersectionObserver(
-//       (entries) => {
-//         if (entries[0].isIntersecting) {
-//           controls.start({ opacity: 1, x: 0 });
-//         } else {
-//           controls.start({ opacity: 0, x: -100 }); // Small movement left while fading out
-//         }
-//       },
-//       { threshold: 0.5 }
-//     );
-
-//     if (contentRef.current) {
-//       observer.observe(contentRef.current);
-//     }
-
-//     return () => {
-//       if (contentRef.current) {
-//         observer.unobserve(contentRef.current);
-//       }
-//     };
-//   }, [controls]);
-
-//   return (
-//     <div className="relative w-full min-h-screen flex flex-col md:grid md:grid-cols-2 items-center">
-//       {/* Background Image with Overlay (No Animation) */}
-//       <div
-//         className="absolute inset-0 w-full h-full bg-cover bg-center"
-//         style={{ backgroundImage: `url(${maambg.src})` }}
-//       >
-//         <div className="absolute inset-0 bg-black/40"></div>
-//       </div>
-
-//       {/* Animated Content */}
-//       <motion.div
-//         ref={contentRef}
-//         className={`${poppins.className} relative z-10 flex flex-col justify-center md:text-left px-6 md:px-12 lg:px-20 xl:px-32 h-screen md:h-full w-full`}
-//         initial={{ opacity: 0, x: -50 }} // Starts slightly off-screen to the left
-//         animate={controls} // Controlled animation
-//         transition={{ duration: 1, ease: "easeOut" }} // Smooth animation
-//       >
-//         {/* Title */}
-//         <h1 className="text-gray-300 text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold text-center md:text-left">
-//           PRU <span className="text-yellow-500">LYDES</span>
-//         </h1>
-
-//         {/* Content Box */}
-//         <div className="mb-7 bg-white/20 p-6 md:p-10 rounded-lg mt-6 md:mt-10 shadow-lg">
-//           <p className="text-gray-100 font-light text-base sm:text-lg md:text-xl max-w-lg mx-auto md:mx-0">
-//             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-//           </p>
-//           <div className="flex justify-center md:justify-start flex-col md:flex-row mt-6">
-//             <Button />
-//           </div>
-//         </div>
-//       </motion.div>
-//     </div>
-//   );
-// };
-
-// export default Hero;
