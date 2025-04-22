@@ -12,7 +12,7 @@ const headshotImages = [H1, H2, H3, H4, H5];
 
 const Headshot = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const handleNext = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % headshotImages.length);
@@ -25,11 +25,11 @@ const Headshot = () => {
   };
 
   // Swipe detection
-  const handleTouchStart = (e) => {
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStartX(e.changedTouches[0].clientX);
   };
 
-  const handleTouchEnd = (e) => {
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
     if (touchStartX && e.changedTouches[0].clientX) {
       const delta = touchStartX - e.changedTouches[0].clientX;
       if (delta > 50) handleNext(); // swipe left
