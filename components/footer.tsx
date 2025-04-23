@@ -1,91 +1,158 @@
-import React from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
-import { poppins } from '@/public/fonts/fonts';
+import React from "react";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { ArrowUp } from "lucide-react";
+import { Montserrat, Roboto } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className={`${poppins.className} bg-black text-white py-10`}>
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-        
-        {/* Column 1: About Section */}
+    <footer className="font-[Roboto] bg-gradient-to-t from-[#E1B951] to-[#826312] text-white py-10 relative">
+      <div className="px-6 max-w-screen mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 lg:gap-32 xl:ml-20 xl:mt-10">
+        <button
+          onClick={scrollToTop}
+          className="absolute right-4 top-[-20px] bg-black rounded-full p-3 text-white/60 hover:text-white transition-colors animate-bounce"
+          aria-label="Go to top"
+        >
+          <ArrowUp className="w-5 h-5 md:w-6 md:h-6" />
+        </button>
+        {/* About */}
         <div>
-          <h2 className="text-lg font-semibold mb-3 border-b-2 border-yellow-500 inline-block">About</h2>
-          <p className="text-gray-400 mb-2">
-            We provide reliable and comprehensive insurance solutions tailored to your needs. Our goal is to protect what matters most to you.
-          </p>
-          <p className="text-gray-400">
-            © 2025 Blue Chalcedony Diamond Quartz. All rights reserved.
+          <h2 className="font-[Montserrat] text-2xl md:text-3xl font-semibold mb-3 border-b-4 border-[#E1B951] inline-block">
+            About
+          </h2>
+          <p className="text-base md:text-lg text-white/90 mt-2">
+            We provide reliable and comprehensive insurance solutions tailored
+            to your needs. Our goal is to protect what matters most to you.
           </p>
         </div>
 
-        {/* Column 2: Insurance & Legal */}
+        {/* Insurance & Legal */}
         <div>
-          <h2 className="text-lg font-semibold mb-3 border-b-2  border-yellow-500 inline-block">Insurance & Legal</h2>
-          <p className="text-gray-400 mb-2">
-            We maintain professional liability insurance to ensure quality service and protect both our clients and ourselves.
+          <h2 className="font-[Montserrat] text-2xl md:text-3xl font-semibold mb-3 border-b-4 border-[#E1B951] inline-block">
+            Insurance & Legal
+          </h2>
+          <p className="text-base md:text-lg text-white/90 mb-2">
+            We maintain professional liability insurance to ensure quality
+            service and protect both our clients and ourselves.
           </p>
-          <ul className="text-gray-400 space-y-2">
-            <li><a href="/privacy-policy" className="hover:text-yellow-500">Privacy Policy</a></li>
-            <li><a href="/terms-of-service" className="hover:text-yellow-500">Terms of Service</a></li>
+          <ul className="text-base md:text-lg text-white/90 space-y-2">
+            <li>
+              <a
+                href="/#"
+                className="relative inline-block hover:after:w-full after:transition-all after:duration-300 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-white hover:after:left-0"
+              >
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a
+                href="/#"
+                className="relative inline-block hover:after:w-full after:transition-all after:duration-300 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-white hover:after:left-0"
+              >
+                Terms & Service
+              </a>
+            </li>
           </ul>
         </div>
 
-        {/* Column 4: Insurance Services Section */}
+        {/* Insurance Services */}
         <div>
-          <h2 className="text-lg font-semibold mb-3 border-b-2  border-yellow-500 inline-block">Insurance Services</h2>
-          <ul className="text-gray-400 space-y-2">
-            <li><a href="/savings" className="hover:text-yellow-500">Protection & Savings</a></li>
-            <li><a href="/health" className="hover:text-yellow-500">Health Insurance</a></li>
-            <li><a href="/investment" className="hover:text-yellow-500">Investment</a></li>
-            <li><a href="/accident" className="hover:text-yellow-500">Accident</a></li>
+          <h2 className="font-[Montserrat] text-2xl md:text-3xl font-semibold mb-3 border-b-4 border-[#E1B951] inline-block">
+            Insurance Services
+          </h2>
+          <ul className="text-base md:text-lg text-white/90 space-y-2">
+            <li>
+              <a
+                href="/#"
+                className="relative inline-block hover:after:w-full after:transition-all after:duration-300 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-white hover:after:left-0"
+              >
+                Protection & Savings
+              </a>
+            </li>
+            <li>
+              <a
+                href="/#"
+                className="relative inline-block hover:after:w-full after:transition-all after:duration-300 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-white hover:after:left-0"
+              >
+                Health Insurance
+              </a>
+            </li>
+            <li>
+              <a
+                href="/#"
+                className="relative inline-block hover:after:w-full after:transition-all after:duration-300 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-white hover:after:left-0"
+              >
+                Investment
+              </a>
+            </li>
+            <li>
+              <a
+                href="/#"
+                className="relative inline-block hover:after:w-full after:transition-all after:duration-300 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-white hover:after:left-0"
+              >
+                Accident
+              </a>
+            </li>
           </ul>
         </div>
-
-        {/* Column 3: Social Media Links */}
-        <div>
-          <h2 className="text-lg font-semibold mb-3 border-b-2  border-yellow-500 inline-block">Follow Us</h2>
-          <div className="flex space-x-4 mt-3">
-            <a 
-              href="https://www.facebook.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="bg-gray-700 p-2 rounded-full cursor-pointer hover:bg-blue-600 transition duration-300"
-            >
-              <FaFacebookF />
-            </a>
-            <a 
-              href="https://www.twitter.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="bg-gray-700 p-2 rounded-full cursor-pointer hover:bg-blue-400 transition duration-300"
-            >
-              <FaTwitter />
-            </a>
-            <a 
-              href="https://www.instagram.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="bg-gray-700 p-2 rounded-full cursor-pointer hover:bg-pink-500 transition duration-300"
-            >
-              <FaInstagram />
-            </a>
-            <a 
-              href="https://www.linkedin.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="bg-gray-700 p-2 rounded-full cursor-pointer hover:bg-blue-700 transition duration-300"
-            >
-              <FaLinkedinIn />
-            </a>
-          </div>
-        </div>
-
       </div>
 
-      {/* Footer Bottom: Terms & Conditions and Copyright */}
-      {/* <div className="text-xs text-center text-gray-400 mt-10 py-4 border-t border-gray-700">
-        Terms & Conditions | Privacy Policy | 2025 © Blue Chalcedony Diamond Quartz
-      </div> */}
+      {/* Footer Bottom */}
+      <div className="font-[Montserrat] text-base md:text-lg text-white mt-12 pt-6 relative">
+        <div className="flex flex-col md:flex-row justify-between items-center mx-19">
+          {/* Left - Social Icons */}
+          <div className="flex space-x-4 mb-4 md:mb-0">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebookF className="text-5xl text-blue-500 hover:scale-110 transition-transform" />
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className="text-5xl text-black hover:scale-110 transition-transform" />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedinIn className="text-5xl text-blue-400 hover:scale-110 transition-transform" />
+            </a>
+          </div>
+
+          {/* Logo - Center */}
+          <div>
+            <img src="/src/bcdq.png" alt="Logo" className="w-30" />
+          </div>
+
+          {/* Right - Copyright */}
+          <p className="font-[Roboto] text-white/90 text-center md:text-right">
+            © Copyright CSPC 2025 — All rights reserved
+          </p>
+        </div>
+      </div>
     </footer>
   );
 };
