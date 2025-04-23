@@ -204,7 +204,7 @@ const CardCarousel = () => {
               style={{
                 backgroundColor: "white",
                 boxShadow: "6px 6px 10px gold",
-                // scrollSnapAlign: "center", // Ensures snapping to the center
+                scrollSnapAlign: "center", // Ensures snapping to the center
               }}
             >
               <img
