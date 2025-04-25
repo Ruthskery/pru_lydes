@@ -1,21 +1,10 @@
 import React from "react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { ArrowUp } from "lucide-react";
-import { Montserrat, Roboto } from "next/font/google";
+import { montserrat, roboto } from "../styles/font";
+import Link from "next/link";
+import Image from "next/image";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-montserrat",
-  display: "swap",
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-roboto",
-  display: "swap",
-});
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -23,7 +12,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="font-[Roboto] bg-gradient-to-t from-[#E1B951] to-[#826312] text-white py-10 relative">
+    <footer className="bg-gradient-to-t from-[#E1B951] to-[#826312] text-white py-10 relative">
       <div className="px-6 max-w-screen mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 lg:gap-32 xl:ml-20 xl:mt-10">
         <button
           onClick={scrollToTop}
@@ -34,13 +23,13 @@ const Footer = () => {
         </button>
         {/* About */}
         <div>
-          <h2 className="font-[Montserrat] text-2xl md:text-3xl font-semibold mb-3 border-b-4 border-[#E1B951] inline-block">
+            <h2 className={`${montserrat.className} text-2xl md:text-3xl font-semibold mb-3 border-b-4 border-[#E1B951] inline-block`}>
             About
-          </h2>
-          <p className="text-base md:text-lg text-white/90 mt-2">
+            </h2>
+            <p className={`${roboto.className} text-base md:text-lg text-white/90 mt-2`}>
             We provide reliable and comprehensive insurance solutions tailored
             to your needs. Our goal is to protect what matters most to you.
-          </p>
+            </p>
         </div>
 
         {/* Insurance & Legal */}
@@ -54,20 +43,20 @@ const Footer = () => {
           </p>
           <ul className="text-base md:text-lg text-white/90 space-y-2">
             <li>
-              <a
+              <Link
                 href="/#"
                 className="relative inline-block hover:after:w-full after:transition-all after:duration-300 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-white hover:after:left-0"
               >
                 Privacy Policy
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/#"
                 className="relative inline-block hover:after:w-full after:transition-all after:duration-300 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-white hover:after:left-0"
               >
                 Terms & Service
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -79,36 +68,36 @@ const Footer = () => {
           </h2>
           <ul className="text-base md:text-lg text-white/90 space-y-2">
             <li>
-              <a
+              <Link
                 href="/#"
                 className="relative inline-block hover:after:w-full after:transition-all after:duration-300 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-white hover:after:left-0"
               >
                 Protection & Savings
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/#"
                 className="relative inline-block hover:after:w-full after:transition-all after:duration-300 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-white hover:after:left-0"
               >
                 Health Insurance
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/#"
                 className="relative inline-block hover:after:w-full after:transition-all after:duration-300 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-white hover:after:left-0"
               >
                 Investment
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/#"
                 className="relative inline-block hover:after:w-full after:transition-all after:duration-300 after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-white hover:after:left-0"
               >
                 Accident
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -143,16 +132,13 @@ const Footer = () => {
           </div>
 
           {/* Logo - Center */}
-          <div>
-            <img src="/src/bcdq.png" alt="Logo" className="w-30" />
-          </div>
-
-          {/* Right - Copyright */}
-          <p className="font-[Roboto] text-white/90 text-center md:text-right">
-            © Copyright CSPC 2025 — All rights reserved
-          </p>
-        </div>
+            <Image src="/src/bcdq.png" alt="Logo" width={120} height={120} className="w-30" />
+        {/* Right - Copyright */}
+        <p className="font-[Roboto] text-white/90 text-center md:text-right">
+          © Copyright CSPC 2025 — All rights reserved
+        </p>
       </div>
+    </div>
     </footer>
   );
 };
