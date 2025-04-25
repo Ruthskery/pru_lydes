@@ -1,5 +1,21 @@
 import React, { useRef, useState, useEffect } from "react";
+import { Package } from "lucide-react";
 import { MdArrowForward, MdArrowBack } from "react-icons/md";
+import { Montserrat, Roboto } from "next/font/google";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 const cards = [
   {
@@ -12,8 +28,7 @@ const cards = [
   {
     image:
       "https://www.prulifeuk.com.ph/export/sites/prudential-ph/en/.galleries/images/couple-with-daughter-picnic766x432.jpg",
-    title:
-      "<span class='text-red-500'>PRU</span>Link Assurance Account Plus",
+    title: "<span class='text-red-500'>PRU</span>Link Assurance Account Plus",
     description:
       "An investment-linked life insurance plan that offers financial growth with maximum protection.",
   },
@@ -27,8 +42,7 @@ const cards = [
   {
     image:
       "https://www.prulifeuk.com.ph/export/sites/prudential-ph/en/.galleries/images/young-professionals-walking-down-stairs-766x432.jpg",
-    title:
-      "<span class='text-red-500'>PRU</span>Link Elite Protector Series",
+    title: "<span class='text-red-500'>PRU</span>Link Elite Protector Series",
     description:
       "Your financial goals become more manageable and attainable with the PRULink Elite Protector Series, an investment-linked life insurance plan with greater potential for wealth accumulation and maximum protection.",
   },
@@ -81,55 +95,58 @@ const CardCarousel = () => {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const isScrollingRef = useRef(false);
+  const isButtonClickRef = useRef(false); // Track if the button was clicked
 
   // Function to scroll and center the card
   const scrollToCard = (index: number) => {
     const container = scrollContainerRef.current;
     const el = cardRefs.current[index];
-    if (el && container) {
-      isScrollingRef.current = true;
 
-      // Calculate the center offset for the card
+    if (el && container) {
+      isButtonClickRef.current = true;
+
       const containerWidth = container.offsetWidth;
       const cardWidth = el.offsetWidth;
       const centerOffset = (containerWidth - cardWidth) / 2;
 
-      // For the first and last card, handle the scroll position carefully
-      const scrollPosition =
-        index === 0
-          ? 0 // Center the first card
-          : index === cards.length - 1
-          ? container.scrollWidth - containerWidth // Center the last card
-          : el.offsetLeft - centerOffset;
+      // Apply left and right padding once to support centering first/last cards
+      container.style.paddingLeft = `${centerOffset}px`;
+      container.style.paddingRight = `${centerOffset}px`;
 
-      // Scroll the container smoothly
+      // Calculate scroll position
+      const scrollPosition = el.offsetLeft - centerOffset;
+
       container.scrollTo({
         left: scrollPosition,
-        behavior: "smooth", // Ensure smooth scroll behavior
+        behavior: "smooth",
       });
 
       setTimeout(() => {
         setActiveIndex(index);
-        isScrollingRef.current = false;
-      }, 500);
+        isButtonClickRef.current = false;
+      }, 300);
     }
   };
 
   const nextCard = () => {
-    if (isScrollingRef.current) return;
+    if (isScrollingRef.current || isButtonClickRef.current) return;
     const newIndex = (activeIndex + 1) % cards.length;
     scrollToCard(newIndex);
   };
 
   const prevCard = () => {
-    if (isScrollingRef.current) return;
+    if (isScrollingRef.current || isButtonClickRef.current) return;
     const newIndex = (activeIndex - 1 + cards.length) % cards.length;
     scrollToCard(newIndex);
   };
 
   useEffect(() => {
+    scrollToCard(0); // Center the first card on initial load
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
-      nextCard();
+      if (!isButtonClickRef.current) nextCard();
     }, 4000); // Auto-scroll every 4 seconds
     return () => clearInterval(interval);
   }, [activeIndex]);
@@ -137,13 +154,12 @@ const CardCarousel = () => {
   // Function to find the closest card to the center of the viewport
   const handleScroll = () => {
     const container = scrollContainerRef.current;
-    if (!container) return;
+    if (!container || isButtonClickRef.current) return;
 
     const center = container.scrollLeft + container.offsetWidth / 2;
     let closestIndex = 0;
     let minDistance = Infinity;
 
-    // Find the card that is closest to the center
     cardRefs.current.forEach((el, index) => {
       if (el) {
         const distance = Math.abs(el.offsetLeft + el.offsetWidth / 2 - center);
@@ -154,7 +170,7 @@ const CardCarousel = () => {
       }
     });
 
-    // Set the active card to the closest one
+    // Set the active card to the closest one to the center
     if (closestIndex !== activeIndex) {
       setActiveIndex(closestIndex);
     }
@@ -174,17 +190,23 @@ const CardCarousel = () => {
   }, [activeIndex]);
 
   return (
-    <div className="bg-[#14110F] py-16 px-4">
-      <h2 className="text-white text-4xl font-bold mb-10 text-center">
-        Our Products
-      </h2>
-
+    <div
+      className={`${montserrat.variable} ${roboto.variable} bg-[#14110F] py-16 px-4`}
+    >
+      <div className="flex items-center md:mx-20 justify-center md:justify-start">
+        <Package className="w-15 h-15 text-[#E1B951] mr-4" />
+        <h2 className="text-white text-7xl font-extrabold font-[Montserrat]">
+          Our Products
+        </h2>
+      </div>
+      <hr className="border-2 text-[#E1B951] mt-10 mx-5"/>
       <div className="relative flex flex-col items-center justify-center">
         <div
           ref={scrollContainerRef}
-          className="relative flex items-center overflow-x-auto scroll-smooth snap-x snap-mandatory gap-6 scrollbar-hide w-full px-8 py-20"
+          className="relative flex items-center overflow-x-auto gap-6 scrollbar-hide w-full px-8 py-20"
           style={{
-            scrollBehavior: "smooth", // Ensure smooth scrolling is applied
+            scrollBehavior: isButtonClickRef.current ? "auto" : "smooth", // Disable snap on button click and enable on natural scroll
+            scrollSnapType: isButtonClickRef.current ? "none" : "x mandatory", // Disable snap when using buttons
           }}
         >
           <div className="flex-shrink-0 w-[20%]" />
@@ -196,10 +218,8 @@ const CardCarousel = () => {
                 cardRefs.current[index] = el;
               }}
               onClick={() => scrollToCard(index)}
-              className={`nap-center flex-shrink-0 w-80 h-[350px] transition-all duration-700 ease-in-out rounded-2xl flex flex-col items-center justify-start text-center p-5 overflow-hidden border border-white ${
-                index === activeIndex
-                  ? "scale-110 z-10"
-                  : "scale-95 opacity-60"
+              className={`nap-center flex-shrink-0 w-80 h-[380px] transition-all duration-700 ease-in-out rounded-2xl flex flex-col items-center justify-start text-center p-5 overflow-hidden border border-white ${
+                index === activeIndex ? "scale-110 z-10" : "scale-95 opacity-60"
               }`}
               style={{
                 backgroundColor: "white",
@@ -213,10 +233,12 @@ const CardCarousel = () => {
                 className="w-full h-40 object-cover rounded-xl mb-3"
               />
               <h2
-                className="text-lg font-bold"
+                className="text-lg font-bold font-[Montserrat]"
                 dangerouslySetInnerHTML={{ __html: card.title }}
               />
-              <p className="text-gray-600 text-sm mt-2">{card.description}</p>
+              <p className="text-gray-600 text-sm font-[Roboto] mt-2">
+                {card.description}
+              </p>
             </div>
           ))}
 
