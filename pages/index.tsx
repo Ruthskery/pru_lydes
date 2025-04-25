@@ -8,7 +8,7 @@ import Credentials from '@/components/credentials';
 // import Careerpath from '@/components/careerpath';
 import React from 'react';
 import Video from '@/components/video';
-import Appointment from '@/components/appointment';
+// import Appointment from '@/components/appointment';
 import Faqs from '@/components/faqs';
 import TestimonialsCarousel from '@/components/testimonies';
 
@@ -62,7 +62,7 @@ const Home = () => {
     {/* ------------------------------ */}
     {/* <Careerpath /> */}
   
-    <Appointment />
+    {/* <Appointment /> */}
     <TestimonialsCarousel />
     <Faqs />
     <section id='contact'> 
