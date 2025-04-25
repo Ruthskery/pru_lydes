@@ -6,6 +6,7 @@ import Vandm from '@/about/vandm';
 import Achievements from '@/about/achievements';
 import Last from '@/about/last';
 import Footer from '@/about/footer';
+import Gab from '@/about/gab'
 
 const Me = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,6 +40,7 @@ const Me = () => {
       <Achievements />
       <Last />
       <Footer />
+      <Gab />
 
       {isScrolled && (
         <div
