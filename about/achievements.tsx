@@ -8,9 +8,9 @@ import awardImage from '../public/src/plaque.png'; // Use correct image
 
 const Achievements = () => {
   return (
-    <div className="w-full bg-[#14110F] py-16 overflow-hidden">
+    <div className="w-full bg-[#14110F] dark:bg-[#FCF8EE] py-16 overflow-hidden">
       <h2
-        className={`${montserrat.className} text-white text-xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 md:mb-15 ml-4 sm:ml-10 md:ml-20 text-left`}
+        className={`${montserrat.className} text-white dark:text-[#14110F] text-xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 md:mb-15 ml-4 sm:ml-10 md:ml-20 text-left`}
       >
         Milestones & Achievements
       </h2>

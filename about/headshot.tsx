@@ -70,16 +70,9 @@ const Headshot = () => {
   }, [isModalOpen]);
 
   return (
-    <div className="w-full h-[50vh] flex justify-center bg-[#14110F] relative pt-2 md:pt-5 px-4">
+    <div className="w-full h-[50vh] flex justify-center bg-[#14110F] dark:bg-[#FCF8EE] relative pt-2 md:pt-5 px-4">
       {/* Animated Title */}
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="absolute left-15 text-white font-black text-xl sm:text-2xl md:text-4xl lg:text-5xl"
-      >
-        Stories in Frames
-      </motion.div>
+      
 
       {/* --- MOBILE VERSION --- */}
       <div className="flex justify-center w-full sm:hidden relative h-full items-center">
@@ -90,7 +83,7 @@ const Headshot = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.5 }}
-            className="w-[300px] h-[300px] rounded-xl overflow-hidden border-4 border-[#E1B951]"
+            className="w-[300px] h-[300px] rounded-xl overflow-hidden border-4 border-[#E1B951] dark:border-[#14110F]"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onClick={() => openModal(currentImageIndex)}
@@ -121,7 +114,7 @@ const Headshot = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             whileHover={{ scale: 1.05, zIndex: 10 }}
-            className="w-[160px] sm:w-[200px] md:w-[240px] h-[160px] sm:h-[200px] md:h-[240px] rounded-xl overflow-hidden border-4 border-[#E1B951] cursor-pointer"
+            className="w-[160px] sm:w-[200px] md:w-[300px] h-[160px] sm:h-[200px] md:h-[300px] rounded-xl overflow-hidden border-4 border-[#E1B951] dark:border-[#14110F] cursor-pointer"
             onClick={() => openModal(index)}
           >
             <Image
@@ -148,7 +141,7 @@ const Headshot = () => {
             transition={{ duration: 0.3 }}
           >
             <motion.div
-              className="bg-[#14110F] p-6 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto relative border-2 border-[#E1B951]"
+              className="bg-[#14110F] p-6 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto relative border-2 border-[#E1B951] dark:border-[#FCF8EE]"
               onClick={(e) => e.stopPropagation()}
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}

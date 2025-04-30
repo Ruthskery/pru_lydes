@@ -4,7 +4,7 @@ import Footer from '@/components/footer';
 import Hero from '@/components/hero';
 import Navbar from '@/components/navbar';
 import Carousel from '@/components/carousel';
-import Credentials from '@/components/credentials';
+// import Credentials from '@/components/credentials';
 // import Careerpath from '@/components/careerpath';
 import React from 'react';
 import Video from '@/components/video';
@@ -12,6 +12,8 @@ import Video from '@/components/video';
 // import Faqs from '@/components/faqs';
 import TestimonialsCarousel from '@/components/testimonies';
 import { ArrowUp } from 'lucide-react'; // Import the ArrowUp icon
+import { ThemeProvider } from "@/context/themeContext";
+
 
 const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,6 +39,7 @@ const Home = () => {
   };
 
   return (
+    <ThemeProvider>
     <div>
       {/* Navbar */}
       <Navbar />
@@ -55,9 +58,9 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section id="service">
+      {/* <section id="service">
         <Credentials />
-      </section>
+      </section> */}
 
       {/* Testimonials Section */}
       <TestimonialsCarousel />
@@ -83,6 +86,7 @@ const Home = () => {
         </div>
       )}
     </div>
+    </ThemeProvider>
   );
 };
 

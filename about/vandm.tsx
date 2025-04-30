@@ -42,7 +42,7 @@ const Vandm = () => {
   };
 
   return (
-    <div className="w-full min-h-[70vh] flex justify-center items-center bg-[#14110F] px-4 py-16">
+    <div className="w-full min-h-[70vh] flex justify-center items-center bg-[#14110F] dark:bg-[#FCF8EE] px-4 py-16">
       <motion.div 
         variants={container}
         initial="hidden"

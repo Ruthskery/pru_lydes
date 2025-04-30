@@ -7,6 +7,8 @@ import { montserrat } from '../styles/font';
 import { motion, AnimatePresence } from 'framer-motion';
 import bcdq from '../public/src/bcdq.png';
 import Link from 'next/link';
+import DarkmodeToggle from '../components/darkmodeToggle';
+
 
 const Navbar = () => {
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
@@ -120,7 +122,7 @@ const Navbar = () => {
               >
                 Schedule an Appointment
               </button>
-
+              <DarkmodeToggle/>
             </div>
           </motion.nav>
         )}

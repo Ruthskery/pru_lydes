@@ -8,7 +8,7 @@ import { Typewriter } from 'react-simple-typewriter';
 
 const Hero = () => {
   return (
-    <section className="bg-[#14110F] px-6 py-14 pt-35 md:px-20 md:pt-35 text-white">
+    <section className="bg-[#14110F] dark:bg-[#FCF8EE] px-6 py-14 pt-35 md:px-20 md:pt-35 text-white">
       {/* Title */}
       <div className="text-center mb-12">
         <motion.h1
@@ -21,7 +21,7 @@ const Hero = () => {
         </motion.h1>
       </div>
 
-      <hr className="border-t-2 border-white mb-10 w-full" />
+      <hr className="border-t-2 border-white dark:border-[#14110F] mb-10 w-full" />
 
       {/* Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-1 items-center md:pr-20">
@@ -50,7 +50,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            <h2 className={`${montserrat.className} text-3xl sm:text-4xl md:text-[50px] font-extrabold mb-0 text-center sm:text-left`}>
+            <h2 className={`${montserrat.className} text-white dark:text-[#14110F] text-3xl sm:text-4xl md:text-[50px] font-extrabold mb-0 text-center sm:text-left`}>
               <Typewriter
                 words={["Lydelyn Romero Quitong"]}
                 typeSpeed={70}
@@ -73,7 +73,7 @@ const Hero = () => {
               backgroundPosition: { duration: 3, repeat: Infinity, repeatType: "reverse" } 
             }}
             className={`${roboto.className} text-m sm:text-xl md:text-[30px] font-medium italic text-center sm:text-left 
-              bg-gradient-to-r from-[#E1B951] via-[#ffffff] to-[#96700f] bg-clip-text text-transparent bg-[length:200%_auto]`}
+              bg-gradient-to-r from-[#E1B951] via-[#ffffff] to-[#96700f] dark:from-[#14110F] dark:via-[#E1B951] dark:to-[#14110F] bg-clip-text text-transparent bg-[length:200%_auto]`}
           >
             Trusted Financial Consultant | Pru Life UK
           </motion.h3>
@@ -83,7 +83,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.7 }}
-              className={`${roboto.className} text-base md:text-[20px] leading-relaxed text-justify md:mb-3`}
+              className={`${roboto.className} text-white dark:text-[#14110F] text-base md:text-[20px] leading-relaxed text-justify md:mb-3`}
             >
               Lydes, a top financial consultant at Pru Life UK, is recognized nationwide for her expertise in strategic financial planning. With years of experience and a deep passion for empowering others, she has helped countless individuals and families take control of their finances and build secure, meaningful futures.
             </motion.p>
@@ -91,7 +91,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.7 }}
-              className={`${roboto.className} text-base md:text-[20px] leading-relaxed text-justify`}
+              className={`${roboto.className} text-white dark:text-[#14110F] text-base md:text-[20px] leading-relaxed text-justify`}
             >
               Beyond her professional accolades, Lydes believes in the power of education and connection. She takes pride in making financial planning simple, accessible, and meaningful. With every client, her mission remains the same: to guide, to inspire, and to deliver a future that feels secure and well-prepared.
             </motion.p>
@@ -104,12 +104,12 @@ const Hero = () => {
             transition={{ delay: 1.2, duration: 0.7 }}
             className="mt-6 flex items-start gap-4"
           >
-            <div className="w-[2px] bg-white rounded-sm h-[70px]" />
+            <div className="w-[2px] bg-white dark:bg-[#14110F] rounded-sm h-[70px]" />
             <div>
-              <p className={`${roboto.className} italic text-base md:text-lg text-[#D9D9D9]`}>
+              <p className={`${roboto.className} italic text-base md:text-lg text-[#D9D9D9] dark:text-[#14110F]`}>
                 “Your dreams matter. Let’s turn them into a plan—and that plan into peace of mind.”
               </p>
-              <p className={`${roboto.className} text-sm md:text-base mt-1`}>
+              <p className={`${roboto.className} text-sm md:text-base mt-1 text-[#D9D9D9] dark:text-[#14110F]`}>
                 — Lydelyn Romero Quitong
               </p>
             </div>
@@ -130,14 +130,14 @@ const Hero = () => {
                 transition={{ delay: 1.7 + index * 0.1, duration: 0.5 }}
                 whileHover={{ scale: 1.1, color: "#E1B951" }}
               >
-                <Icon className="text-white text-5xl transition duration-200" />
+                <Icon className="text-white dark:text-[#14110F] text-5xl transition duration-200" />
               </motion.div>
             ))}
           </motion.div>
         </div>
       </div>
 
-      <hr className="border-t-2 border-white mt-14" />
+      <hr className="border-t-2 border-white dark:border-[#14110F] mt-14" />
     </section>
   );
 };

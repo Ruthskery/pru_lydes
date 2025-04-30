@@ -7,6 +7,8 @@ import Achievements from '@/about/achievements';
 import Last from '@/about/last';
 import Footer from '@/about/footer';
 import Gab from '@/components/form'
+import { ThemeProvider } from "@/context/themeContext";
+
 
 const Me = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,6 +35,7 @@ const Me = () => {
 
   return (
     <div>
+      <ThemeProvider>
       <Navbar />
       <Hero />
       <Headshot />
@@ -41,6 +44,7 @@ const Me = () => {
       <Last />
       <Footer />
       <Gab />
+      </ThemeProvider>
 
       {isScrolled && (
         <div
