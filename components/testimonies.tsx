@@ -1,21 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Montserrat, Roboto } from "next/font/google";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-montserrat",
-  display: "swap",
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-roboto",
-  display: "swap",
-});
 
 const testimonials = [
   {

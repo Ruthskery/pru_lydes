@@ -3,21 +3,6 @@ import dynamic from "next/dynamic";
 import { Facebook, Linkedin, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import Form from "@/components/form";
-import { Montserrat, Roboto } from "next/font/google";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-montserrat",
-  display: "swap",
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-roboto",
-  display: "swap",
-});
 
 const MapComponent = dynamic(() => import("../public/MapComponents"), {
   ssr: false,
@@ -122,7 +107,7 @@ const Contact = () => {
           <div className="text-white flex-none">
             <h1 className=" text-4xl font-[Montserrat]">Our Location</h1>
             <p className="font-[Roboto] font-light py-2">We welcome you to visit our office for a personalized consultation.
-                Let's discuss how we can help secure your financial future.
+                Let&apos;s discuss how we can help secure your financial future.
             </p>
           </div>
           <div className="flex-grow">
