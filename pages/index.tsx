@@ -9,87 +9,81 @@ import Credentials from '@/components/credentials';
 import React from 'react';
 import Video from '@/components/video';
 // import Appointment from '@/components/appointment';
-import Faqs from '@/components/faqs';
+// import Faqs from '@/components/faqs';
 import TestimonialsCarousel from '@/components/testimonies';
-
-
-// import Test from '@/components/test';
-
+import { ArrowUp } from 'lucide-react'; // Import the ArrowUp icon
 
 const Home = () => {
-
   const [isScrolled, setIsScrolled] = useState(false);
-  
-    const handleScroll = () => {
-      if (window.scrollY > 200) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+
+  const handleScroll = () => {
+    if (window.scrollY > 200) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
     };
-  
-    useEffect(() => {
-      window.addEventListener('scroll', handleScroll);
-  
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }, []);
-  
-    const scrollToTop = () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-  
+  }, []);
 
-  return <div>
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-    {/* Recently Added */}
-    <Navbar />
+  return (
+    <div>
+      {/* Navbar */}
+      <Navbar />
 
-    <section id='main'>
-    <Hero />
-    </section>
+      {/* Hero Section */}
+      <section id="main">
+        <Hero />
+      </section>
 
-    <Video />
-    <Carousel />
-    {/* for testing the backgroundColor
-    <Test/> */}
+      {/* Video Section */}
+      <Video />
 
-    <section id='service'>
-      <Credentials />
-    </section>
+      {/* Products Section */}
+      <section id="products">
+        <Carousel />
+      </section>
 
-    {/* ------------------------------ */}
-    {/* <Careerpath /> */}
-  
-    {/* <Appointment /> */}
-    <TestimonialsCarousel />
-    <Faqs />
-    <section id='contact'> 
-    <Contact />
-    </section>
+      {/* Services Section */}
+      <section id="service">
+        <Credentials />
+      </section>
 
-        <h1>Check My Availability</h1>
-        {/* Embed Calendly iframe */}
-        <div>
-          <iframe 
-            src="https://calendly.com/mikotothemax/30min" 
-            width="100%" 
-            height="800" 
-            frameBorder="0"
-          ></iframe>
-        </div>
-    <Footer />   
+      {/* Testimonials Section */}
+      <TestimonialsCarousel />
 
-    {isScrolled && (
+      {/* FAQs Section
+      <Faqs /> */}
+
+      {/* Contact Section */}
+      <section id="contact">
+        <Contact />
+      </section>
+
+      {/* Footer */}
+      <Footer />
+
+      {/* Scroll to Top Button */}
+      {isScrolled && (
         <div
-          className="fixed right-5 bottom-5 bg-black bg-opacity-50 text-white p-3 rounded-full cursor-pointer transition-opacity duration-300 opacity-100 hover:bg-opacity-70"
+          className="fixed right-5 animate-bounce bottom-5 bg-black bg-opacity-50 text-white p-3 rounded-full cursor-pointer transition-opacity duration-300 opacity-100 hover:bg-opacity-70"
           onClick={scrollToTop}
         >
-          UP
+          <ArrowUp size={24} /> {/* Replace "UP" with the ArrowUp icon */}
         </div>
       )}
-  </div>;
+    </div>
+  );
 };
 
 export default Home;

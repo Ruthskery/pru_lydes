@@ -1,162 +1,218 @@
-"use client";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { Montserrat, Roboto } from "next/font/google";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { UserCircle } from "lucide-react"; // Default Profile Icon
-import { poppins } from "@/public/fonts/fonts"; // ✅ Import Poppins Font
 
-// Client Testimonials Data (6 total, 3 per slide)
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-roboto",
+  display: "swap",
+});
+
 const testimonials = [
   {
     name: "John Doe",
     role: "Business Owner",
-    quote: "PRU Life UK has given me peace of mind knowing my family's future is secured. The service is outstanding!",
+    quote:
+      "PRU Life UK has given me peace of mind knowing my family's future is secured. The service is outstanding!",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
     name: "Sarah Smith",
     role: "Marketing Director",
-    quote: "I was impressed by the professionalism and transparency. PRU Life UK truly cares about its clients.",
+    quote:
+      "I was impressed by the professionalism and transparency. PRU Life UK truly cares about its clients.",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
   },
   {
     name: "Michael Lee",
     role: "Software Engineer",
-    quote: "Investing with PRU Life UK was one of the best decisions I've made. Their financial planning is top-notch.",
+    quote:
+      "Investing with PRU Life UK was one of the best decisions I've made. Their financial planning is top-notch.",
+    avatar: "https://randomuser.me/api/portraits/men/65.jpg",
   },
   {
     name: "Emily Davis",
     role: "Entrepreneur",
-    quote: "Their customer service is beyond expectations. I feel confident about my financial future with PRU Life UK.",
+    quote:
+      "Their customer service is beyond expectations. I feel confident about my financial future with PRU Life UK.",
+    avatar: "https://randomuser.me/api/portraits/women/30.jpg",
   },
   {
     name: "James Wilson",
     role: "Investor",
-    quote: "I love the flexibility in their investment options. I feel my money is working for me efficiently.",
+    quote:
+      "I love the flexibility in their investment options. I feel my money is working for me efficiently.",
+    avatar: "https://randomuser.me/api/portraits/men/77.jpg",
   },
   {
     name: "Olivia Martinez",
     role: "Freelancer",
-    quote: "I never thought insurance could be this easy. PRU Life UK made the process simple and stress-free!",
+    quote:
+      "I never thought insurance could be this easy. PRU Life UK made the process simple and stress-free!",
+    avatar: "https://randomuser.me/api/portraits/women/26.jpg",
   },
 ];
 
-const TestimonialsCarousel = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isInView, setIsInView] = useState(false); // State to track visibility
-  const sectionRef = useRef(null); // Ref for the section to observe
+const Testimonies = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(true);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    // Intersection Observer to check when the section is in the viewport
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0.5 } // Trigger when 50% of the element is in view
-    );
-
-    const currentRef = sectionRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
+    let timer: NodeJS.Timeout;
+    if (autoPlay) {
+      timer = setInterval(() => {
+        handleNext();
+      }, 5000);
     }
+    return () => clearInterval(timer);
+  }, [currentIndex, autoPlay]);
 
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
+  const handlePrev = () => {
+    setAutoPlay(false);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+    );
+    resetAutoPlay();
+  };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev === 0 ? 1 : 0)); // Toggle between slides
-    }, 5000); // Change slide every 5 seconds
+  const handleNext = () => {
+    setAutoPlay(false);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    resetAutoPlay();
+  };
 
-    return () => clearInterval(interval);
-  }, []);
+  const goToIndex = (index: number) => {
+    setAutoPlay(false);
+    setCurrentIndex(index);
+    resetAutoPlay();
+  };
+
+  const resetAutoPlay = () => {
+    setTimeout(() => setAutoPlay(true), 5000);
+  };
 
   return (
-    <section
-      ref={sectionRef} // Attach the Intersection Observer to the section
-      className={`${poppins.className} py-16 bg-gray-100`} // ✅ Applied Font
-    >
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        {/* Section Header */}
-        <motion.h2
-          className="text-3xl font-bold text-gray-900 mb-4"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
-          transition={{ duration: 0.8 }}
-        >
-          What Our Clients Say <span className="text-black">About Us</span>
-        </motion.h2>
-        <motion.p
-          className="text-gray-600 mb-10"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
-          transition={{ duration: 0.8 }}
-        >
-          Hear from our satisfied clients who have secured their future with PRU Life UK.
-        </motion.p>
-
-        {/* Sliding Testimonials */}
-        <div className="relative overflow-hidden w-full">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.6 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+    <div className="bg-[#14110F] text-white py-16 px-10 md:px-20 font-sans">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        {/* Left Side */}
+        <div className="flex flex-col gap-6">
+          <h2 className="text-6xl font-bold font-[Montserrat] text-yellow-500">
+            Client <span className="text-yellow-300">Stories</span>
+          </h2>
+          <p className="text-gray-300 font-[Roboto]">
+            Discover how PRU Life UK has positively impacted the lives of our valued subscribers.
+          </p>
+          <div className="flex gap-4 mt-6">
+            <button
+              onClick={handlePrev}
+              className="p-2 rounded-full border border-gray-500 hover:bg-gray-700 transition text-white"
             >
-              {testimonials.slice(currentSlide * 3, currentSlide * 3 + 3).map((testimonial, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white p-6 rounded-xl shadow-lg text-center flex flex-col items-center"
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
-                  exit={{ opacity: 0, y: 50 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  {/* Default Profile Icon */}
-                  <UserCircle className="w-20 h-20 text-gray-400 mb-4" />
-
-                  {/* Quote (Fixed Unescaped Entities) */}
-                  <motion.p
-                    className="text-gray-700 italic mb-4"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
-                    exit={{ opacity: 0, y: 50 }}
-                    transition={{ duration: 0.8 }}
-                  >
-                    &ldquo;{testimonial.quote}&rdquo;
-                  </motion.p>
-
-                  {/* Client Name & Role */}
-                  <h3 className="text-lg font-semibold text-black">{testimonial.name}</h3>
-                  <span className="text-gray-500 text-sm">{testimonial.role}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+              <ChevronLeft size={24} />
+            </button>
+            <button
+              onClick={handleNext}
+              className="p-2 rounded-full border border-gray-500 hover:bg-gray-700 transition text-white"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
         </div>
 
-        {/* Contact Us Button */}
-        <motion.div
-          className="mt-10"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
-          transition={{ duration: 0.8 }}
-        >
-          <a
-            href="#contact"
-            className="inline-block px-6 py-3 bg-[#FFD700] text-white text-lg font-semibold rounded-full shadow-lg transition-transform transform hover:scale-105 hover:bg-blue-700"
-          >
-            Contact Us
-          </a>
-        </motion.div>
+        {/* Right Side */}
+        <div className="relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col items-start gap-6"
+            >
+              <p className="text-2xl md:text-3xl font-light italic font-[Roboto] leading-relaxed text-gray-200">
+                “{testimonials[currentIndex].quote}”
+              </p>
+              <div className="flex items-center gap-3 mt-2">
+                <img
+                  src={testimonials[currentIndex].avatar}
+                  alt={testimonials[currentIndex].name}
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+                <div>
+                  <h4 className="font-bold text-white">
+                    {testimonials[currentIndex].name}
+                  </h4>
+                  <span className="text-gray-400 text-sm">
+                    {testimonials[currentIndex].role}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Dots with animated tooltips */}
+          <div className="flex justify-center gap-4 mt-8 relative">
+            {testimonials.map((testimonial, idx) => (
+              <div
+                key={idx}
+                className="relative flex flex-col items-center group"
+                onMouseEnter={() => setHoveredIndex(idx)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <button
+                  onClick={() => goToIndex(idx)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 transform ${
+                    idx === currentIndex
+                      ? "bg-white scale-110 animate-pulse"
+                      : "bg-gray-500 hover:scale-125"
+                  }`}
+                ></button>
+
+                {/* Animated Tooltip */}
+                <AnimatePresence>
+                  {hoveredIndex === idx && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute -top-20 left-1/2 -translate-x-1/2 w-52 text-xs text-black bg-white p-3 rounded shadow-lg z-10 after:absolute after:content-[''] after:top-full after:left-1/2 after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-black"
+                    >
+                      <div className="flex items-center gap-2 mb-2">
+                        <img
+                          src={testimonial.avatar}
+                          alt={testimonial.name}
+                          className="w-6 h-6 rounded-full object-cover"
+                        />
+                        <span className="font-semibold">
+                          {testimonial.name}
+                        </span>
+                      </div>
+                      <p className="text-black text-[11px] leading-tight">
+                        {testimonial.quote.length > 60
+                          ? testimonial.quote.substring(0, 57) + "..."
+                          : testimonial.quote}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default TestimonialsCarousel;
+export default Testimonies;

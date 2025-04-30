@@ -6,7 +6,7 @@ import Vandm from '@/about/vandm';
 import Achievements from '@/about/achievements';
 import Last from '@/about/last';
 import Footer from '@/about/footer';
-import Gab from '@/about/gab'
+import Gab from '@/components/form'
 
 const Me = () => {
   const [isScrolled, setIsScrolled] = useState(false);

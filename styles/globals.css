@@ -46,3 +46,7 @@ html {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.input-box{
+  padding-bottom: 15px;
+}

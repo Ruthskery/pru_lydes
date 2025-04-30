@@ -48,13 +48,6 @@ const cards = [
   },
   {
     image:
-      "https://www.prulifeuk.com.ph/export/sites/prudential-ph/en/.galleries/images/mother-hugging-daughter.jpg",
-    title: "<span class='text-red-500'>PRU</span>Wellness",
-    description:
-      "Focus on recovery and worry less about the finances with PRUWellness—a health insurance product that helps ease your financial burden of hospital confinement due to injury or dread disease.",
-  },
-  {
-    image:
       "https://www.prulifeuk.com.ph/export/sites/prudential-ph/en/.galleries/images/young-man-hospital-bed.png",
     title: "<span class='text-red-500'>PRU</span>Health Prime",
     description:
@@ -223,7 +216,7 @@ const CardCarousel = () => {
               }`}
               style={{
                 backgroundColor: "white",
-                boxShadow: "6px 6px 10px gold",
+                boxShadow: index === activeIndex ? "0px 6px 10px gray" : "none", // Apply dark gray backshadow only to the active card
                 scrollSnapAlign: "center", // Ensures snapping to the center
               }}
             >
@@ -249,13 +242,13 @@ const CardCarousel = () => {
         <div className="mt-5 flex gap-4 items-center justify-center">
           <button
             onClick={prevCard}
-            className="bg-white p-2 rounded-full shadow-lg hover:bg-gray-200"
+            className="bg-white p-2 rounded-full hover:bg-gray-200"
           >
             <MdArrowBack size={30} />
           </button>
           <button
             onClick={nextCard}
-            className="bg-white p-2 rounded-full shadow-lg hover:bg-gray-200"
+            className="bg-white p-2 rounded-full hover:bg-gray-200"
           >
             <MdArrowForward size={30} />
           </button>

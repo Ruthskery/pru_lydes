@@ -2,7 +2,22 @@
 
 import React from "react";
 import Swal from "sweetalert2";
+import { Montserrat, Roboto } from "next/font/google";
 import { useState, useRef } from "react";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 
 const Contact = () => {
@@ -64,15 +79,18 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact-container">
-      <section className="contact flex justify-center items-center min-h-screen">
+    <div className="contact-container w-full font-[Roboto]">
+      <section className="contact flex justify-center rounded-lg shadow-md items-center bg-[#7B652C]">
         <form
           onSubmit={onSubmit}
           ref={formRef}
-          className="max-w-2xl w-full p-5 rounded-lg shadow-md text-white m-5 bg-gray-800"
+          className="max-w-2xl w-full p-5  text-white m-5"
         >
+          <div>
+            <h1 className="font-[Montserrat] font-semibold text-2xl italic">Get in Touch with Lydes!</h1>
+            <p className="italic font-light py-2">Have questions about your financial future? Lydes is here to guide you every step of the way.</p>
+          </div>
           <div className="input-box">
-            <label className="text-white">Full Name</label>
             <input
               type="text"
               className="field w-full h-14 bg-transparent border-2 border-white outline-none rounded-md p-4 text-lg text-white mt-2"
@@ -82,7 +100,6 @@ const Contact = () => {
             />
           </div>
           <div className="input-box">
-            <label className="text-white">Email Address</label>
             <input
               type="email"
               className="field w-full h-14 bg-transparent border-2 border-white outline-none rounded-md p-4 text-lg text-white mt-2"
@@ -92,17 +109,14 @@ const Contact = () => {
             />
           </div>
           <div className="input-box">
-            <label className="text-white">Phone Number</label>
             <input
               type="telephone"
               className="field w-full h-14 bg-transparent border-2 border-white outline-none rounded-md p-4 text-lg text-white mt-2"
-              placeholder="Enter your phone number"
+              placeholder="Enter your phone number (Optional)"
               name="tele"
-              required
             />
           </div>
           <div className="input-box">
-            <label className="text-white">Your Message</label>
             <textarea
               name="message"
               className="field mess w-full h-40 bg-transparent border-2 border-white outline-none rounded-md p-4 text-lg text-white mt-2"
@@ -112,7 +126,7 @@ const Contact = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-14 bg-purple-600 text-black font-semibold rounded-md shadow-md text-lg mt-5 transition duration-500 hover:bg-purple-700"
+              className="w-full h-14 bg-[white] text-black font-semibold rounded-md shadow-md text-lg mt-5 transition duration-500 hover:bg-purple-700"
             >
               {isSubmitting ? "Submitting..." : "Send Message"}
             </button>

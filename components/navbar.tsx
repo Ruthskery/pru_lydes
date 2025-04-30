@@ -7,6 +7,7 @@ import { montserrat } from '../styles/font';
 import { motion, AnimatePresence } from 'framer-motion';
 import bcdq from '../public/src/bcdq.png';
 import Link from 'next/link';
+import { PopupWidget } from "react-calendly";
 
 const Navbar = () => {
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
@@ -68,6 +69,14 @@ const Navbar = () => {
     };
   }, [menuOpen]);
 
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null; // Prevents rendering on the server
+
   return (
     <>
       <AnimatePresence>
@@ -102,27 +111,35 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-15">
-              <ul className={`${montserrat.className} flex space-x-15 text-base font-extrabold`}>
-                {['Service', 'Products', 'Contact', 'About'].map((item, index) => {
-                  const linkHref = item === 'About' ? '/me' : '/';
-                  return (
-                    <li
-                      key={index}
-                      className="relative cursor-pointer after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-full after:h-[2px] after:bg-black after:transform after:-translate-x-1/2 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
-                    >
-                      <Link href={linkHref}>{item}</Link>
-                    </li>
-                  );
-                })}
-              </ul>
+  <ul className={`${montserrat.className} flex space-x-15 mt-2 text-base font-extrabold`}>
+    {[
+      { name: 'Service', href: '#service' },
+      { name: 'Products', href: '#products' },
+      { name: 'Contact', href: '#contact' },
+      { name: 'About', href: '/me' }, // External link
+    ].map((item, index) => (
+      <li
+        key={index}
+        className="relative cursor-pointer after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-full after:h-[2px] after:bg-black after:transform after:-translate-x-1/2 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+      >
+        <Link href={item.href}>{item.name}</Link>
+      </li>
+    ))}
 
-              <button
-                className={`${montserrat.className} bg-[#14110F] text-white font-semibold rounded-full px-6 py-2 shadow hover:scale-110 transition-transform text-center whitespace-nowrap`}
-              >
-                Schedule an Appointment
-              </button>
-
-            </div>
+    {/* PopupWidget Button */}
+    <li>
+      <div className=" text-white font-semibold rounded-full px-6 py-1 shadow ">
+        <PopupWidget
+          url="https://calendly.com/mikotothemax/30min"
+          rootElement={document.body}
+          text="Schedule an Appointment"
+          textColor="#000000"
+          color="#FFFFFF"
+        />
+      </div>
+    </li>
+  </ul>
+</div>
           </motion.nav>
         )}
       </AnimatePresence>
@@ -163,20 +180,20 @@ const Navbar = () => {
                 <X size={32} />
               </button>
 
-              <ul className={`${montserrat.className} flex flex-col space-y-6 text-xl font-bold`}>
-                <Link href="/" onClick={() => setMenuOpen(false)}>
-                  <li className="hover:underline underline-offset-4">Service</li>
-                </Link>
-                <Link href="/" onClick={() => setMenuOpen(false)}>
-                  <li className="hover:underline underline-offset-4">Products</li>
-                </Link>
-                <Link href="/" onClick={() => setMenuOpen(false)}>
-                  <li className="hover:underline underline-offset-4">Contact</li>
-                </Link>
-                <Link href="/me" onClick={() => setMenuOpen(false)}>
-                  <li className="hover:underline underline-offset-4">About</li>
-                </Link>
-              </ul>
+<ul className={`${montserrat.className} flex flex-col space-y-6 text-xl font-bold`}>
+  <Link href="#service" onClick={() => setMenuOpen(false)}>
+    <li className="hover:underline underline-offset-4">Service</li>
+  </Link>
+  <Link href="#products" onClick={() => setMenuOpen(false)}>
+    <li className="hover:underline underline-offset-4">Products</li>
+  </Link>
+  <Link href="#contact" onClick={() => setMenuOpen(false)}>
+    <li className="hover:underline underline-offset-4">Contact</li>
+  </Link>
+  <Link href="/me" onClick={() => setMenuOpen(false)}>
+    <li className="hover:underline underline-offset-4">About</li>
+  </Link>
+</ul>
 
               <button
                 className={`${montserrat.className} mt-8 bg-[#14110F] text-white text-base font-semibold rounded-full px-6 py-2 shadow hover:scale-110 transition-transform`}
