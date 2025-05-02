@@ -5,7 +5,7 @@ const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
 
 const Video = () => {
   return (
-    <section className="justify-center items-center h-auto bg-[#14110F] grid md:grid-cols-2">
+    <section className="justify-center items-center h-auto bg-[#14110F] dark:bg-[#FBFCFF] grid md:grid-cols-2">
       
       {/* Video Container */}
       <div className="relative w-full max-w-full aspect-video overflow-hidden p-5 sm:p-8 md:p-10">
@@ -22,8 +22,8 @@ const Video = () => {
 
       {/* Text Content */}
       <div className="flex flex-col justify-center items-start p-5 sm:p-8 md:p-10 space-y-5">
-        <p className={`${montserrat.className} font-extrabold text-white text-5xl sm:text-6xl text-center md:text-7xl`}>Our Reason is You</p>
-        <p className={`${roboto.className} font-extralight text-white text-justify text-lg sm:text-xl md:text-3xl`}>
+        <p className={`${montserrat.className} font-extrabold text-[#FBFCFF] dark:text-[#14110F] text-5xl sm:text-6xl text-center md:text-7xl`}>Our Reason is You</p>
+        <p className={`${roboto.className} font-extralight text-[#FBFCFF] dark:text-[#14110F] text-justify text-lg sm:text-xl md:text-3xl`}>
           Pru Life UK is an insurance provider that prioritizes customer trust
           and support. The company offers financial assistance and peace of
           mind, especially during challenging times, such as a cancer diagnosis.

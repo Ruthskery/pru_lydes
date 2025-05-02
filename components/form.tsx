@@ -4,6 +4,7 @@ import React from "react";
 import Swal from "sweetalert2";
 import { useState, useRef } from "react";
 
+
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -64,7 +65,7 @@ const Contact = () => {
 
   return (
     <div className="contact-container w-full font-[Roboto]">
-      <section className="contact flex justify-center rounded-lg shadow-md items-center bg-[#7B652C]">
+      <section className="contact flex justify-center rounded-lg shadow-md items-center bg-[#ED1B2E]">
         <form
           onSubmit={onSubmit}
           ref={formRef}

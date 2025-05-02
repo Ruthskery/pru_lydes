@@ -36,7 +36,7 @@ const Contact = () => {
   return (
     <div
       ref={sectionRef} // Attach the Intersection Observer to the section
-      className="flex flex-col gap-8 p-6 font-[Poppins] bg-[#14110F] xl:h-auto"
+      className="flex flex-col gap-8 p-6 font-[Montserrat] bg-[#14110F] xl:h-auto"
     >
       {/* Contact Links */}
       <motion.div
@@ -107,7 +107,7 @@ const Contact = () => {
           <div className="text-white flex-none">
             <h1 className=" text-4xl font-[Montserrat]">Our Location</h1>
             <p className="font-[Roboto] font-light py-2">We welcome you to visit our office for a personalized consultation.
-                Let&apos;s discuss how we can help secure your financial future.
+                Lets discuss how we can help secure your financial future.
             </p>
           </div>
           <div className="flex-grow">

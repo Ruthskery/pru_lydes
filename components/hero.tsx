@@ -80,7 +80,12 @@ const Hero = () => {
             </p>
           </div>
 
-          <div className="flex items-end gap-4 pb-10 text-7xl">
+          <div className="flex items-center gap-2 text-[140px] mb-6 font-extrabold font-[Montserrat]">
+            <span className="text-white">PRU</span>
+            <span className="text-[#14110F]">LYDES</span>
+          </div>
+
+          <div className="flex items-end gap-4 mb-20 text-7xl">
             <FaFacebookF className="text-[#1877F2]" />
             <FaInstagram className="text-[#E1306C]" />
             <FaXTwitter className="text-black" />
@@ -88,11 +93,6 @@ const Hero = () => {
             <FaLinkedinIn className="text-[#0077B5]" />
             <FaFacebookMessenger className="text-[#00B2FF]" />
             <FaThreads className="text-black" />
-          </div>
-
-          <div className="flex items-center gap-2 text-[140px] mt-6 font-extrabold font-[Montserrat]">
-            <span className="text-white">PRU</span>
-            <span className="text-[#14110F]">LYDES</span>
           </div>
         </div>
       </div>

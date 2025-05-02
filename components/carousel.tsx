@@ -1,4 +1,3 @@
-
 import React, { useRef, useState, useEffect } from "react";
 import { Package } from "lucide-react";
 import { MdArrowForward, MdArrowBack } from "react-icons/md";
