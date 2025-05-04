@@ -5,7 +5,7 @@ const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
 
 const Video = () => {
   return (
-    <section className="justify-center items-center h-auto bg-[#14110F] dark:bg-[#FBFCFF] grid md:grid-cols-2">
+    <section className="justify-center items-center h-auto bg-[#14110F] dark:bg-[#FCF8EE] grid md:grid-cols-2">
       
       {/* Video Container */}
       <div className="relative w-full max-w-full aspect-video overflow-hidden p-5 sm:p-8 md:p-10">
