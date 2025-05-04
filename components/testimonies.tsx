@@ -75,16 +75,16 @@ const Testimonies = () => {
   };
 
   return (
-    <div className="relative bg-[#14110F] text-white py-16 px-6 md:px-20 font-sans overflow-hidden">
+    <div className="relative bg-[#14110F] dark:bg-[#FCF8EE] text-white dark:text-[#14110F] py-16 px-6 md:px-20 font-sans overflow-hidden">
       {/* Background Shape */}
       <div className="absolute w-80 h-80 bg-yellow-500/10 rounded-full blur-3xl -top-20 -left-20 rotate-45 z-0 animate-pulse" />
 
       {/* Header */}
       <div className="text-center relative z-10">
-        <h2 className="text-4xl md:text-6xl font-bold font-[Montserrat] text-yellow-500">
-          Client <span className="text-yellow-300">Stories</span>
+        <h2 className="text-4xl md:text-6xl font-bold font-[Montserrat] text-yellow-600">
+          Client <span className="text-yellow-400">Stories</span>
         </h2>
-        <p className="text-gray-300 font-[Roboto] mt-4 text-lg max-w-2xl mx-auto">
+        <p className="text-gray-300 dark:text-[#69584F] font-[Roboto] mt-4 text-lg max-w-2xl mx-auto">
           Discover how PRU Life UK has positively impacted the lives of our valued subscribers.
         </p>
       </div>
@@ -103,9 +103,9 @@ const Testimonies = () => {
             {getCurrentCards().map((testimonial, idx) => (
               <div
                 key={idx}
-                className="bg-[#1f1d1b] rounded-xl p-6 shadow-lg hover:shadow-xl transition"
+                className="bg-[#1f1d1b] dark:bg-[#F3E3BA] rounded-xl p-6 shadow-lg hover:shadow-xl transition"
               >
-                <p className="text-lg font-light italic text-gray-200 mb-4 font-[Roboto]">
+                <p className="text-lg font-light italic text-gray-200 dark:text-[#0C0A09] mb-4 font-[Roboto]">
                   “{testimonial.quote}”
                 </p>
                 <div className="flex items-center gap-4">
@@ -115,8 +115,8 @@ const Testimonies = () => {
                     className="w-12 h-12 rounded-full object-cover"
                   />
                   <div>
-                    <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-400">{testimonial.role}</p>
+                    <h4 className="font-semibold text-white dark:text-black">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-400 dark:text-[#69584F]">{testimonial.role}</p>
                   </div>
                 </div>
               </div>

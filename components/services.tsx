@@ -36,7 +36,7 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white px-6 py-12 flex items-center justify-center">
+    <div className="min-h-screen bg-[#14110F] dark:bg-[#FCF8EE] text-white dark:text-[#14110f] px-6 py-12 flex items-center justify-center">
       <div className="max-w-6xl w-full">
         <div className="grid grid-cols-3 grid-rows-4 gap-6">
           {/* Card 1 - spans two rows, top right */}
@@ -44,7 +44,7 @@ export default function Services() {
             <h2 className="font-[Montserrat] text-6xl font-bold mb-4">
               Insurance <span className="text-yellow-500">Plans</span>
             </h2>
-            <p className="font-[Roboto] text-lg text-gray-300">
+            <p className="font-[Roboto] text-lg text-white dark:text-[#14110f]">
               Explore our tailored insurance solutions designed to protect your
               future and provide peace of mind for you and your loved ones. Our
               services are crafted to meet the unique needs of individuals and
@@ -95,12 +95,12 @@ function ServiceCard({
   caption: string;
 }) {
   return (
-    <div className="bg-[#1f1f1f] p-7 rounded-xl shadow-md h-full flex flex-col">
+    <div className="bg-[#1f1f1f] dark:bg-[#F3E3BA] p-7 rounded-xl shadow-md h-full flex flex-col">
       <div className="flex items-center mb-4 text-yellow-500 text-3xl">
         {icon}
-        <h3 className="text-2xl font-semibold ml-2 text-white">{title}</h3>
+        <h3 className="text-2xl font-semibold ml-2 text-white dark:text-[#0C0A09]">{title}</h3>
       </div>
-      <p className="text-gray-300 text-lg">{caption}</p>
+      <p className="text-gray-300 dark:text-[#69584F] text-lg">{caption}</p>
     </div>
   );
 }

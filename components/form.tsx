@@ -65,11 +65,11 @@ const Contact = () => {
 
   return (
     <div className="contact-container w-full font-[Roboto]">
-      <section className="contact flex justify-center rounded-lg shadow-md items-center bg-[#ED1B2E]">
+      <section className="contact flex justify-center rounded-lg shadow-md items-center bg-[#221C1B] dark:bg-[#F3E3BA]">
         <form
           onSubmit={onSubmit}
           ref={formRef}
-          className="max-w-2xl w-full p-5  text-white m-5"
+          className="max-w-2xl w-full p-5 text-white dark:text-[#0C0A09] m-5"
         >
           <div>
             <h1 className="font-[Montserrat] font-semibold text-2xl italic">Get in Touch with Lydes!</h1>
@@ -78,7 +78,7 @@ const Contact = () => {
           <div className="input-box">
             <input
               type="text"
-              className="field w-full h-14 bg-transparent border-2 border-white outline-none rounded-md p-4 text-lg text-white mt-2"
+              className="field w-full h-14 bg-transparent border-2 border-white dark:border-[#14110f] outline-none rounded-md p-4 text-lg text-white dark:text-[#69584F] mt-2"
               placeholder="Enter your name"
               name="name"
               required
@@ -87,7 +87,7 @@ const Contact = () => {
           <div className="input-box">
             <input
               type="email"
-              className="field w-full h-14 bg-transparent border-2 border-white outline-none rounded-md p-4 text-lg text-white mt-2"
+              className="field w-full h-14 bg-transparent border-2 border-white dark:border-[#14110f] outline-none rounded-md p-4 text-lg text-white dark:text-[#69584F] mt-2"
               placeholder="Enter your email"
               name="email"
               required
@@ -96,7 +96,7 @@ const Contact = () => {
           <div className="input-box">
             <input
               type="telephone"
-              className="field w-full h-14 bg-transparent border-2 border-white outline-none rounded-md p-4 text-lg text-white mt-2"
+              className="field w-full h-14 bg-transparent border-2 border-white dark:border-[#14110f] outline-none rounded-md p-4 text-lg text-white dark:text-[#69584F] mt-2"
               placeholder="Enter your phone number (Optional)"
               name="tele"
             />
@@ -104,14 +104,14 @@ const Contact = () => {
           <div className="input-box">
             <textarea
               name="message"
-              className="field mess w-full h-40 bg-transparent border-2 border-white outline-none rounded-md p-4 text-lg text-white mt-2"
+              className="field mess w-full h-40 bg-transparent border-2 border-white dark:border-[#14110f] outline-none rounded-md p-4 text-lg text-white dark:text-[#69584F] mt-2"
               placeholder="Enter your message"
               required
             ></textarea>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-14 bg-[white] text-black font-semibold rounded-md shadow-md text-lg mt-5 transition duration-500 hover:bg-purple-700"
+              className="w-full h-14 bg-white dark:bg-[#695012] text-black dark:text-white font-semibold rounded-md shadow-md text-lg mt-5 transition duration-500 hover:bg-purple-700 dark:hover:bg-[#AE851E]"
             >
               {isSubmitting ? "Submitting..." : "Send Message"}
             </button>

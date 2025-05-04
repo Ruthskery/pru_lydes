@@ -36,7 +36,7 @@ const Contact = () => {
   return (
     <div
       ref={sectionRef} // Attach the Intersection Observer to the section
-      className="flex flex-col gap-8 p-6 font-[Montserrat] bg-[#14110F] xl:h-auto"
+      className="flex flex-col gap-8 p-6 font-[Montserrat] bg-[#14110F] dark:bg-[#FCF8EE] xl:h-auto"
     >
       {/* Contact Links */}
       <motion.div
@@ -77,18 +77,18 @@ const Contact = () => {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gradient-to-b from-[#E1B951] to-[#947833] bg-opacity-75 p-6 rounded-lg shadow-md text-center flex flex-col items-center transition duration-500 hover:bg-opacity-100 group"
+            className="bg-gradient-to-b from-[#E1B951] to-[#947833] dark:to-[#F3E3BA] bg-opacity-75 p-6 rounded-lg shadow-md text-center flex flex-col items-center transition duration-500 hover:bg-opacity-100 group"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
           >
             <div className="flex items-center gap-2 transition-transform duration-500 group-hover:scale-110">
-              <Icon className="w-6 h-6 text-black group-hover:text-white transition-colors duration-500" />
-              <h3 className="text-lg font-bold text-black group-hover:text-white transition-colors duration-500">
+              <Icon className="w-6 h-6 text-black group-hover:text-white dark:group-hover:text-[#69584F] transition-colors duration-500" />
+              <h3 className="text-lg font-bold text-black group-hover:text-white dark:group-hover:text-[#69584F] transition-colors duration-500">
                 {title}
               </h3>
             </div>
-            <p className="text-black font-semibold text-sm transition-colors duration-500 group-hover:text-white">
+            <p className="text-black font-semibold text-sm transition-colors duration-500 group-hover:text-white dark:group-hover:text-[#69584F]">
               {text}
             </p>
           </motion.a>
@@ -104,7 +104,7 @@ const Contact = () => {
       >
         {/* Map Component */}
         <div className="w-full col-span-2 flex flex-col z-1 h-[320px] md:h-auto italic">
-          <div className="text-white flex-none">
+          <div className="text-white dark:text-[#0C0A09] flex-none">
             <h1 className=" text-4xl font-[Montserrat]">Our Location</h1>
             <p className="font-[Roboto] font-light py-2">We welcome you to visit our office for a personalized consultation.
                 Lets discuss how we can help secure your financial future.

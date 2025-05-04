@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import Contact from '@/components/contact';
-import Footer from '@/components/footer';
+import Footer from '@/about/footer';
 import Hero from '@/components/hero';
 import Navbar from '@/components/navbar';
 import Carousel from '@/components/carousel';
-import Credentials from '@/components/credentials';
+// import Credentials from '@/components/credentials';
 // import Careerpath from '@/components/careerpath';
 import React from 'react';
 import Video from '@/components/video';
@@ -14,6 +14,7 @@ import TestimonialsCarousel from '@/components/testimonies';
 import { ArrowUp } from 'lucide-react'; // Import the ArrowUp icon
 import { ThemeProvider } from "@/context/themeContext";
 import GlowingCursor from '@/components/GlowingCursor';
+import Services from '@/components/services';
 
 
 const Home = () => {
@@ -61,7 +62,8 @@ const Home = () => {
 
         {/* Services Section */}
         <section id="service">
-          <Credentials />
+          {/* <Credentials /> */}
+          <Services />
         </section>
 
         {/* Testimonials Section */}
