@@ -8,6 +8,7 @@ import Last from '@/about/last';
 import Footer from '@/about/footer';
 // import Gab from '@/components/form's
 import { ThemeProvider } from "@/context/themeContext";
+import { ArrowUp } from 'lucide-react'; // Import the ArrowUp icon
 
 
 const Me = () => {
@@ -46,14 +47,16 @@ const Me = () => {
       {/* <Gab /> */}
       </ThemeProvider>
 
-      {isScrolled && (
-        <div
-          className="fixed right-5 bottom-5 bg-black bg-opacity-50 text-white p-3 rounded-full cursor-pointer transition-opacity duration-300 opacity-100 hover:bg-opacity-70"
-          onClick={scrollToTop}
-        >
-          UP
-        </div>
-      )}
+       {/* Scroll to Top Button */}
+       {isScrolled && (
+          <div
+            className="fixed right-5 animate-bounce bottom-5 bg-white bg-opacity-50 text-white p-3 rounded-full cursor-pointer transition-opacity duration-300 opacity-100 hover:bg-opacity-70"
+            onClick={scrollToTop}
+          >
+            <ArrowUp size={24} 
+            className='text-black'/> {/* Replace "UP" with the ArrowUp icon */}
+          </div>
+        )}
     </div>
   );
 };
