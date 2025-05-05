@@ -95,7 +95,7 @@ const Navbar = () => {
             </div>
 
             {/* Logo (Left for Desktop, Centered for Mobile) */}
-            <div className="flex justify-between items-center w-full">
+            <div className="flex items-center w-full justify-center lg:justify-start">
               <Link href="/" className="flex items-center">
                 <Image src={bcdq} alt="Blue Chalcedony" width={70} height={70} />
               </Link>
@@ -150,11 +150,11 @@ const Navbar = () => {
               className="fixed top-0 left-0 w-4/5 max-w-xs h-full bg-[#E1B951] z-50 flex flex-col pt-12 px-6"
             >
               {/* Logo in Mobile Menu */}
-              <div className="flex justify-center mb-8">
+              {/* <div className="flex justify-center mb-8">
                 <Link href="/" className="flex justify-center items-center">
                   <Image src={bcdq} alt="Blue Chalcedony" width={70} height={70} />
                 </Link>
-              </div>
+              </div> */}
 
               <button
                 className="absolute top-4 right-4"
