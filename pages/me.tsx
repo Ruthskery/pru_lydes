@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '@/about/navbar';
+import Navbar from '@/components/navbar';
 import Hero from '@/about/hero';
 import Headshot from '@/about/headshot';
 import Vandm from '@/about/vandm';

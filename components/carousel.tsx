@@ -188,7 +188,7 @@ const CardCarousel = () => {
     >
       <div className="flex items-center md:mx-20 justify-center md:justify-start">
         <Package className="w-15 h-15 text-[#E1B951] mr-4" />
-        <h2 className="text-white dark:text-[#14110f] text-7xl font-extrabold font-[Montserrat]">
+        <h2 className="text-white dark:text-[#14110f] text-4xl md:text-7xl  font-extrabold font-[Montserrat]">
           Our Products
         </h2>
       </div>

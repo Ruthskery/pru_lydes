@@ -69,7 +69,7 @@ const Contact = () => {
         <form
           onSubmit={onSubmit}
           ref={formRef}
-          className="max-w-2xl w-full p-5 text-white dark:text-[#0C0A09] m-5"
+          className="max-w-2xl w-full p-5 text-white dark:text-[#0C0A09] md:m-5"
         >
           <div>
             <h1 className="font-[Montserrat] font-semibold text-2xl italic">Get in Touch with Lydes!</h1>

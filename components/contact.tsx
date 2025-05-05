@@ -36,7 +36,7 @@ const Contact = () => {
   return (
     <div
       ref={sectionRef} // Attach the Intersection Observer to the section
-      className="flex flex-col gap-8 p-6 font-[Montserrat] bg-[#14110F] dark:bg-[#FCF8EE] xl:h-auto"
+      className="flex flex-col gap-8 md:p-6 font-[Montserrat] bg-[#14110F] dark:bg-[#FCF8EE] xl:h-auto"
     >
       {/* Contact Links */}
       <motion.div
@@ -100,7 +100,7 @@ const Contact = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
         transition={{ duration: 0.8 }}
-        className="grid grid-cols-1 mx-10 md:grid-cols-3 gap-15"
+        className="grid grid-cols-1 mx-10 md:grid-cols-3 md:gap-15"
       >
         {/* Map Component */}
         <div className="w-full col-span-2 flex flex-col z-1 h-[320px] md:h-auto italic">
@@ -116,7 +116,7 @@ const Contact = () => {
         </div>
 
         {/* Inflation Calculator */}
-        <div className="w-full flex justify-center items-center h-auto">
+        <div className="w-full flex justify-center mt-5 md:mt-0 items-center h-auto">
           <Form />
         </div>
       </motion.div>

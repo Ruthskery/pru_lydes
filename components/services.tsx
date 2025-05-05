@@ -36,47 +36,42 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#14110F] dark:bg-[#FCF8EE] text-white dark:text-[#14110f] px-6 py-12 flex items-center justify-center">
+    <div className="min-h-screen bg-[#14110F] dark:bg-[#FCF8EE] text-white dark:text-[#14110f] px-4 py-8 md:px-6 md:py-12 flex items-center justify-center">
       <div className="max-w-6xl w-full">
-        <div className="grid grid-cols-3 grid-rows-4 gap-6">
-          {/* Card 1 - spans two rows, top right */}
-          <div className="col-start-1 row-start-1 col-span-2">
-            <h2 className="font-[Montserrat] text-6xl font-bold mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-4 gap-6">
+          {/* Header Section */}
+          <div className="md:col-start-1 md:row-start-1 md:col-span-2">
+            <h2 className="font-[Montserrat] text-4xl md:text-6xl font-bold mb-4">
               Insurance <span className="text-yellow-500">Plans</span>
             </h2>
-            <p className="font-[Roboto] text-lg text-white dark:text-[#14110f]">
-              Explore our tailored insurance solutions designed to protect your
-              future and provide peace of mind for you and your loved ones. Our
-              services are crafted to meet the unique needs of individuals and
-              families alike. We are committed to delivering exceptional value
-              and personalized support every step of the way.
+            <p className="font-[Roboto] text-base md:text-lg text-white dark:text-[#14110f]">
+              Explore our tailored insurance solutions designed to protect your future and provide peace of mind for you and your loved ones...
             </p>
           </div>
-          <div className="col-start-1 row-start-2 flex flex-col gap-4">
+
+          {/* Explore button and slogan */}
+          <div className="md:col-start-1 md:row-start-2 flex flex-col gap-4">
             <ExploreButton />
-            <p className="text-4xl font-bold leading-tight font-[Montserrat]">
+            <p className="text-2xl md:text-4xl font-bold leading-tight font-[Montserrat]">
               <span className="text-yellow-500 italic">Secure</span> your{" "}
-              <span className="text-yellow-500 italic">family’s future</span>{" "}
-              <br /> with confidence.
+              <span className="text-yellow-500 italic">family’s future</span> <br /> with confidence.
             </p>
           </div>
-          <div className="col-start-3 row-start-1 row-span-2">
+
+          {/* Cards */}
+          <div className="md:col-start-3 md:row-start-1 md:row-span-2">
             <ServiceCard {...services[0]} />
           </div>
-
-          {/* Card 2 - top middle */}
-          <div className="col-start-2 row-start-2 row-span-2">
+          <div className="md:col-start-2 md:row-start-2 md:row-span-2">
             <ServiceCard {...services[1]} />
           </div>
-
-          {/* Bottom row */}
-          <div className="col-start-1 row-start-3 row-span-2">
+          <div className="md:col-start-1 md:row-start-3 md:row-span-2">
             <ServiceCard {...services[2]} />
           </div>
-          <div className="col-start-2 row-start-4">
+          <div className="md:col-start-2 md:row-start-4">
             <ServiceCard {...services[3]} />
           </div>
-          <div className="col-start-3 row-start-3 row-span-2">
+          <div className="md:col-start-3 md:row-start-3 md:row-span-2">
             <ServiceCard {...services[4]} />
           </div>
         </div>
