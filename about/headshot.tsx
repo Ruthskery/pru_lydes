@@ -70,20 +70,20 @@ const Headshot = () => {
   }, [isModalOpen]);
 
   return (
-    <div className="w-full h-[50vh] flex justify-center bg-[#14110F] dark:bg-[#FCF8EE] relative pt-2 md:pt-5 px-4">
+    <div className="w-full h-[40vh] flex justify-center bg-[#14110F] dark:bg-[#FCF8EE] relative pt-2 md:pt-5 px-4">
       {/* Animated Title */}
       
 
       {/* --- MOBILE VERSION --- */}
-      <div className="flex justify-center w-full sm:hidden relative h-full items-center">
+      <div className="flex justify-center w-full sm:hidden relative h-[300px] items-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentImageIndex}
-            initial={{ opacity: 0, x: 100 }}
+            initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-            className="w-[300px] h-[300px] rounded-xl overflow-hidden border-4 border-[#E1B951] dark:border-[#14110F]"
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            className="absolute w-[300px] h-[300px] rounded-xl overflow-hidden border-4 border-[#E1B951] dark:border-[#14110F] bg-black"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onClick={() => openModal(currentImageIndex)}

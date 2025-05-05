@@ -120,7 +120,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
-            className="flex space-x-10 mt-15 cursor-pointer justify-center md:justify-start"
+            className="flex flex-wrap gap-6 mt-10 cursor-pointer justify-center md:justify-start"
           >
             {[FaFacebookF, FaInstagram, FaTelegramPlane, FaLinkedinIn, FaFacebookMessenger].map((Icon, index) => (
               <motion.div
@@ -130,7 +130,7 @@ const Hero = () => {
                 transition={{ delay: 1.7 + index * 0.1, duration: 0.5 }}
                 whileHover={{ scale: 1.1, color: "#E1B951" }}
               >
-                <Icon className="text-white dark:text-[#14110F] text-5xl transition duration-200" />
+                <Icon className="text-white dark:text-[#14110F] text-3xl sm:text-4xl md:text-5xl transition duration-200" />
               </motion.div>
             ))}
           </motion.div>

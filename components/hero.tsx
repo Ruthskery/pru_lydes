@@ -27,7 +27,7 @@ const roboto = Roboto({
 
 const Hero = () => {
   return (
-    <div className={`relative w-full h-350 min-h-screen bg-gradient-to-b from-[#E1B951] to-[#14110F] dark:to-[#FCF8EE] ${montserrat.variable} ${roboto.variable}`}>
+    <div className={`relative w-full h-350 min-h-screen bg-gradient-to-b from-[#E1B951] to-[#14110F] dark:to-[#AE851E] ${montserrat.variable} ${roboto.variable}`}>
       {/* Top-Centered Text */}
       <div className="flex flex-col font-[Montserrat] items-center text-center pt-40 px-4 z-20 relative">
         <h1 className="text-white dark:text-[#14110F] font-bold text-5xl md:text-8xl mb-4">

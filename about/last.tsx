@@ -42,7 +42,7 @@ function Last() {
   return (
     <div className='w-full min-h-[100vh] bg-[#14110F] dark:bg-[#FCF8EE] flex justify-center items-center'>
       <motion.div 
-        className='flex flex-col gap-6 sm:gap-8 md:gap-10 text-center mx-4 sm:mx-10 md:mx-20 py-20'
+        className='flex flex-col gap-6 sm:gap-8 md:gap-10 text-center mx-4 sm:mx-10 md:mx-20 py-10'
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
