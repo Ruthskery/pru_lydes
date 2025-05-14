@@ -131,9 +131,9 @@ const Navbar = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-15">
+            <div className="hidden lg:flex items-center space-x-10">
               <ul
-                className={`${montserrat.className} flex space-x-15 mt-3 text-base font-extrabold`}
+                className={`${montserrat.className} flex items-center space-x-10 text-base font-extrabold`}
               >
                 {["Service", "Products", "Contact", "About"].map((item, index) => {
                   const linkHref =
@@ -158,11 +158,11 @@ const Navbar = () => {
                     </li>
                   );
                 })}
-                <li className="mb-1.5">
+                <li>
                   <DarkmodeToggle />
                 </li>
                 <li>
-                  <div className=" text-white font-semibold rounded-full px-6 py-1 shadow ">
+                  <div className="text-white font-semibold rounded-full px-6 shadow">
                     <PopupWidget
                       url="https://calendly.com/mikotothemax/30min"
                       rootElement={document.body}
@@ -240,6 +240,12 @@ const Navbar = () => {
                 <Link href="/me" onClick={() => setMenuOpen(false)}>
                   <li className="hover:underline underline-offset-4">About</li>
                 </Link>
+                <Link href="/me" onClick={() => setMenuOpen(false)}>
+                  <li className="hover:underline underline-offset-4">Test</li>
+                </Link>
+                <li>
+                  <DarkmodeToggle />
+                </li>
               </ul>
             </motion.div>
           </>

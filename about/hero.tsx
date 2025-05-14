@@ -8,7 +8,7 @@ import { Typewriter } from 'react-simple-typewriter';
 
 const Hero = () => {
   return (
-    <section className="bg-[#14110F] dark:bg-[#FCF8EE] px-6 py-14 pt-35 md:px-20 md:pt-35 text-white">
+    <section className="bg-[#14110F] dark:bg-[#FCF8EE] px-6 py-14 pt-12 md:px-20 md:pt-35 text-white">
       {/* Title */}
       <div className="text-center mb-12">
         <motion.h1
@@ -115,22 +115,38 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Social Icons with Staggered Animation */}
+         {/* Social Icons with Staggered Animation */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
             className="flex flex-wrap gap-6 mt-10 cursor-pointer justify-center md:justify-start"
           >
-            {[FaFacebookF, FaInstagram, FaTelegramPlane, FaLinkedinIn, FaFacebookMessenger].map((Icon, index) => (
+            {[
+              { Icon: FaFacebookF, href: 'https://facebook.com' },
+              { Icon: FaInstagram, href: 'https://instagram.com' },
+              { Icon: FaTelegramPlane, href: 'https://telegram.org' },
+              { Icon: FaLinkedinIn, href: 'https://linkedin.com' },
+              { Icon: FaFacebookMessenger, href: 'https://messenger.com' }
+            ].map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.7 + index * 0.1, duration: 0.5 }}
-                whileHover={{ scale: 1.1, color: "#E1B951" }}
+                whileHover={{ scale: 1.1 }}
               >
-                <Icon className="text-white dark:text-[#14110F] text-3xl sm:text-4xl md:text-5xl transition duration-200" />
+                <a 
+                  href={item.href}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="transition duration-200"
+                >
+                  <item.Icon 
+                    className="text-white dark:text-[#14110F] text-3xl sm:text-4xl md:text-5xl 
+                    hover:text-[#E1B951]"  // Apply gold color on hover
+                  />
+                </a>
               </motion.div>
             ))}
           </motion.div>
