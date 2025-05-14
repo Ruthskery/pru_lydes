@@ -38,18 +38,6 @@ const Hero = () => {
           helping others, Pru Lydes empowers clients to take control of their
           finances and secure a brighter future—one plan at a time.
         </p>
-
-        {/* Fancy Email Input */}
-        <div className="flex bg-white dark:text-[#14110F] rounded-full overflow-hidden inset-shadow-sm w-auto">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="flex-grow p-3 pl-10 rounded-l-full font-semibold text-black outline-none font-[Roboto] text-md md:text-2xl"
-          />
-          <button className="bg-[#d6a741] m-1 text-base md:text-xl text-white dark:text-[#14110F] px-9 py-2 rounded-full hover:bg-[#e1b951] transition">
-            Send
-          </button>
-        </div>
       </div>
 
       {/* Bottom-Centered Image and Info Side-by-Side */}

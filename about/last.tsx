@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import InflationCalcu from '../pages/inflationcalcu'; // Import the InflationCalcu component
 
 function Last() {
-  // Animation variants
+  const [isInflationCalcuVisible, setInflationCalcuVisible] = useState(false); // State to control visibility
+
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -48,7 +50,6 @@ function Last() {
         viewport={{ once: true, margin: "-100px" }}
         variants={container}
       >
-        {/* Main Heading */}
         <motion.h1 
           variants={item}
           className='text-white dark:text-[#14110F] text-4xl sm:text-5xl md:text-7xl font-semibold'
@@ -63,7 +64,6 @@ function Last() {
           </motion.span> to grow, protect, and thrive.
         </motion.h1>
 
-        {/* Subheading */}
         <motion.h2 
           variants={item}
           className='text-white dark:text-[#14110F] text-2xl sm:text-3xl md:text-4xl mt-6'
@@ -71,7 +71,6 @@ function Last() {
           Why choose PruLydes?
         </motion.h2>
 
-        {/* Description */}
         <motion.p 
           variants={item}
           className='text-white dark:text-[#14110F] text-lg sm:text-xl font-light max-w-4xl mx-auto leading-relaxed'
@@ -79,7 +78,6 @@ function Last() {
           At PruLydes, your financial future is our priority. Led by Lydelyn Romero Quitong, a top financial consultant at Pru Life UK, we offer more than just insurance—we provide guidance, clarity, and confidence. Whether you&apos;re planning for your family, your career, or your retirement, our commitment is to give you personalized financial solutions that grow with you.
         </motion.p>
 
-        {/* Buttons */}
         <motion.div 
           className='flex flex-wrap gap-4 sm:gap-6 justify-center mt-8'
           variants={container}
@@ -104,10 +102,36 @@ function Last() {
             }}
             whileTap={{ scale: 0.98 }}
             className='bg-[#E1B951] dark:bg-[#14110F] text-black dark:text-[#FCF8EE] px-6 py-3 text-xl sm:text-2xl rounded-2xl font-bold cursor-pointer hover:bg-[#f8d776] dark:hover:bg-[#463B35] transition-colors'
+            onClick={() => setInflationCalcuVisible(true)} // Trigger the popup on click
           >
             Inflation Calculator
           </motion.button>
         </motion.div>
+
+        {/* Modal Popup for Inflation Calculator */}
+        {isInflationCalcuVisible && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            onClick={() => setInflationCalcuVisible(false)} // Close the modal on overlay click
+          >
+            <div
+              className="bg-white p-8 rounded-lg shadow-lg w-[1000px] h-[800px] max-h-[130vh] overflow-y-auto relative" // Adjust the height here
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
+            >
+              <button
+                className="absolute top-2 right-2 text-xl text-gray-500 hover:text-gray-800"
+                onClick={() => setInflationCalcuVisible(false)} // Close modal on button click
+              >
+                &times;
+              </button>
+              <InflationCalcu /> {/* Render InflationCalcu component */}
+            </div>
+          </motion.div>
+        )}
       </motion.div>
     </div>
   );
