@@ -3,7 +3,21 @@
 import React from "react";
 import Swal from "sweetalert2";
 import { useState, useRef } from "react";
+import { Montserrat, Roboto } from "next/font/google";
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -65,7 +79,7 @@ const Contact = () => {
 
   return (
     <div className="contact-container w-full font-[Roboto]">
-      <section className="contact flex justify-center rounded-lg shadow-md items-center bg-[#221C1B] dark:bg-[#F3E3BA]">
+      <section className="contact flex justify-center rounded-lg shadow-md items-center bg-black dark:bg-[#F3E3BA]">
         <form
           onSubmit={onSubmit}
           ref={formRef}
@@ -111,7 +125,7 @@ const Contact = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-14 bg-white dark:bg-[#695012] text-black dark:text-white font-semibold rounded-md shadow-md text-lg mt-5 transition duration-500 hover:bg-purple-700 dark:hover:bg-[#AE851E]"
+              className="w-full h-14 bg-white dark:bg-[#695012] text-black dark:text-white font-semibold rounded-md shadow-md text-lg mt-5 transition duration-500 hover:bg-[#E1B951] dark:hover:bg-[#AE851E]"
             >
               {isSubmitting ? "Submitting..." : "Send Message"}
             </button>
