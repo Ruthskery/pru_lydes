@@ -5,7 +5,7 @@ import { montserrat } from '@/styles/font';
 const Footer = () => {
   return (
     <footer className={`${montserrat.className} bg-gradient-to-t from-[#E1B951] to-[#14110F] dark:to-[#FCF8EE] text-white dark:text-[#14110F] py-10`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
         
         {/* Column 1: About Section */}
         <div>
@@ -59,10 +59,22 @@ const Footer = () => {
             </a>
           </div>
         </div>
+
+        {/* Column 5: Buttons */}
+        <div>
+          <h2 className="text-lg font-semibold mb-3 border-b-2 border-yellow-500 inline-block">Actions</h2>
+          <div className="flex flex-col gap-3 mt-3">
+            <button className="bg-yellow-500 text-black py-2 px-4 rounded hover:bg-yellow-600 transition duration-300">
+              Survey
+            </button>
+            <button className="bg-transparent border-2 border-yellow-500 text-yellow-500 py-2 px-4 rounded hover:bg-yellow-500 hover:text-black transition duration-300">
+              Inflation Calculator
+            </button>
+          </div>
+        </div>
     
       </div>
-  </footer>
-  
+    </footer>
   );
 };
 

@@ -3,9 +3,6 @@ import { FaShieldAlt, FaPiggyBank, FaGraduationCap, FaChartPie, FaFileAlt, FaChe
 import Form from '@/components/form';
 import Navbar from '@/components/navbar';
 
-
-
-
 const Insurance = () => {
   const [activeService, setActiveService] = useState<number | null>(null);
   const [activeSubsection, setActiveSubsection] = useState<number | null>(null);

@@ -9,6 +9,7 @@ import Footer from '@/about/footer';
 // import Gab from '@/components/form's
 import { ThemeProvider } from "@/context/themeContext";
 import { ArrowUp } from 'lucide-react'; // Import the ArrowUp icon
+// import InflationCalcu from '../components/inflationcalcu';
 
 
 const Me = () => {
@@ -44,17 +45,18 @@ const Me = () => {
       <Achievements />
       <Last />
       <Footer />
+      {/* <InflationCalcu /> */}
       {/* <Gab /> */}
       </ThemeProvider>
 
        {/* Scroll to Top Button */}
        {isScrolled && (
           <div
-            className="fixed right-5 animate-bounce bottom-5 bg-white bg-opacity-50 text-white p-3 rounded-full cursor-pointer transition-opacity duration-300 opacity-100 hover:bg-opacity-70"
+            className="fixed right-5 animate-bounce bottom-5 bg-white dark:bg-black bg-opacity-50 text-white p-3 rounded-full cursor-pointer transition-opacity duration-300 opacity-100 hover:bg-opacity-70"
             onClick={scrollToTop}
           >
             <ArrowUp size={24} 
-            className='text-black'/> {/* Replace "UP" with the ArrowUp icon */}
+            className='text-blackd dark:text-white'/> {/* Replace "UP" with the ArrowUp icon */}
           </div>
         )}
     </div>
