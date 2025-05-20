@@ -3,21 +3,6 @@
 import React from "react";
 import Swal from "sweetalert2";
 import { useState, useRef } from "react";
-import { Montserrat, Roboto } from "next/font/google";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-montserrat",
-  display: "swap",
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-roboto",
-  display: "swap",
-});
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);

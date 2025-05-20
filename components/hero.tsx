@@ -27,7 +27,7 @@ const roboto = Roboto({
 
 const Hero = () => {
   return (
-    <div className={`relative w-full h-115 md:h-150 lg:h-350 max-h-screen bg-gradient-to-b from-[#E1B951] to-[#14110F] dark:to-[#AE851E] ${montserrat.variable} ${roboto.variable}`}>
+    <div className={`relative w-full h-115 md:h-150 lg:h-350 max-h-screen bg-[linear-gradient(to_right,_#AE851E,_#F3E3B9,_#AE851E)] ${montserrat.variable} ${roboto.variable}`}>
       {/* Two Columns Layout */}
       <div className="flex flex-col lg:flex-row h-full">
         {/* Lydes Image */}
