@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { FaShieldAlt, FaPiggyBank, FaGraduationCap, FaChartPie, FaFileAlt, FaChevronDown } from "react-icons/fa";
 import Form from '@/components/form';
 import Navbar from '@/components/navbar';
@@ -7,7 +6,7 @@ import Navbar from '@/components/navbar';
 
 
 
-const insurance = () => {
+const Insurance = () => {
   const [activeService, setActiveService] = useState<number | null>(null);
   const [activeSubsection, setActiveSubsection] = useState<number | null>(null);
 
@@ -135,4 +134,4 @@ const insurance = () => {
   );
 };
 
-export default insurance;
+export default Insurance;
