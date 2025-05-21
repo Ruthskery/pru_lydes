@@ -1,5 +1,7 @@
+import React, { useState, useEffect } from "react";
 import ExploreButton from "./explorebtn";
 import { FaShieldAlt, FaPiggyBank, FaGraduationCap, FaChartPie, FaFileAlt } from "react-icons/fa";
+import Link from 'next/link';
 
 export default function Services() {
   const services = [
@@ -38,7 +40,7 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-[#14110F] dark:bg-[#FCF8EE] text-white dark:text-[#14110f] px-4 py-8 md:px-6 md:py-12 flex items-center justify-center">
       <div className="max-w-6xl w-full">
-        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 lg:grid-rows-4 gap-6">
           {/* Header Section */}
           <div className="md:col-start-1 md:row-start-1 md:col-span-2">
             <h2 className="font-[Montserrat] text-4xl md:text-6xl font-bold mb-4">
@@ -59,19 +61,19 @@ export default function Services() {
           </div>
 
           {/* Cards */}
-          <div className="md:col-start-3 md:row-start-1 md:row-span-2">
+          <div className="md:col-start-3 md:row-start-1 md:row-span-2 lg:row-span-2">
             <ServiceCard {...services[0]} />
           </div>
-          <div className="md:col-start-2 md:row-start-2 md:row-span-2">
+          <div className="md:col-start-2 md:row-start-2 lg:row-start-2 md:row-span-1 lg:row-span-2">
             <ServiceCard {...services[1]} />
           </div>
-          <div className="md:col-start-1 md:row-start-3 md:row-span-2">
+          <div className="md:col-start-1 md:row-start-3 md:row-span-1 lg:row-span-2">
             <ServiceCard {...services[2]} />
           </div>
-          <div className="md:col-start-2 md:row-start-4">
+          <div className="md:col-start-2 md:row-start-3 lg:row-start-4">
             <ServiceCard {...services[3]} />
           </div>
-          <div className="md:col-start-3 md:row-start-3 md:row-span-2">
+          <div className="md:col-start-3 md:row-start-3 md:row-span-1 lg:row-span-2">
             <ServiceCard {...services[4]} />
           </div>
         </div>
@@ -89,13 +91,65 @@ function ServiceCard({
   icon: React.ReactNode;
   caption: string;
 }) {
+  const [isMd, setIsMd] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkScreen = () => {
+      setIsMd(window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
+    checkScreen();
+    window.addEventListener('resize', checkScreen);
+    return () => window.removeEventListener('resize', checkScreen);
+  }, []);
+
+  // Map service titles to section IDs for insurance page
+  const sectionIdMap: Record<string, string> = {
+    'Insurance Planning': 'insurance-planning',
+    'Retirement Planning': 'retirement-planning',
+    'College Educational Fund': 'college-educational-fund',
+    'Lifetime Pension Funder': 'lifetime-pension-funder',
+    'Estate Planning': 'estate-planning',
+  };
+
+  const handleSeeMoreHref = `/insurance#${sectionIdMap[title] || ''}`;
+
   return (
     <div className="bg-[#1f1f1f] dark:bg-[#F3E3BA] p-7 rounded-xl shadow-md h-full flex flex-col">
       <div className="flex items-center mb-4 text-yellow-500 text-3xl">
         {icon}
-        <h3 className="text-2xl font-semibold ml-2 text-white dark:text-[#0C0A09]">{title}</h3>
+        <h3 className="text-lg lg:text-2xl font-semibold ml-2 text-white dark:text-[#0C0A09]">{title}</h3>
       </div>
-      <p className="text-gray-300 dark:text-[#69584F] text-lg">{caption}</p>
+      <p className="text-gray-300 dark:text-[#69584F] lg:text-lg">
+        {isMd ? (
+          <>
+            {title === 'Insurance Planning' ? (
+              <>
+                {caption}
+                <Link
+                  href={handleSeeMoreHref}
+                  className="ml-2 text-yellow-500 underline text-base focus:outline-none"
+                  scroll={true}
+                >
+                  Learn more..
+                </Link>
+              </>
+            ) : (
+              <>
+                {caption.slice(0, 100)}{caption.length > 60 ? '... ' : ''}
+                <Link
+                  href={handleSeeMoreHref}
+                  className="text-yellow-500 underline text-base focus:outline-none"
+                  scroll={true}
+                >
+                  Learn more..
+                </Link>
+              </>
+            )}
+          </>
+        ) : (
+          caption
+        )}
+      </p>
     </div>
   );
 }
