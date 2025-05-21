@@ -56,7 +56,7 @@ const Me = () => {
             onClick={scrollToTop}
           >
             <ArrowUp size={24} 
-            className='text-blackd dark:text-white'/> {/* Replace "UP" with the ArrowUp icon */}
+            className='text-black dark:text-white'/> {/* Replace "UP" with the ArrowUp icon */}
           </div>
         )}
     </div>

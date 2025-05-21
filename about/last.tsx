@@ -26,7 +26,7 @@ function Last() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#14110F] dark:bg-[#FCF8EE] flex justify-center items-center px-4 sm:px-10 md:px-20 lg:px-32 xl:px-40">
+    <div className="w-full max-h-min bg-[#14110F] dark:bg-[#FCF8EE] flex justify-center items-center px-4 sm:px-10 md:px-20 lg:px-32 xl:px-40">
       <motion.div
         className="flex flex-col gap-6 sm:gap-8 md:gap-10 text-center py-10 w-full max-w-[1440px]"
         initial="hidden"
