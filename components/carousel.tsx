@@ -242,13 +242,13 @@ const CardCarousel = () => {
         <div className="mt-5 flex gap-4 items-center justify-center">
           <button
             onClick={prevCard}
-            className="bg-white p-2 rounded-full hover:bg-gray-200"
+            className="bg-white dark:bg-black dark:text-white p-2 rounded-full hover:bg-gray-200 dark:hover:bg-black/80"
           >
             <MdArrowBack size={30} />
           </button>
           <button
             onClick={nextCard}
-            className="bg-white p-2 rounded-full hover:bg-gray-200"
+            className="bg-white dark:bg-black dark:text-white p-2 rounded-full hover:bg-gray-200 dark:hover:bg-black/80"
           >
             <MdArrowForward size={30} />
           </button>

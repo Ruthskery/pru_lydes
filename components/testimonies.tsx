@@ -41,12 +41,28 @@ const testimonials = [
   },
 ];
 
-const CARDS_PER_SLIDE = 3;
-
 const Testimonies = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
-  const totalSlides = Math.ceil(testimonials.length / CARDS_PER_SLIDE);
+  const [cardsPerSlide, setCardsPerSlide] = useState(3);
+
+  useEffect(() => {
+    // Set cards per slide based on screen size
+    const updateCardsPerSlide = () => {
+      if (window.innerWidth >= 1024) {
+        setCardsPerSlide(3); // lg and up
+      } else if (window.innerWidth >= 768) {
+        setCardsPerSlide(2); // md
+      } else {
+        setCardsPerSlide(1); // sm and below
+      }
+    };
+    updateCardsPerSlide();
+    window.addEventListener('resize', updateCardsPerSlide);
+    return () => window.removeEventListener('resize', updateCardsPerSlide);
+  }, []);
+
+  const totalSlides = Math.ceil(testimonials.length / cardsPerSlide);
 
   const handleNext = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -67,11 +83,11 @@ const Testimonies = () => {
     if (!autoPlay) return;
     const timer = setInterval(() => handleNext(), 5000);
     return () => clearInterval(timer);
-  }, [currentSlide, autoPlay]);
+  }, [currentSlide, autoPlay, cardsPerSlide]);
 
   const getCurrentCards = () => {
-    const startIndex = currentSlide * CARDS_PER_SLIDE;
-    return testimonials.slice(startIndex, startIndex + CARDS_PER_SLIDE);
+    const startIndex = currentSlide * cardsPerSlide;
+    return testimonials.slice(startIndex, startIndex + cardsPerSlide);
   };
 
   return (

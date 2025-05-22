@@ -22,8 +22,8 @@ const Video = () => {
 
       {/* Text Content */}
       <div className="flex flex-col justify-center items-start p-5 sm:p-8 md:p-10 space-y-5">
-        <p className={`${montserrat.className} font-extrabold text-[#FBFCFF] dark:text-[#14110F] text-5xl sm:text-6xl text-center md:text-7xl`}>Our Reason is You</p>
-        <p className={`${roboto.className} font-extralight text-[#FBFCFF] dark:text-[#14110F] text-justify text-lg sm:text-xl md:text-3xl`}>
+        <p className={`${montserrat.className} font-extrabold text-[#FBFCFF] dark:text-[#14110F] text-4xl sm:text-5xl text-center md:text-6xl`}>Our Reason is You</p>
+        <p className={`${roboto.className} font-extralight text-[#FBFCFF] dark:text-[#14110F] text-justify text-lg sm:text-xl md:text-2xl`}>
           Pru Life UK is an insurance provider that prioritizes customer trust
           and support. The company offers financial assistance and peace of
           mind, especially during challenging times, such as a cancer diagnosis.
