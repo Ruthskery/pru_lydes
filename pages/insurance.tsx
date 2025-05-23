@@ -9,7 +9,6 @@ import {
   FaBars,
 } from "react-icons/fa";
 import Form from "@/components/form";
-import Navbar from "@/components/navbar";
 import { useRouter } from "next/router";
 
 const Insurance = () => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ExploreButton from "./explorebtn";
 import { FaShieldAlt, FaPiggyBank, FaGraduationCap, FaChartPie, FaFileAlt } from "react-icons/fa";
 import Link from 'next/link';
