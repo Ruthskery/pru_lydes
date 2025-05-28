@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import lydes from '../public/src/aboutme.jpg';
 import { montserrat, roboto } from '../styles/font';
-import { FaFacebookF, FaInstagram, FaTelegramPlane, FaLinkedinIn, FaFacebookMessenger } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaFacebookMessenger } from 'react-icons/fa';
 import { Typewriter } from 'react-simple-typewriter';
 
 const Hero = () => {
@@ -127,16 +127,25 @@ const Hero = () => {
             transition={{ delay: 1.5 }}
             className="flex flex-wrap gap-6 mt-10 justify-center md:justify-start"
           >
-            {[FaFacebookF, FaInstagram, FaTelegramPlane, FaLinkedinIn, FaFacebookMessenger].map((Icon, index) => (
-              <motion.div
+            {[
+              { Icon: FaFacebookF, href: "https://facebook.com/lydesromeroquitong" },
+              { Icon: FaInstagram, href: "https://www.instagram.com/lydesquitong" },
+              { Icon: FaLinkedinIn, href: "https://www.linkedin.com/in/lydelyn-quitong" },
+              { Icon: FaFacebookMessenger, href: "https://facebook.com/lydesromeroquitong" },
+            ].map(({ Icon, href }, index) => (
+              <motion.a
                 key={index}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.7 + index * 0.1, duration: 0.5 }}
-                whileHover={{ scale: 1.1, color: "#E1B951" }}
+                whileHover={{ scale: 1.1 }}
+                className="group transition duration-200"
               >
-                <Icon className="text-white dark:text-[#14110F] text-2xl sm:text-3xl md:text-4xl xl:text-5xl transition duration-200" />
-              </motion.div>
+                <Icon className="text-white dark:text-[#14110F] group-hover:text-[#96700f] text-2xl sm:text-3xl md:text-4xl xl:text-5xl transition-colors duration-200 cursor-pointer" />
+              </motion.a>
             ))}
           </motion.div>
         </div>
