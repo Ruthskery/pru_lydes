@@ -139,7 +139,7 @@ const Navbar = ({ forceBurger = false }: { forceBurger?: boolean }) => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-15">
               <ul
-                className={`${montserrat.className} flex space-x-15 text-base font-extrabold`}
+                className={`${montserrat.className} flex space-x-15 text-base font-bold`}
               >
                 {["Service", "Products", "Contact", "About"].map(
                   (item, index) => {
@@ -176,7 +176,7 @@ const Navbar = ({ forceBurger = false }: { forceBurger?: boolean }) => {
                             : { backgroundColor: "rgba(0,0,0,0)", borderRadius: "0.5rem", color: "inherit" }
                         }
                         transition={{ duration: 0.4, ease: "easeInOut" }}
-                        className={`relative cursor-pointer mt-1 after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-full after:h-[2px] after:bg-black after:transform after:-translate-x-1/2 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300${isActive ? ' text-[#E1B951]' : ''}`}
+                        className={`relative cursor-pointer mb-1 after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-full after:h-[2px] after:bg-black after:transform after:-translate-x-1/2 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300${isActive ? ' text-[#E1B951]' : ''}`}
                       >
                         <Link
                           href={linkHref}
@@ -190,13 +190,13 @@ const Navbar = ({ forceBurger = false }: { forceBurger?: boolean }) => {
                     );
                   }
                 )}
-                <li className="mb-1.2">
+                <li className="mt-1">
                   <DarkmodeToggle />
                 </li>
                 <li>
                   <div className=" text-white font-semibold rounded-full px-6 py-1 shadow ">
                     <PopupWidget
-                      url="https://calendly.com/mikotothemax/30min"
+                      url="https://calendly.com/pluklydesromeroquitong/60min"
                       rootElement={document.body}
                       text="Schedule an Appointment"
                       textColor="#FFFFFF"
@@ -303,7 +303,7 @@ const Navbar = ({ forceBurger = false }: { forceBurger?: boolean }) => {
                     </motion.li>
                   );
                 })}
-                <li className="mb-1.2">
+                <li className="">
                   <DarkmodeToggle />
                 </li>
                 <li>
