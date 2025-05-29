@@ -15,7 +15,7 @@ import { ArrowUp } from 'lucide-react'; // Import the ArrowUp icon
 import { ThemeProvider } from "@/context/themeContext";
 import GlowingCursor from '@/components/GlowingCursor';
 import Services from '@/components/services';
-
+import Survey from '@/components/survey';
 
 const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -55,6 +55,11 @@ const Home = () => {
         {/* Video Section */}
         <Video />
 
+        {/* Survey Section */}
+        <section id="survey">
+          <Survey />
+        </section>
+        
         {/* Products Section */}
         <section id="products">
           <Carousel />

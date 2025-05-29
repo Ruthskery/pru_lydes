@@ -57,9 +57,7 @@ const Hero = () => {
               Grow your wealth, <br /> secure your tomorrow.
             </h1>
             <p className="text-white dark:text-[#14110F] font-[Roboto] text-sm md:text-lg lg:text-xl xl:text-lg mb-6 max-w-6xl lg:px-50 xl:px-0">
-              With a proven track record, certified expertise, and a heart for
-              helping others, Pru Lydes empowers clients to take control of their
-              finances and secure a brighter future—one plan at a time.
+              With a proven track record as an insurance advisor, certified wealth planner, and certified estate planner expert with a heart for helping others, Pru Lydes empowers clients to take control of their finances and secure a brighter future—one plan at a time.
             </p>
           </div>
 
@@ -84,14 +82,14 @@ const Hero = () => {
           </motion.div>
           
 
-          <div className="flex text-black items-end gap-4 mb-20 xl:mb-0 text-3xl md:text-5xl lg:text-5xl">
-            <FaFacebookF className="hover:text-[#1877F2]" />
-            <FaInstagram className="hover:text-[#E1306C]" />
-            <FaXTwitter className="hover:text-black" />
-            <FaTelegram className="hover:text-[#0088cc]" />
-            <FaLinkedinIn className="hover:text-[#0077B5]" />
-            <FaFacebookMessenger className="hover:text-[#00B2FF]" />
-            <FaThreads className="hover:text-black" />
+          <div className="flex text-black items-end gap-4 mb-20 xl:mb-0 text-3xl md:text-5xl lg:text-5xl cursor-pointer">
+            <FaFacebookF className="hover:text-[#96700f]" />
+            <FaInstagram className="hover:text-[#96700f]" />
+            <FaXTwitter className="hover:text-[#96700f]" />
+            <FaTelegram className="hover:text-[#96700f]" />
+            <FaLinkedinIn className="hover:text-[#96700f]" />
+            <FaFacebookMessenger className="hover:text-[#96700f]" />
+            <FaThreads className="hover:text-[#96700f]" />
           </div>
         </div>
       </div>
