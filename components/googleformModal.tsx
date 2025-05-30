@@ -92,7 +92,7 @@ const GoogleFormModal: React.FC<GoogleFormModalProps> = ({ isOpen, onClose }) =>
             {/* Embedded Google Form */}
             <div className="mt-6">
               <iframe
-                src="https://forms.gle/sKyz4BFmDfx1s9EF6"
+                src="https://forms.gle/XunpCHnF2ncjS1zA7"
                 width="100%"
                 height="700"
                 className="w-full h-[70vh] sm:h-[75vh] rounded border-none"

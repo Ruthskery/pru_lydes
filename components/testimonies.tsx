@@ -4,40 +4,40 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const testimonials = [
   {
-    name: "John Doe",
-    role: "Business Owner",
+    name: "Ms. Susana",
+    role: "Nurse, 32 years old",
+    monthlyPayment: "₱1,500",
     quote: "PRU Life UK has given me peace of mind knowing my family's future is secured. The service is outstanding!",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
-    name: "Sarah Smith",
-    role: "Marketing Director",
+    name: "Ms. Bonna",
+    role: "Accounting Assistant, 37 years old",
+    monthlyPayment: "₱3,500",
     quote: "I was impressed by the professionalism and transparency. PRU Life UK truly cares about its clients.",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
   },
   {
-    name: "Michael Lee",
-    role: "Software Engineer",
+    name: "Mr. Rogelio",
+    role: "Assistant, 59 years old",
+    monthlyPayment: "₱3,333",
     quote: "Investing with PRU Life UK was one of the best decisions I've made. Their financial planning is top-notch.",
-    avatar: "https://randomuser.me/api/portraits/men/65.jpg",
   },
   {
-    name: "Emily Davis",
-    role: "Entrepreneur",
-    quote: "Their customer service is beyond expectations. I feel confident about my financial future with PRU Life UK.",
-    avatar: "https://randomuser.me/api/portraits/women/30.jpg",
+    name: "Ms. Sam",
+    role: "Architect, 28 years old",
+    monthlyPayment: "₱7,500",
+    quote: "Ate Lydes thank you sa pag assist, ang bilis dumating ng pera ko",
   },
   {
-    name: "James Wilson",
-    role: "Investor",
-    quote: "I love the flexibility in their investment options. I feel my money is working for me efficiently.",
-    avatar: "https://randomuser.me/api/portraits/men/77.jpg",
+    name: "Mr. Miles",
+    role: "Call Center Manager, 37 years old",
+    monthlyPayment: "₱5,000",
+    quote: "Ms Lydes, dumating na yung 15,000 hospitalization funds ko, thank you so much!",
   },
   {
-    name: "Olivia Martinez",
-    role: "Freelancer",
-    quote: "I never thought insurance could be this easy. PRU Life UK made the process simple and stress-free!",
-    avatar: "https://randomuser.me/api/portraits/women/26.jpg",
+    name: "Mrs. Rev",
+    role: "Call Center Manager, 40 years old",
+    monthlyPayment: "₱7,500",
+    quote: "Ms Lydes, ang bilis ma update ng beneficiary ko, nag reflect na sa system! Salamat sa pag asikaso!",
   },
 ];
 
@@ -49,8 +49,12 @@ const Testimonies = () => {
   useEffect(() => {
     // Set cards per slide based on screen size
     const updateCardsPerSlide = () => {
-      if (window.innerWidth >= 1024) {
-        setCardsPerSlide(3); // lg and up
+      if (window.innerWidth >= 1536) {
+        setCardsPerSlide(3); // 2xl
+      } else if (window.innerWidth >= 1280) {
+        setCardsPerSlide(3); // xl
+      } else if (window.innerWidth >= 1024) {
+        setCardsPerSlide(3); // lg
       } else if (window.innerWidth >= 768) {
         setCardsPerSlide(2); // md
       } else {
@@ -114,26 +118,26 @@ const Testimonies = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center max-w-7xl mx-auto"
           >
             {getCurrentCards().map((testimonial, idx) => (
               <div
                 key={idx}
-                className="bg-[#1f1d1b] dark:bg-[#F3E3BA] rounded-xl p-6 shadow-lg hover:shadow-xl transition"
+                className="bg-[#1f1d1b] dark:bg-[#F3E3BA] rounded-xl p-6 shadow-lg hover:shadow-xl transition flex flex-col h-full w-full max-w-md"
               >
-                <p className="text-lg font-light italic text-gray-200 dark:text-[#0C0A09] mb-4 font-[Roboto]">
-                  “{testimonial.quote}”
+                <p className="text-lg font-light italic text-gray-200 dark:text-[#0C0A09] mb-2 font-[Roboto] flex-grow">
+                  &quot;{testimonial.quote}&quot;
                 </p>
-                <div className="flex items-center gap-4">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <h4 className="font-semibold text-white dark:text-black">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-400 dark:text-[#69584F]">{testimonial.role}</p>
-                  </div>
+                <div className="flex flex-col items-center">
+                  <h4 className="font-semibold text-white dark:text-black text-lg">
+                    {testimonial.name}
+                  </h4>
+                  <p className="text-sm text-gray-400 dark:text-[#69584F]">
+                    {testimonial.role}
+                  </p>
+                  <p className="text-yellow-500 dark:text-yellow-700 font-semibold">
+                    Monthly Payment: {testimonial.monthlyPayment}
+                  </p>
                 </div>
               </div>
             ))}
@@ -141,7 +145,7 @@ const Testimonies = () => {
         </AnimatePresence>
 
         {/* Arrows */}
-        <div className="flex justify-center gap-6 mt-10">
+        <div className="hidden lg:flex justify-center gap-6 mt-10">
           <button
             onClick={handlePrev}
             className="p-3 rounded-full border border-gray-600 hover:bg-gray-700 transition"

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import GoogleFormModal from './googleformModal';
+import QuoteFormModal from './quoteFormModal';
 
 const Survey = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
   return (
     <div className='min-h-screen w-full bg-[#14110F] dark:bg-[#FCF8EE] py-16 px-4 sm:px-6 md:px-8 lg:px-12'>
@@ -104,6 +106,7 @@ const Survey = () => {
               </li>
             </ul>
             <button
+              onClick={() => setIsQuoteModalOpen(true)}
               className="w-full py-4 bg-transparent border-2 border-[#E1B951] dark:border-[#14110F] text-[#E1B951] dark:text-[#14110F] rounded-xl font-bold text-lg
                 transition-all duration-300 transform hover:bg-[#E1B951]/10 hover:scale-[1.02]
                 focus:outline-none focus:ring-2 focus:ring-[#E1B951] focus:ring-offset-2 focus:ring-offset-[#14110F]"
@@ -135,8 +138,9 @@ const Survey = () => {
         </div> */}
       </div>
 
-      {/* Modal */}
+      {/* Modals */}
       <GoogleFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <QuoteFormModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
     </div>
   );
 }

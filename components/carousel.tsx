@@ -271,21 +271,23 @@ const CardCarousel = () => {
 
         {/* Row Category Section - Only show when a category is selected */}
         {selectedCategory && (
-          <div className="mt-4 sm:mt-6 md:mt-8 bg-[#1A1512]/50 rounded-xl p-4 sm:p-6 md:p-8 border border-[#E1B951]/20">
-            <h3 className="text-[#E1B951] text-base sm:text-lg md:text-xl font-semibold mb-4 text-center">
+          <div className="mt-4 sm:mt-6 md:mt-8">
+            <h3 className="text-[#E1B951] dark:text-[#14110F] text-base sm:text-lg md:text-xl font-semibold mb-4 text-center">
               Choose Product Type
             </h3>
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
               {getRelevantRowCategories(selectedCategory).map((rowCategory) => (
                 <button
                   key={rowCategory}
                   onClick={() => setSelectedRowCategory(rowCategory)}
-                  className={`px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg border-2 font-semibold text-xs sm:text-sm md:text-base 
-                    transition-all duration-300 ${
-                    selectedRowCategory === rowCategory
-                      ? "bg-[#E1B951] border-[#E1B951] text-black"
-                      : "bg-transparent border-[#E1B951] text-[#E1B951] hover:bg-[#E1B951]/10"
-                  }`}
+                  className={`text-xs sm:text-sm md:text-base font-semibold transition-all duration-300 relative
+                    ${selectedRowCategory === rowCategory
+                      ? "text-[#E1B951]"
+                      : "text-[#E1B951] dark:text-[#14110F]"
+                    }
+                    after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[2px] 
+                    after:bg-red-500 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300
+                    ${selectedRowCategory === rowCategory ? "after:scale-x-100" : ""}`}
                 >
                   {rowCategory}
                 </button>
@@ -303,8 +305,8 @@ const CardCarousel = () => {
             {cards.map((card, index) => (
               <div
                 key={index}
-                className="bg-[#1A1512] dark:bg-[#F3E3BA] rounded-xl shadow-lg p-3 sm:p-4 md:p-5 text-center border border-[#E1B951]/20
-                  transform transition duration-300 hover:scale-[1.02] hover:border-[#E1B951]/40"
+                className="bg-[#1f1d1b] dark:bg-[#F3E3BA] rounded-xl shadow-lg p-3 sm:p-4 md:p-5 text-center 
+                  transform transition duration-300 hover:scale-[1.02]"
               >
                 <img
                   src={card.image}
@@ -338,8 +340,8 @@ const CardCarousel = () => {
                   {cards.map((card, index) => (
                     <div
                       key={index}
-                      className="bg-[#1A1512] dark:bg-[#F3E3BA] rounded-xl shadow-lg p-3 sm:p-4 md:p-5 text-center border border-[#E1B951]/20
-                        transform transition duration-300 hover:scale-[1.02] hover:border-[#E1B951]/40"
+                      className="bg-[#1f1d1b] dark:bg-[#F3E3BA] rounded-xl shadow-lg p-3 sm:p-4 md:p-5 text-center 
+                        transform transition duration-300 hover:scale-[1.02]"
                     >
                       <img
                         src={card.image}

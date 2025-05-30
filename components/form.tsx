@@ -6,10 +6,21 @@ import { useState, useRef } from "react";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [privacyConsent, setPrivacyConsent] = useState(false);
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    
+    if (!privacyConsent) {
+      Swal.fire({
+        title: "Error",
+        text: "Please agree to the privacy policy to proceed.",
+        icon: "error",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     const form = formRef.current;
@@ -17,6 +28,7 @@ const Contact = () => {
 
     const formData = new FormData(form);
     formData.append("access_key", "6eb05e17-0d46-458f-a1b8-c7646b48f6c3");
+    formData.append("privacyConsent", privacyConsent.toString());
 
     const json = JSON.stringify(Object.fromEntries(formData));
 
@@ -43,7 +55,8 @@ const Contact = () => {
           text: "Message sent successfully!",
           icon: "success",
         });
-        form.reset(); // clear the form safely
+        form.reset();
+        setPrivacyConsent(false); // Reset privacy consent
       } else {
         Swal.fire({
           title: "Error",
@@ -107,10 +120,33 @@ const Contact = () => {
               placeholder="Enter your message"
               required
             ></textarea>
+
+            {/* Privacy Consent Checkbox */}
+            <div className="flex items-start gap-2 mt-4 mb-4">
+              <input
+                type="checkbox"
+                id="privacyConsent"
+                checked={privacyConsent}
+                onChange={(e) => setPrivacyConsent(e.target.checked)}
+                className="mt-1 h-4 w-4 rounded border-2 border-white dark:border-[#14110f] text-[#E1B951] focus:ring-[#E1B951]"
+                required
+              />
+              <label 
+                htmlFor="privacyConsent" 
+                className="text-sm font-light text-gray-300 dark:text-[#69584F]"
+              >
+                I agree to the collection and processing of my personal data in accordance with the Data Privacy Act of 2012.
+              </label>
+            </div>
+
             <button
               type="submit"
-              disabled={isSubmitting}
-              className="w-full h-14 bg-white dark:bg-[#695012] text-black dark:text-white font-semibold rounded-md shadow-md text-lg mt-5 transition duration-500 hover:bg-[#E1B951] dark:hover:bg-[#AE851E]"
+              disabled={isSubmitting || !privacyConsent}
+              className={`w-full h-14 font-semibold rounded-md shadow-md text-lg mt-5 transition duration-500 
+                ${isSubmitting || !privacyConsent
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-white dark:bg-[#695012] text-black dark:text-white hover:bg-[#E1B951] dark:hover:bg-[#AE851E]'
+                }`}
             >
               {isSubmitting ? "Submitting..." : "Send Message"}
             </button>
