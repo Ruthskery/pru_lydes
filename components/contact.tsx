@@ -112,7 +112,7 @@ const Contact = () => {
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-[Montserrat]">Our Location</h1>
             <p className="font-[Roboto] font-light text-sm sm:text-base md:text-lg py-2 sm:py-3 md:py-4">
               We welcome you to visit our office for a personalized consultation.
-              Let's discuss how we can help secure your financial future.
+              Let&apos;s discuss how we can help secure your financial future.
             </p>
           </div>
           <div className="flex-grow">
