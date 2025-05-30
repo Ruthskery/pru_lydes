@@ -53,10 +53,6 @@ const Contact = () => {
       errors.age = "You must be at least 18 years old";
     }
 
-    if (Number(formData.age) !== age) {
-      errors.birthdate = "Age does not match with birthdate";
-    }
-
     const availableDate = new Date(formData.availableDate);
     if (availableDate < today) {
       errors.availableDate = "Available date must be in the future";
