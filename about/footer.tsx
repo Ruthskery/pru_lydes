@@ -29,10 +29,10 @@ const Footer: React.FC = () => {
           {/* Column 1: About */}
           <div>
             <h2 className="text-sm sm:text-base md:text-sm lg:text-base font-semibold mb-3 border-b-2 border-yellow-500 inline-block">About</h2>
-            <p className="text-xs text-gray-400 dark:text-[#14110F] mb-2">
+            <p className="text-xs text-white dark:text-[#14110F] mb-2">
               We provide reliable and comprehensive insurance solutions tailored to your needs. Our goal is to protect what matters most to you.
             </p>
-            <p className="text-xs text-gray-400 dark:text-[#14110F]">
+            <p className="text-xs text-white dark:text-[#14110F]">
               © 2025 Blue Chalcedony Diamond Quartz. All rights reserved.
             </p>
           </div>
@@ -40,10 +40,10 @@ const Footer: React.FC = () => {
           {/* Column 2: Legal */}
           <div>
             <h2 className="text-sm sm:text-base md:text-sm lg:text-base font-semibold mb-3 border-b-2 border-yellow-500 inline-block">Insurance & Legal</h2>
-            <p className="text-xs text-gray-400 dark:text-[#14110F] mb-2">
+            <p className="text-xs text-white dark:text-[#14110F] mb-2">
               We maintain professional liability insurance to ensure quality service and protect both our clients and ourselves.
             </p>
-            <ul className="text-xs text-gray-400 dark:text-[#14110F] space-y-2">
+            <ul className="text-xs text-white dark:text-[#14110F] space-y-2">
               <li><a href="/privacy-policy" className="hover:text-yellow-500">Privacy Policy</a></li>
               <li><a href="/terms-of-service" className="hover:text-yellow-500">Terms of Service</a></li>
             </ul>
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
           {/* Column 3: Services */}
           <div>
             <h2 className="text-sm sm:text-base md:text-sm lg:text-base font-semibold mb-3 border-b-2 border-yellow-500 inline-block">Insurance Services</h2>
-            <ul className="text-xs text-gray-400 dark:text-[#14110F] space-y-2">
+            <ul className="text-xs text-white dark:text-[#14110F] space-y-2">
               <li><a href="/savings" className="hover:text-yellow-500">Protection & Savings</a></li>
               <li><a href="/health" className="hover:text-yellow-500">Health Insurance</a></li>
               <li><a href="/investment" className="hover:text-yellow-500">Investment</a></li>
